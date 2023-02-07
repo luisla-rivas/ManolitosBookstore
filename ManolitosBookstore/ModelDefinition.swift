@@ -10,8 +10,24 @@
 
 import Foundation
 
+//   let user = try? JSONDecoder().decode(User.self, from: jsonData)
+// MARK: - BookstoreUser
+struct BookstoreUser: Codable {
+    let name, email, location: String
+    let role: Role
+    
+    static let preview = BookstoreUser(name: "Luis Tester", email: "luisla.tester@luisla.com", location: "C/Alegría de Swift, 77 /n08025 Barcelona", role: .admin)
+}
+enum Role: String, Codable, CaseIterable {
+    case admin = "admin"
+    case client = "client"
+    case provider = "provider"
+}
+
+
+
 // MARK: - Book
-struct Book: Codable {
+struct Book: Identifiable, Codable, Hashable {
     let cover: String?
     let year: Int?
     let author: String?
@@ -20,17 +36,16 @@ struct Book: Codable {
     let id: Int
     let isbn, summary: String?
     let pages: Int?
+    
+    static let preview = Book(cover: "https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png", year: 1955, author: "ED352A5F-D451-43AD-84E6-F896B1FF10D5", rating: 4.32, title: "The Dictator", id: 577, isbn: nil, summary: "Stephen Marlowe (born Milton Lesser) was an American author of science fiction, mystery novels, and fictional autobiographies of Christopher Columbus, Miguel de Cervantes, and Edgar Allan Poe. This is one of those stories.", pages: nil)
 }
-
 typealias Books = [Book]
-
 
 //   let authors = try? JSONDecoder().decode(Authors.self, from: jsonData)
 // MARK: - Author
 struct Author: Codable {
     let name, id: String
 }
-
 typealias Authors = [Author]
 
 //   let client = try? JSONDecoder().decode(Client.self, from: jsonData)
@@ -56,7 +71,6 @@ enum OrderState: String, Codable, CaseIterable {
 }
 
 //Struct used in POST requests or anwsers
-
 // MARK: - RequesByEmail
 struct RequestByEmail: Codable {
     let email: String
