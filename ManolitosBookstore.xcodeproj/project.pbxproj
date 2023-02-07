@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A04A62EF29926BF1005E8931 /* ModelDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04A62EE29926BF1005E8931 /* ModelDefinition.swift */; };
 		A09C7B5E298C0619005EA4D2 /* ManolitosBookstoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C7B5D298C0619005EA4D2 /* ManolitosBookstoreApp.swift */; };
 		A09C7B60298C0619005EA4D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C7B5F298C0619005EA4D2 /* ContentView.swift */; };
 		A09C7B62298C061A005EA4D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A09C7B61298C061A005EA4D2 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A04A62EE29926BF1005E8931 /* ModelDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDefinition.swift; sourceTree = "<group>"; };
 		A09C7B5A298C0619005EA4D2 /* ManolitosBookstore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManolitosBookstore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A09C7B5D298C0619005EA4D2 /* ManolitosBookstoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManolitosBookstoreApp.swift; sourceTree = "<group>"; };
 		A09C7B5F298C0619005EA4D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			children = (
 				A09C7B5D298C0619005EA4D2 /* ManolitosBookstoreApp.swift */,
 				A09C7B5F298C0619005EA4D2 /* ContentView.swift */,
+				A04A62EE29926BF1005E8931 /* ModelDefinition.swift */,
 				A09C7B61298C061A005EA4D2 /* Assets.xcassets */,
 				A09C7B63298C061A005EA4D2 /* ManolitosBookstore.entitlements */,
 				A09C7B64298C061A005EA4D2 /* Preview Content */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A09C7B60298C0619005EA4D2 /* ContentView.swift in Sources */,
+				A04A62EF29926BF1005E8931 /* ModelDefinition.swift in Sources */,
 				A09C7B5E298C0619005EA4D2 /* ManolitosBookstoreApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
