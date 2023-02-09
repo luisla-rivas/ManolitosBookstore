@@ -44,7 +44,7 @@ typealias Books = [Book]
 
 //   let authors = try? JSONDecoder().decode(Authors.self, from: jsonData)
 // MARK: - Author
-struct Author: Codable {
+struct Author: Identifiable, Codable, Hashable {
     let name, id: String
 }
 typealias Authors = [Author]

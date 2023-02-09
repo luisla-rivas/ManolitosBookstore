@@ -14,18 +14,30 @@ struct BookListView: View {
     var body: some View {
         NavigationStack { //(path: $path)
             ScrollView {
-                Text("MyScrollView")
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 250,maximum: 350))]) {
                     ForEach(appVM.books) { book in //, id:\.self
                         NavigationLink(value: book) {
-                            Text(book.title)
+                            HStack(alignment: .center) {
+//                                AsyncImage(url: book.cover, scale: <#T##CGFloat#>, content: <#T##(Image) -> View#>, placeholder: <#T##() -> View#>)
+                                Image(systemName: "photo")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100, height: 100)
+                                VStack (alignment: .leading) {
+                                    Text(book.title).font(.headline)
+                                    Text(book.author ?? "").font(.caption).foregroundColor(.gray)
+//                                    Text("\(book.year)" )
+                                }
+                                Spacer()
+                            }
+                            .frame(width: .infinity, alignment: .leading )
                         }
                     }
                 }
             }.padding()
-//            .navigationDestination(for: Int.self) { seasonNumber in
-//                EpisodeListView(seasonSelected: seasonNumber, showOnlyFavorites: false)
-//            }
+////            .navigationDestination(for: Int.self) { seasonNumber in
+////                EpisodeListView(seasonSelected: seasonNumber, showOnlyFavorites: false)
+////            }
             .navigationDestination(for: Book.self) { book in
                 BookDetailView(detailVM: BookDetailViewModel(book: book))
             }

@@ -23,6 +23,10 @@ struct ManolitosBookstoreApp: App {
                 }
             }
             .environmentObject(appVM)
+            .task {
+                await appVM.getLatestBooks()
+//                print(URL.cachesDirectory)
+            }
             .preferredColorScheme(ColorScheme.init(
                 .init(rawValue: preferredColorScheme) ?? .light))
             

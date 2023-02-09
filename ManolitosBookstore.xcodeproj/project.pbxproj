@@ -25,6 +25,8 @@
 		A09C7B7C298C061A005EA4D2 /* ManolitosBookstoreUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C7B7B298C061A005EA4D2 /* ManolitosBookstoreUITestsLaunchTests.swift */; };
 		A0D64DC5299414FE009ECE11 /* ModelsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D64DC4299414FE009ECE11 /* ModelsAPI.swift */; };
 		A0D64DC829941F68009ECE11 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D64DC729941F68009ECE11 /* Network.swift */; };
+		A0D8A3A929952CFB00B2B995 /* AsyncPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D8A3A829952CFB00B2B995 /* AsyncPersistence.swift */; };
+		A0DB755629953CC40093887C /* latestBooks.json in Resources */ = {isa = PBXBuildFile; fileRef = A0DB755529953CC40093887C /* latestBooks.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		A09C7B7B298C061A005EA4D2 /* ManolitosBookstoreUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManolitosBookstoreUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A0D64DC4299414FE009ECE11 /* ModelsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsAPI.swift; sourceTree = "<group>"; };
 		A0D64DC729941F68009ECE11 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		A0D8A3A829952CFB00B2B995 /* AsyncPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncPersistence.swift; sourceTree = "<group>"; };
+		A0DB755529953CC40093887C /* latestBooks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = latestBooks.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,7 @@
 		A09C7B64298C061A005EA4D2 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				A0DB755529953CC40093887C /* latestBooks.json */,
 				A09C7B65298C061A005EA4D2 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -190,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				A0D64DC729941F68009ECE11 /* Network.swift */,
+				A0D8A3A829952CFB00B2B995 /* AsyncPersistence.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -299,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A09C7B66298C061A005EA4D2 /* Preview Assets.xcassets in Resources */,
+				A0DB755629953CC40093887C /* latestBooks.json in Resources */,
 				A09C7B62298C061A005EA4D2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +343,7 @@
 				A04A63062992C607005E8931 /* BookDetailViewModel.swift in Sources */,
 				A04A62F62992989C005E8931 /* BookListView.swift in Sources */,
 				A04A63022992C1BA005E8931 /* BooksViewModel.swift in Sources */,
+				A0D8A3A929952CFB00B2B995 /* AsyncPersistence.swift in Sources */,
 				A04A62FF2992A0DF005E8931 /* ModelPersistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
