@@ -23,6 +23,8 @@
 		A09C7B70298C061A005EA4D2 /* ManolitosBookstoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C7B6F298C061A005EA4D2 /* ManolitosBookstoreTests.swift */; };
 		A09C7B7A298C061A005EA4D2 /* ManolitosBookstoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C7B79298C061A005EA4D2 /* ManolitosBookstoreUITests.swift */; };
 		A09C7B7C298C061A005EA4D2 /* ManolitosBookstoreUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C7B7B298C061A005EA4D2 /* ManolitosBookstoreUITestsLaunchTests.swift */; };
+		A0D64DC5299414FE009ECE11 /* ModelsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D64DC4299414FE009ECE11 /* ModelsAPI.swift */; };
+		A0D64DC829941F68009ECE11 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D64DC729941F68009ECE11 /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		A09C7B75298C061A005EA4D2 /* ManolitosBookstoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ManolitosBookstoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A09C7B79298C061A005EA4D2 /* ManolitosBookstoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManolitosBookstoreUITests.swift; sourceTree = "<group>"; };
 		A09C7B7B298C061A005EA4D2 /* ManolitosBookstoreUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManolitosBookstoreUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A0D64DC4299414FE009ECE11 /* ModelsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsAPI.swift; sourceTree = "<group>"; };
+		A0D64DC729941F68009ECE11 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +97,9 @@
 		A04A62F0299295F9005E8931 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A04A62EE29926BF1005E8931 /* ModelDefinition.swift */,
 				A04A62FE2992A0DF005E8931 /* ModelPersistence.swift */,
+				A04A62EE29926BF1005E8931 /* ModelDefinition.swift */,
+				A0D64DC4299414FE009ECE11 /* ModelsAPI.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 			children = (
 				A09C7B5D298C0619005EA4D2 /* ManolitosBookstoreApp.swift */,
 				A09C7B5F298C0619005EA4D2 /* ContentView.swift */,
+				A0D64DC629941F43009ECE11 /* Network */,
 				A04A62F7299298A6005E8931 /* IOSViews */,
 				A04A62F0299295F9005E8931 /* Models */,
 				A04A63002992A6BE005E8931 /* ViewModels */,
@@ -178,6 +184,14 @@
 				A09C7B7B298C061A005EA4D2 /* ManolitosBookstoreUITestsLaunchTests.swift */,
 			);
 			path = ManolitosBookstoreUITests;
+			sourceTree = "<group>";
+		};
+		A0D64DC629941F43009ECE11 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A0D64DC729941F68009ECE11 /* Network.swift */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,10 +324,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0D64DC829941F68009ECE11 /* Network.swift in Sources */,
 				A04A62FB29929D4D005E8931 /* AccountDetailView.swift in Sources */,
 				A04A62F929929925005E8931 /* SettingsView.swift in Sources */,
 				A04A63042992C53C005E8931 /* BookDetailView.swift in Sources */,
 				A09C7B60298C0619005EA4D2 /* ContentView.swift in Sources */,
+				A0D64DC5299414FE009ECE11 /* ModelsAPI.swift in Sources */,
 				A04A62EF29926BF1005E8931 /* ModelDefinition.swift in Sources */,
 				A09C7B5E298C0619005EA4D2 /* ManolitosBookstoreApp.swift in Sources */,
 				A04A62FD2992A077005E8931 /* UserViewModel.swift in Sources */,

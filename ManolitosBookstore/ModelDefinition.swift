@@ -20,8 +20,9 @@ struct BookstoreUser: Codable {
 }
 enum Role: String, Codable, CaseIterable {
     case admin = "admin"
-    case client = "client"
-    case provider = "provider"
+    case client = "usuario"
+//    case client = "client"
+//    case provider = "provider"
 }
 
 
@@ -70,45 +71,5 @@ enum OrderState: String, Codable, CaseIterable {
     case entregado = "entregado"
 }
 
-//Struct used in POST requests or anwsers
-// MARK: - RequesByEmail
-struct RequestByEmail: Codable {
-    let email: String
-}
-
-//   let booksOrderedAndReaded = try? JSONDecoder().decode(BooksOrderedAndReaded.self, from: jsonData)
-// MARK: - BooksOrderedAndReaded
-struct BooksOrderedAndReaded: Codable {
-    let readed: [Int]
-    let email: String
-    let ordered: [Int]
-}
-
-//   let booksReaded = try? JSONDecoder().decode(BooksReaded.self, from: jsonData)
-// MARK: - BooksReaded
-struct BooksReaded: Codable {
-    let books: [Int]
-    let email: String
-}
-
-// MARK: - BooksOrderRequest
-struct BooksOrderRequest: Codable {
-    let email: String
-    let pedido: [Int]
-}
-
-
-typealias BooksOrders = [BooksOrder]
-
-// MARK: - PurchaseOrderState
-struct PurchaseOrderState: Codable {
-    let estado: String
-}
-
-
-// MARK: - ModifyOrderStateRequest
-struct ModifyOrderStateRequest: Codable {
-    let id, estado, admin: String
-}
 
 
