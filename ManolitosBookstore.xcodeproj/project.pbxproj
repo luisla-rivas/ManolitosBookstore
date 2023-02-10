@@ -16,6 +16,8 @@
 		A04A63022992C1BA005E8931 /* BooksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04A63012992C1BA005E8931 /* BooksViewModel.swift */; };
 		A04A63042992C53C005E8931 /* BookDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04A63032992C53C005E8931 /* BookDetailView.swift */; };
 		A04A63062992C607005E8931 /* BookDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04A63052992C607005E8931 /* BookDetailViewModel.swift */; };
+		A061FB3129964543008E3255 /* LHGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A061FB3029964543008E3255 /* LHGridView.swift */; };
+		A061FB33299645B7008E3255 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A061FB32299645B7008E3255 /* DiscoverView.swift */; };
 		A09C7B5E298C0619005EA4D2 /* ManolitosBookstoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C7B5D298C0619005EA4D2 /* ManolitosBookstoreApp.swift */; };
 		A09C7B60298C0619005EA4D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C7B5F298C0619005EA4D2 /* ContentView.swift */; };
 		A09C7B62298C061A005EA4D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A09C7B61298C061A005EA4D2 /* Assets.xcassets */; };
@@ -27,6 +29,7 @@
 		A0D64DC829941F68009ECE11 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D64DC729941F68009ECE11 /* Network.swift */; };
 		A0D8A3A929952CFB00B2B995 /* AsyncPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D8A3A829952CFB00B2B995 /* AsyncPersistence.swift */; };
 		A0DB755629953CC40093887C /* latestBooks.json in Resources */ = {isa = PBXBuildFile; fileRef = A0DB755529953CC40093887C /* latestBooks.json */; };
+		A0DB755829955C190093887C /* BookRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB755729955C190093887C /* BookRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,8 @@
 		A04A63012992C1BA005E8931 /* BooksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksViewModel.swift; sourceTree = "<group>"; };
 		A04A63032992C53C005E8931 /* BookDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailView.swift; sourceTree = "<group>"; };
 		A04A63052992C607005E8931 /* BookDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewModel.swift; sourceTree = "<group>"; };
+		A061FB3029964543008E3255 /* LHGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LHGridView.swift; sourceTree = "<group>"; };
+		A061FB32299645B7008E3255 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		A09C7B5A298C0619005EA4D2 /* ManolitosBookstore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManolitosBookstore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A09C7B5D298C0619005EA4D2 /* ManolitosBookstoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManolitosBookstoreApp.swift; sourceTree = "<group>"; };
 		A09C7B5F298C0619005EA4D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +76,7 @@
 		A0D64DC729941F68009ECE11 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		A0D8A3A829952CFB00B2B995 /* AsyncPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncPersistence.swift; sourceTree = "<group>"; };
 		A0DB755529953CC40093887C /* latestBooks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = latestBooks.json; sourceTree = "<group>"; };
+		A0DB755729955C190093887C /* BookRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +117,10 @@
 		A04A62F7299298A6005E8931 /* IOSViews */ = {
 			isa = PBXGroup;
 			children = (
+				A061FB32299645B7008E3255 /* DiscoverView.swift */,
+				A061FB3029964543008E3255 /* LHGridView.swift */,
 				A04A62F52992989C005E8931 /* BookListView.swift */,
+				A0DB755729955C190093887C /* BookRowView.swift */,
 				A04A63032992C53C005E8931 /* BookDetailView.swift */,
 				A04A62FA29929D4D005E8931 /* AccountDetailView.swift */,
 				A04A62F829929925005E8931 /* SettingsView.swift */,
@@ -331,7 +340,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A061FB3129964543008E3255 /* LHGridView.swift in Sources */,
+				A061FB33299645B7008E3255 /* DiscoverView.swift in Sources */,
 				A0D64DC829941F68009ECE11 /* Network.swift in Sources */,
+				A0DB755829955C190093887C /* BookRowView.swift in Sources */,
 				A04A62FB29929D4D005E8931 /* AccountDetailView.swift in Sources */,
 				A04A62F929929925005E8931 /* SettingsView.swift in Sources */,
 				A04A63042992C53C005E8931 /* BookDetailView.swift in Sources */,

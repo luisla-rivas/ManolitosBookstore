@@ -1,37 +1,13 @@
 //
-//  BookListView.swift
+//  BookRowView.swift
 //  ManolitosBookstore
 //
-//  Created by Luis Lasierra on 7/2/23.
+//  Created by Luis Lasierra on 9/2/23.
 //
 
 import SwiftUI
 
-struct BookListView: View {
-//    @EnvironmentObject var appVM:BooksViewModel
-    //@State var path:[Int] = []
-    let books: Books
-    var body: some View {
-        ScrollView {
-            LazyVStack(alignment: .leading) {
-                ForEach(books) { book in //, id:\.self
-                    NavigationLink(value: book) {
-                        BookRowView(book: book)
-                            .frame(alignment: .leading )
-                    }
-                }
-            }
-        }
-    }
-}
-
-struct BookListView_Previews: PreviewProvider {
-    static var previews: some View {
-        BookListView(books: BooksViewModel(option:.inPreview).books)
-    }
-}
-
-struct LatestBooksView: View {
+struct BookRowView: View {
     let book:Book
     var body: some View {
         HStack(alignment: .center) {
@@ -53,18 +29,26 @@ struct LatestBooksView: View {
             
             
             VStack (alignment: .leading) {
-                Text(book.title).font(.headline)
-                Text("Author: \(book.author ?? "")")
-                    .font(.caption).foregroundColor(.gray)
+                Text("Title: **\(book.title)**")
+                    //.font(.headline)
+                Text("Author: **\(book.author ?? "")**")
+                    //.font(.footnote).foregroundColor(.gray)
                 if let bookYear = book.year  {
-                    Text("Year: \(bookYear, specifier: "%.0d")")
-                        .font(.footnote).foregroundColor(.gray)
+                    Text("Year: **\(bookYear, specifier: "%.0d")**")
+                       // .font(.footnote).foregroundColor(.gray)
                 } else {
                     Text("Year: - ")
                 }
             }
             Spacer()
         }
+    }
+}
+
+struct BookRowView_Previews: PreviewProvider {
+    static var previews: some View {
+        BookRowView(book: .preview)
+
     }
 }
 

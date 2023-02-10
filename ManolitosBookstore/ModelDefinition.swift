@@ -31,7 +31,7 @@ enum Role: String, Codable, CaseIterable {
 struct Book: Identifiable, Codable, Hashable {
     let cover: String?
     let year: Int?
-    let author: String?
+    var author: String?
     let rating: Double?
     let title: String
     let id: Int

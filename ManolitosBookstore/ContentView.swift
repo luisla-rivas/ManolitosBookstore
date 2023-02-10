@@ -17,19 +17,19 @@ struct ContentView: View {
     
     var body: some View {
         TabView(selection: $selection) {
-            BookListView()
+            DiscoverView()
                 .tabItem {
                     Label("Discover", systemImage: "star.fill")
                 }
                 .tag(TabItem.discover)
             
-            BookListView()
+            DiscoverView()
                 .tabItem {
                     Label("My books", systemImage: "books.vertical.fill")
                 }
                 .tag(TabItem.purchased)
             
-            BookListView()
+            DiscoverView()
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                 }

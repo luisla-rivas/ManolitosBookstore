@@ -19,6 +19,10 @@ final class AsyncPersistence {
         try await queryJSON(request: .request(url: .getLatestBooks), type: Books.self)
     }
     
+    func getAuthors() async throws -> Authors {
+        try await queryJSON(request: .request(url: .getAuthors), type: Authors.self)
+    }
+    
     func queryJSON<T:Codable>(request:URLRequest,
                               type:T.Type,
                               decoder:JSONDecoder = JSONDecoder(),

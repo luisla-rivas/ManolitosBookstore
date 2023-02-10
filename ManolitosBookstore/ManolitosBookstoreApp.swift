@@ -24,7 +24,8 @@ struct ManolitosBookstoreApp: App {
             }
             .environmentObject(appVM)
             .task {
-                await appVM.getLatestBooks()
+                let (_,_) = await (appVM.getLatestBooks(), appVM.getAuthors())
+                appVM.createLatestBookData()
 //                print(URL.cachesDirectory)
             }
             .preferredColorScheme(ColorScheme.init(

@@ -16,7 +16,8 @@ final class BooksViewModel: ObservableObject {
     private let persistenceAsync = AsyncPersistence()
     private let persistence = ModelPersistence()
     @Published var books:Books = []
-    private let authors:Authors = []
+    private var latestBooksInServer: Books = []
+    private var authorsInServer:[String:String] = [:]
     @Published var search = ""
     
     @Published var showError = false
@@ -57,6 +58,21 @@ final class BooksViewModel: ObservableObject {
         
         
     }
+    func createLatestBookData() {
+        var bookList:Books = []
+        for book in self.latestBooksInServer {
+            var bookInfoView = book
+            if book.author != nil {
+                bookInfoView.author = authorsInServer[book.author!] ?? ""
+            } else {
+                bookInfoView.author = ""
+            }
+            bookList.append(bookInfoView)
+        }
+        self.books = bookList
+    }
+    
+    
     @MainActor func getAllBooks() async {
         do {
             let booksFromServer = try await AsyncPersistence.shared.getAllBooks() //DataLoad.shared.loadEmpleadosData()
@@ -71,7 +87,7 @@ final class BooksViewModel: ObservableObject {
     @MainActor func getLatestBooks() async {
         do {
             let booksFromServer = try await AsyncPersistence.shared.getLatestBooks() //DataLoad.shared.loadEmpleadosData()
-            books = booksFromServer
+            latestBooksInServer = booksFromServer
         } catch let error as APIErrors {
             errorMsg = error.description
         } catch {
@@ -79,5 +95,18 @@ final class BooksViewModel: ObservableObject {
         }
     }
     
-
+    @MainActor func getAuthors() async {
+        do {
+            let authorsFromServer = try await AsyncPersistence.shared.getAuthors()
+            var authorsDict:[String:String] = [:]
+            for author in authorsFromServer {
+                authorsDict[author.id] = author.name
+            }
+            authorsInServer = authorsDict
+        } catch let error as APIErrors {
+            errorMsg = error.description
+        } catch {
+            errorMsg = error.localizedDescription
+        }
+    }
 }
