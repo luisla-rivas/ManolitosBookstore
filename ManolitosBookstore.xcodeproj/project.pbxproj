@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A03EEED1299AB84100EF9759 /* BookstoreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03EEED0299AB84100EF9759 /* BookstoreListView.swift */; };
 		A04A62EF29926BF1005E8931 /* ModelDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04A62EE29926BF1005E8931 /* ModelDefinition.swift */; };
 		A04A62F62992989C005E8931 /* BookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04A62F52992989C005E8931 /* BookListView.swift */; };
 		A04A62F929929925005E8931 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04A62F829929925005E8931 /* SettingsView.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A03EEED0299AB84100EF9759 /* BookstoreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookstoreListView.swift; sourceTree = "<group>"; };
 		A04A62EE29926BF1005E8931 /* ModelDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDefinition.swift; sourceTree = "<group>"; };
 		A04A62F52992989C005E8931 /* BookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListView.swift; sourceTree = "<group>"; };
 		A04A62F829929925005E8931 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				A061FB32299645B7008E3255 /* DiscoverView.swift */,
+				A03EEED0299AB84100EF9759 /* BookstoreListView.swift */,
 				A061FB3029964543008E3255 /* LHGridView.swift */,
 				A04A62F52992989C005E8931 /* BookListView.swift */,
 				A0DB755729955C190093887C /* BookRowView.swift */,
@@ -353,6 +356,7 @@
 				A09C7B5E298C0619005EA4D2 /* ManolitosBookstoreApp.swift in Sources */,
 				A04A62FD2992A077005E8931 /* UserViewModel.swift in Sources */,
 				A04A63062992C607005E8931 /* BookDetailViewModel.swift in Sources */,
+				A03EEED1299AB84100EF9759 /* BookstoreListView.swift in Sources */,
 				A04A62F62992989C005E8931 /* BookListView.swift in Sources */,
 				A04A63022992C1BA005E8931 /* BooksViewModel.swift in Sources */,
 				A0D8A3A929952CFB00B2B995 /* AsyncPersistence.swift in Sources */,

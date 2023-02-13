@@ -15,15 +15,20 @@ struct DiscoverView: View {
         NavigationStack { //(path: $path)
             List {
                 Section() {
-                    LHGridView(books:appVM.books)
+                    LHGridView(books:appVM.latestBooks)
                 } header: {
                     Text("Latest books")
                 }
                 
                 Section {
-                    BookListView(books:appVM.books)
+                    BookListView(books:appVM.ordededBooks)
                 } header: {
                     Text("Last Purchased")
+                }
+                Section {
+                    BookListView(books:appVM.readedBooks)
+                } header: {
+                    Text("Readed Books")
                 }
             }.listStyle(.grouped)
             .navigationDestination(for: Book.self) { book in
@@ -31,6 +36,9 @@ struct DiscoverView: View {
             }
             .navigationTitle("Manolito's Bookstore")
             //.searchable(text: $appVM.search)
+            .task {
+                let (_,_) = await (appVM.getLatestBooks(), appVM.getOrderedAndReadedBooks())
+            }
         }
     }
 }

@@ -16,6 +16,10 @@ final class BooksViewModel: ObservableObject {
     private let persistenceAsync = AsyncPersistence()
     private let persistence = ModelPersistence()
     @Published var books:Books = []
+    @Published var latestBooks:Books = []
+    @Published var ordededBooks: Books = []
+    @Published var readedBooks: Books = []
+    private var booksInServer: Books = []
     private var latestBooksInServer: Books = []
     private var authorsInServer:[String:String] = [:]
     @Published var search = ""
@@ -58,12 +62,12 @@ final class BooksViewModel: ObservableObject {
         
         
     }
-    func createLatestBookData() {
+    func createBookData(from books: Books) {
         var bookList:Books = []
-        for book in self.latestBooksInServer {
+        for book in books {
             var bookInfoView = book
             if book.author != nil {
-                bookInfoView.author = authorsInServer[book.author!] ?? ""
+                bookInfoView.author = authorsInServer[book.author!, default:  ""]
             } else {
                 bookInfoView.author = ""
             }
@@ -72,11 +76,25 @@ final class BooksViewModel: ObservableObject {
         self.books = bookList
     }
     
+    func prepareForView(books: Books) -> Books {
+        var bookList:Books = []
+        for var book in books {
+            if book.author != nil {
+                book.author = authorsInServer[book.author!, default:  ""]
+            } else {
+                book.author = ""
+            }
+            bookList.append(book)
+        }
+        return bookList
+    }
+    
     
     @MainActor func getAllBooks() async {
         do {
             let booksFromServer = try await AsyncPersistence.shared.getAllBooks() //DataLoad.shared.loadEmpleadosData()
-            books = booksFromServer
+            booksInServer = booksFromServer
+            books = prepareForView(books: booksFromServer)
         } catch let error as APIErrors {
             errorMsg = error.description
         } catch {
@@ -87,7 +105,8 @@ final class BooksViewModel: ObservableObject {
     @MainActor func getLatestBooks() async {
         do {
             let booksFromServer = try await AsyncPersistence.shared.getLatestBooks() //DataLoad.shared.loadEmpleadosData()
-            latestBooksInServer = booksFromServer
+            latestBooksInServer = prepareForView(books: booksFromServer)
+            latestBooks = prepareForView(books: booksFromServer)
         } catch let error as APIErrors {
             errorMsg = error.description
         } catch {
@@ -103,6 +122,21 @@ final class BooksViewModel: ObservableObject {
                 authorsDict[author.id] = author.name
             }
             authorsInServer = authorsDict
+        } catch let error as APIErrors {
+            errorMsg = error.description
+        } catch {
+            errorMsg = error.localizedDescription
+        }
+    }
+    
+    @MainActor func getOrderedAndReadedBooks() async {
+        do {
+            let clientBooks = try await AsyncPersistence.shared.getPurchasedBooks() //DataLoad.shared.loadEmpleadosData()
+            let ordered = booksInServer.filter { clientBooks.ordered.contains($0.id) }
+            self.ordededBooks = prepareForView(books: ordered)
+            let readed = booksInServer.filter { clientBooks.readed.contains($0.id) }
+            self.readedBooks = prepareForView(books: readed)
+            
         } catch let error as APIErrors {
             errorMsg = error.description
         } catch {

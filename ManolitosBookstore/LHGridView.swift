@@ -29,9 +29,10 @@ struct LHGridView: View {
                                 } else {
                                     Image(systemName: "book")
                                         .font(.custom("AvernirNext", size: 100))
+                                        .foregroundColor(Color(uiColor: .secondaryLabel))
                                         .frame(height: 250, alignment: .center)
                                 }
-                                Text("**\(book.title)**").foregroundColor(.black)
+                                Text("**\(book.title)**").foregroundColor(Color(uiColor: .label))
                                     .truncationMode(.tail)
                                     .lineLimit(2, reservesSpace: true) //
                                     .fontWeight(.bold)

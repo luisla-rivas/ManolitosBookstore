@@ -13,7 +13,7 @@ enum TabItem {
 }
 
 struct ContentView: View {
-    @State private var selection: TabItem = .discover
+    @State private var selection: TabItem = .purchased
     
     var body: some View {
         TabView(selection: $selection) {
@@ -23,13 +23,13 @@ struct ContentView: View {
                 }
                 .tag(TabItem.discover)
             
-            DiscoverView()
+            BookstoreListView()
                 .tabItem {
                     Label("My books", systemImage: "books.vertical.fill")
                 }
                 .tag(TabItem.purchased)
             
-            DiscoverView()
+            BookstoreListView()
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                 }
