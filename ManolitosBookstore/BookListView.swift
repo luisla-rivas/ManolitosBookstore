@@ -16,7 +16,7 @@ struct BookListView: View {
             LazyVStack(alignment: .leading) {
                 ForEach(books) { book in //, id:\.self
                     NavigationLink(value: book) {
-                        BookRowView(book: book)
+                        BookRowView(rowVM: RowVM(book: book))
                             .frame(alignment: .leading )
                     }
                 }
@@ -31,41 +31,41 @@ struct BookListView_Previews: PreviewProvider {
     }
 }
 
-struct LatestBooksView: View {
-    let book:Book
-    var body: some View {
-        HStack(alignment: .center) {
-            if book.cover != nil, let coverURL = URL(string: book.cover!) {
-                AsyncImage(url: coverURL) { image in //318x384
-                    image.resizable()
-                        .scaledToFit()
-                        .frame(width: 70, height: 120, alignment: .leading)
-                    //.clipShape(Circle())
-                } placeholder: {
-                    ProgressView()
-                        .frame(width: 70, height: 120, alignment: .center)
-                }
-            } else {
-                Image(systemName: "book")
-                    .font(.largeTitle)
-                    .frame(width: 70, height: 120, alignment: .center)
-            }
-            
-            
-            VStack (alignment: .leading) {
-                Text(book.title).font(.headline)
-                Text("Author: \(book.author ?? "")")
-                    .font(.caption).foregroundColor(.gray)
-                if let bookYear = book.year  {
-                    Text("Year: \(bookYear, specifier: "%.0d")")
-                        .font(.footnote).foregroundColor(.gray)
-                } else {
-                    Text("Year: - ")
-                }
-            }
-            Spacer()
-        }
-    }
-}
+//struct LatestBooksView: View {
+//    let book:Book
+//    var body: some View {
+//        HStack(alignment: .center) {
+//            if book.cover != nil, let coverURL = URL(string: book.cover!) {
+//                AsyncImage(url: coverURL) { image in //318x384
+//                    image.resizable()
+//                        .scaledToFit()
+//                        .frame(width: 70, height: 120, alignment: .leading)
+//                    //.clipShape(Circle())
+//                } placeholder: {
+//                    ProgressView()
+//                        .frame(width: 70, height: 120, alignment: .center)
+//                }
+//            } else {
+//                Image(systemName: "book")
+//                    .font(.largeTitle)
+//                    .frame(width: 70, height: 120, alignment: .center)
+//            }
+//            
+//            
+//            VStack (alignment: .leading) {
+//                Text(book.title).font(.headline)
+//                Text("Author: \(book.author ?? "")")
+//                    .font(.caption).foregroundColor(.gray)
+//                if let bookYear = book.year  {
+//                    Text("Year: \(bookYear, specifier: "%.0d")")
+//                        .font(.footnote).foregroundColor(.gray)
+//                } else {
+//                    Text("Year: - ")
+//                }
+//            }
+//            Spacer()
+//        }
+//    }
+//}
 
 

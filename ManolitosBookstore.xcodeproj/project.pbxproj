@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A0283D92299D162D00976E5A /* authors.json in Resources */ = {isa = PBXBuildFile; fileRef = A0283D91299D162C00976E5A /* authors.json */; };
+		A0283D94299D31EC00976E5A /* RowVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0283D93299D31EC00976E5A /* RowVM.swift */; };
 		A03EEED1299AB84100EF9759 /* BookstoreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03EEED0299AB84100EF9759 /* BookstoreListView.swift */; };
 		A04A62EF29926BF1005E8931 /* ModelDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04A62EE29926BF1005E8931 /* ModelDefinition.swift */; };
 		A04A62F62992989C005E8931 /* BookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04A62F52992989C005E8931 /* BookListView.swift */; };
@@ -51,6 +53,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A0283D91299D162C00976E5A /* authors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = authors.json; sourceTree = "<group>"; };
+		A0283D93299D31EC00976E5A /* RowVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowVM.swift; sourceTree = "<group>"; };
 		A03EEED0299AB84100EF9759 /* BookstoreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookstoreListView.swift; sourceTree = "<group>"; };
 		A04A62EE29926BF1005E8931 /* ModelDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDefinition.swift; sourceTree = "<group>"; };
 		A04A62F52992989C005E8931 /* BookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListView.swift; sourceTree = "<group>"; };
@@ -63,6 +67,7 @@
 		A04A63052992C607005E8931 /* BookDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewModel.swift; sourceTree = "<group>"; };
 		A061FB3029964543008E3255 /* LHGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LHGridView.swift; sourceTree = "<group>"; };
 		A061FB32299645B7008E3255 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
+		A0999F7D299E7B690094E5F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A09C7B5A298C0619005EA4D2 /* ManolitosBookstore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManolitosBookstore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A09C7B5D298C0619005EA4D2 /* ManolitosBookstoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManolitosBookstoreApp.swift; sourceTree = "<group>"; };
 		A09C7B5F298C0619005EA4D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -135,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				A04A63012992C1BA005E8931 /* BooksViewModel.swift */,
+				A0283D93299D31EC00976E5A /* RowVM.swift */,
 				A04A62FC2992A077005E8931 /* UserViewModel.swift */,
 				A04A63052992C607005E8931 /* BookDetailViewModel.swift */,
 			);
@@ -164,6 +170,7 @@
 		A09C7B5C298C0619005EA4D2 /* ManolitosBookstore */ = {
 			isa = PBXGroup;
 			children = (
+				A0999F7D299E7B690094E5F8 /* Info.plist */,
 				A09C7B5D298C0619005EA4D2 /* ManolitosBookstoreApp.swift */,
 				A09C7B5F298C0619005EA4D2 /* ContentView.swift */,
 				A0D64DC629941F43009ECE11 /* Network */,
@@ -180,6 +187,7 @@
 		A09C7B64298C061A005EA4D2 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				A0283D91299D162C00976E5A /* authors.json */,
 				A0DB755529953CC40093887C /* latestBooks.json */,
 				A09C7B65298C061A005EA4D2 /* Preview Assets.xcassets */,
 			);
@@ -318,6 +326,7 @@
 			files = (
 				A09C7B66298C061A005EA4D2 /* Preview Assets.xcassets in Resources */,
 				A0DB755629953CC40093887C /* latestBooks.json in Resources */,
+				A0283D92299D162D00976E5A /* authors.json in Resources */,
 				A09C7B62298C061A005EA4D2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,6 +353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A061FB3129964543008E3255 /* LHGridView.swift in Sources */,
+				A0283D94299D31EC00976E5A /* RowVM.swift in Sources */,
 				A061FB33299645B7008E3255 /* DiscoverView.swift in Sources */,
 				A0D64DC829941F68009ECE11 /* Network.swift in Sources */,
 				A0DB755829955C190093887C /* BookRowView.swift in Sources */,
@@ -519,6 +529,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ManolitosBookstore/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -557,6 +568,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ManolitosBookstore/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

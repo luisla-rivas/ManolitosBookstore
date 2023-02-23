@@ -21,7 +21,7 @@ struct BookstoreListView: View {
                 }
             }.listStyle(.inset)
             .navigationDestination(for: Book.self) { book in
-                BookDetailView(detailVM: BookDetailViewModel(book: book))
+                BookDetailView(vm: BookDetailViewModel(book: book))
             }
             .navigationTitle("Bookstore catalog")
             //.searchable(text: $appVM.search)

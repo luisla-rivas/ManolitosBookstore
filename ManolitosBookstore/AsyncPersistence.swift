@@ -22,6 +22,10 @@ final class AsyncPersistence {
     func getAuthors() async throws -> Authors {
         try await queryJSON(request: .request(url: .getAuthors), type: Authors.self)
     }
+    func getAuthor(id: Author.ID) async throws -> Author {
+        try await queryJSON(request: .request(url: .getAuthorFrom(id: id)), type: Author.self)
+    }
+
     
     func getPurchasedBooks() async throws -> BooksOrderedAndReaded {
         let userIdentity =  RequestByEmail(email: "jcfmunoz@icloud.com")
@@ -70,13 +74,13 @@ final class AsyncPersistence {
 //        }
 //    }
 //
-//    func getImage(url:URL) async throws -> UIImage? {
-//        let (data, _) = try await URLSession.shared.data(from: url)
-//        let image = UIImage(data: data)
-//        if let image, let data = image.pngData() {
-//            let url = URL.cachesDirectory.appending(path: url.lastPathComponent)
-//            try data.write(to: url, options: [.atomic])
-//        }
-//        return image
-//    }
+    func getImage(url:URL) async throws -> UIImage? {
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let image = UIImage(data: data)
+        if let image, let data = image.pngData() {
+            let url = URL.cachesDirectory.appending(path: url.lastPathComponent)
+            try data.write(to: url, options: [.atomic])
+        }
+        return image
+    }
 }

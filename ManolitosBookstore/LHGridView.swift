@@ -17,7 +17,7 @@ struct LHGridView: View {
                     ForEach(books) { book in //, id:\.self
                         NavigationLink(value: book) {
                             VStack(alignment: .center) {
-                                if book.cover != nil, let coverURL = URL(string: book.cover!) {
+                                if let coverURL = book.cover {
                                     AsyncImage(url: coverURL) { image in //318x384
                                         image.resizable()
                                             .scaledToFit()

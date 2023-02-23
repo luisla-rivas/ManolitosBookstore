@@ -10,6 +10,7 @@ import Foundation
 extension URL {
 //    static let episodesDataURL = Bundle.main.url(forResource: "BigBang", withExtension: "json")!
     static let booksTestURL = Bundle.main.url(forResource: "latestBooks", withExtension: "json")!
+    static let authorsTestURL = Bundle.main.url(forResource: "authors", withExtension: "json")!
 
     static let userInfoSaveURL = URL.documentsDirectory.appending(component: "ManolitosBookstoreData").appendingPathExtension("json")
 }

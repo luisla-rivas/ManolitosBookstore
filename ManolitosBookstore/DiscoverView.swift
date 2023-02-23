@@ -32,7 +32,7 @@ struct DiscoverView: View {
                 }
             }.listStyle(.grouped)
             .navigationDestination(for: Book.self) { book in
-                BookDetailView(detailVM: BookDetailViewModel(book: book))
+                BookDetailView(vm: BookDetailViewModel(book: book))
             }
             .navigationTitle("Manolito's Bookstore")
             //.searchable(text: $appVM.search)
