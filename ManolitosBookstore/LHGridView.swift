@@ -28,6 +28,6 @@ struct LHGridView: View {
 
 struct LHGridView_Previews: PreviewProvider {
     static var previews: some View {
-        LHGridView(books: BooksViewModel(option: .inPreview).books)
+        LHGridView(books: BooksViewModel(.inPreview).books)
     }
 }

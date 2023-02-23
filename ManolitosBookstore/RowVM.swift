@@ -19,11 +19,11 @@ final class RowVM:ObservableObject {
    
     init(book:Book) {
         self.book = book
-        title = book.title
+        self.title = book.title
         if let bookYear = book.year {
-            year = String(bookYear)
+            self.year = String(bookYear)
         } else {
-            year = ""
+            self.year = ""
         }
         getBookCover()
         getBookAuthorName()
@@ -46,12 +46,12 @@ final class RowVM:ObservableObject {
     
     func getBookAuthorName() {
         guard let authorID = book.author else { return }
-        if let name = BooksViewModel.shared.authorsInServer[authorID] {
+        if let name = AuthorsStore.shared.nameForID[authorID] {
             authorName = name
-            print("getting author from BooksViewModel")
+            //print("getting author from BooksViewModel")
         } else {
-            Task { await getAuthorAsync() }
-            print("getting author async...")
+            //Task { await getAuthorAsync() }
+            //print("getting author async...")
         }
         
 //        let url = URL.cachesDirectory.appending(path: authorID)

@@ -27,7 +27,7 @@ struct BookListView: View {
 
 struct BookListView_Previews: PreviewProvider {
     static var previews: some View {
-        BookListView(books: BooksViewModel(option:.inPreview).books)
+        BookListView(books: BooksViewModel(.inPreview).books)
     }
 }
 

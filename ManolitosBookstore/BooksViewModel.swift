@@ -11,18 +11,23 @@ enum Option {
     case normal
     case inPreview
 }
+final class AuthorsStore {
+    static let shared = AuthorsStore()
+    private init() {}
+    var nameForID = [UUID:String]()
+}
 
 final class BooksViewModel: ObservableObject {
-    static let shared = BooksViewModel()
     private let persistenceAsync = AsyncPersistence()
     private let persistence = ModelPersistence()
+    private let authorsInServer = AuthorsStore.shared
     @Published var books:Books = []
     @Published var latestBooks:Books = []
     @Published var ordededBooks: Books = []
     @Published var readedBooks: Books = []
     private var booksInServer: Books = []
     private var latestBooksInServer: Books = []
-    var authorsInServer:[UUID:String] = [:]
+    
     @Published var search = ""
     
     @Published var showError = false
@@ -34,7 +39,7 @@ final class BooksViewModel: ObservableObject {
         }
     }
     
-    init(option:Option = .normal) {
+    init(_ option:Option = .normal) {
         if option == .inPreview {
 //            let (_,_) = await (appVM.getAllBooks(), appVM.getAuthors())
             let booksFromJSON = persistence.loadJSON(url: .booksTestURL, arrayOf: Book.self)
@@ -44,7 +49,7 @@ final class BooksViewModel: ObservableObject {
             for author in authorsFromJSON {
                 authorsDict[author.id] = author.name
             }
-            authorsInServer = authorsDict
+            authorsInServer.nameForID = authorsDict
             self.books = booksFromJSON
             //self.books = prepareForView(books: booksFromJSON)
         }
@@ -78,7 +83,7 @@ final class BooksViewModel: ObservableObject {
     
     func authorName(for book: Book) -> String {
         if let authorID = book.author {
-            if let authorName = authorsInServer[authorID] {
+            if let authorName = authorsInServer.nameForID[authorID] {
                 return authorName
             } else {
 //                do {
@@ -127,7 +132,7 @@ final class BooksViewModel: ObservableObject {
             for author in authorsFromServer {
                 authorsDict[author.id] = author.name
             }
-            authorsInServer = authorsDict
+            authorsInServer.nameForID = authorsDict
         } catch let error as APIErrors {
             errorMsg = error.description
         } catch {
@@ -138,9 +143,9 @@ final class BooksViewModel: ObservableObject {
     @MainActor func getOrderedAndReadedBooks() async {
         do {
             let clientBooks = try await AsyncPersistence.shared.getPurchasedBooks() //DataLoad.shared.loadEmpleadosData()
-            let ordered = booksInServer.filter { clientBooks.ordered.contains($0.id) }
+            let ordered = booksInServer.filter { clientBooks.ordered.contains($0.idAPI) }
             self.ordededBooks = ordered //prepareForView(books: ordered)
-            let readed = booksInServer.filter { clientBooks.readed.contains($0.id) }
+            let readed = booksInServer.filter { clientBooks.readed.contains($0.idAPI) }
             self.readedBooks = readed //prepareForView(books: readed)
             
         } catch let error as APIErrors {

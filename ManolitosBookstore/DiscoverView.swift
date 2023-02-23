@@ -46,6 +46,6 @@ struct DiscoverView: View {
 struct DiscoverView_Previews: PreviewProvider {
     static var previews: some View {
         DiscoverView()
-            .environmentObject(BooksViewModel(option: .inPreview))
+            .environmentObject(BooksViewModel(.inPreview))
     }
 }

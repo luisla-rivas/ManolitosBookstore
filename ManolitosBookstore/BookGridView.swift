@@ -31,15 +31,18 @@ struct BookGridView: View {
                 .lineLimit(2, reservesSpace: true) //
                 .fontWeight(.bold)
             //.font(.headline)
-            VStack(alignment:.leading) {
-
-                Text("Author: **\(rowVM.authorName)**")
-                    .font(.footnote).foregroundColor(.gray)
-                
-                Text("Year: **\(rowVM.year)**")
-                    .font(.footnote).foregroundColor(.gray)
-          
-            }.padding([.leading, .trailing, .bottom])
+            HStack {
+                VStack(alignment:.leading) {
+                    
+                    Text("Author: **\(rowVM.authorName)**")
+                        .font(.footnote).foregroundColor(.gray)
+                    
+                    Text("Year: **\(rowVM.year)**")
+                        .font(.footnote).foregroundColor(.gray)
+                    
+                }.padding([.leading, .trailing, .bottom])
+                Spacer()
+            }
         }
         .padding(.top)
         .frame(width: 200, alignment: .top)
@@ -55,6 +58,6 @@ struct BookGridView_Previews: PreviewProvider {
         BookGridView(rowVM: RowVM(book: .preview))
             .padding()
             .previewLayout(.sizeThatFits)
-            .frame(width: 400,height: 150)
+//            .frame(width: 220,height: 400)
     }
 }

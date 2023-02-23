@@ -10,7 +10,7 @@ import SwiftUI
 //@StateObject var userVM = UserViewModel()
 struct AccountDetailView: View {
     var body: some View {
-        NavigationStack {
+        //NavigationStack {
             Form {
                 Section {
                     Text("Name")
@@ -38,7 +38,7 @@ struct AccountDetailView: View {
 
             }
             .navigationTitle("Account")
-        }
+        //}
     }
 }
 

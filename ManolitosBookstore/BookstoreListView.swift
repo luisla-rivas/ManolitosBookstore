@@ -50,6 +50,6 @@ struct BookstoreListView: View {
 struct BookstoreListView_Previews: PreviewProvider {
     static var previews: some View {
         BookstoreListView()
-            .environmentObject(BooksViewModel(option: .inPreview))
+            .environmentObject(BooksViewModel(.inPreview))
     }
 }

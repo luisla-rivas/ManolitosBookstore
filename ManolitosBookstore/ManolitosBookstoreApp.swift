@@ -11,7 +11,7 @@ import SwiftUI
 struct ManolitosBookstoreApp: App {
     @AppStorage("preferredColorScheme") var preferredColorScheme: Int = 0
     
-    @StateObject var appVM = BooksViewModel()
+    @StateObject var appVM = BooksViewModel(.inPreview)
     
     var body: some Scene {
         WindowGroup {
@@ -23,9 +23,9 @@ struct ManolitosBookstoreApp: App {
                 }
             }
             .environmentObject(appVM)
-            .task {
-                let (_,_) = await (appVM.getAllBooks(), appVM.getAuthors())
-            }
+//            .task {
+//                let (_,_) = await (appVM.getAllBooks(), appVM.getAuthors())
+//            }
             .preferredColorScheme(ColorScheme.init(
                 .init(rawValue: preferredColorScheme) ?? .light))
             

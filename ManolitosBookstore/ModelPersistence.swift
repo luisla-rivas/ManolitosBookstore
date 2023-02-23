@@ -22,7 +22,7 @@ final class ModelPersistence {
             let data = try Data(contentsOf: url)
             return try JSONDecoder().decode([T].self, from: data)
         } catch {
-//            print("Error en la carga \(error)")
+            print("Error en la carga \(error)")
             return []
         }
     }
