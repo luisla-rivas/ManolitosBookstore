@@ -14,14 +14,14 @@ final class CRowVM:ObservableObject {
     @Published var name = ""
     @Published var email = ""
     @Published var location = ""
-    @Published var role:Role = .client
+    @Published var role = ""
     
     init(customer: Client) {
         self.customer = customer
         self.name = customer.name
         self.email = customer.email
         self.location = customer.location
-        self.role = customer.role
+        self.role = customer.role.rawValue
         
     }
     

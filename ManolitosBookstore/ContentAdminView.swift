@@ -24,9 +24,9 @@ struct ContentAdminView: View {
                 }
                 .tag(TabAdmin.books)
             
-            BookstoreCustomerListView()
+            BookstoreOrderListView()
                 .tabItem {
-                    Label("Orders", systemImage: "magnifyingglass")
+                    Label("Orders", systemImage: "creditcard.fill")
                 }
                 .tag(TabAdmin.orders)
             

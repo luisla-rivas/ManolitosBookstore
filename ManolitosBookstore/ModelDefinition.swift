@@ -69,28 +69,70 @@ typealias Clients = [Client]
 
 extension Client {
     static let list = [
-        Client(name: "Paco", email: "luisla.tester@luisla.com", location: "Avda. Precebe 13, Madrid", role: .client),
+        Client(name: "Julio Cesar Fernández Muñoz", email: "jcfmunoz@icloud.com", location: "Avda. Precebe 13, Madrid", role: .client),
         Client(name: "Perico", email: "luisla.tester@luisla.com", location: "Avda. Precebe 13, Barcelona", role: .client),
-        Client(name: "Andres", email: "luisla.tester@luisla.com", location: "Avda. Precebe 13, Zaragoza", role: .client),
+        Client(name: "Andres", email: "luisla.tester@luisla.com", location: "Avda. Precebe 13, Zaragoza", role: .client)
     ]
-    static let preview = Client(name: "Paco", email: "luisla.tester@luisla.com", location: "Avda. Precebe 13, Madrid", role: Role.client)
+    static let preview = Client(name: "Paco", email: "jcfmunoz@icloud.com", location: "Avda. Precebe 13, Madrid", role: Role.client)
 }
 
 
 
 //   let order = try? JSONDecoder().decode(BooksOrder.self, from: jsonData)
 // MARK: - BooksOrder / Confirmation
-struct BooksOrder: Codable {
-    let npedido: String
+struct BooksOrder: Codable, Identifiable, Hashable {
+    let id: UUID
     let date: Date
     let estado: OrderState
     let email: String
     let books: [Int]
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "npedido", date, estado, email, books
+    }
+    
+    enum OrderState: String, Codable, CaseIterable {
+        case recibido, enviado, entregado
+    }
 }
 
-enum OrderState: String, Codable, CaseIterable {
-    case recibido, enviado, entregado
+typealias BooksOrders = [BooksOrder]
+
+extension BooksOrder {
+    static let list = [
+        BooksOrder(id: UUID(uuidString: "A5828CC2-DCCE-496F-9E69-722E385A99A1")!,
+                                    date: Date.now, //DateFormatter.iso8601.date(from: "2023-02-05T17:03:08Z")!
+                                 estado: OrderState.recibido,
+                                 email: "jcfmunoz@icloud.com", books: [319, 838]),
+        BooksOrder(id: UUID(uuidString: "5293D058-380D-4C8A-BDA3-B7BCFFA9B795")!,
+                   date: Date.now, //date: DateFormatter.iso8601.date(from: "2023-02-05T20:39:13Z")!,
+                                estado: OrderState.recibido,
+                                email: "jcfmunoz@icloud.com", books: [682, 663]),
+        BooksOrder(id: UUID(uuidString: "1B45EF62-2279-46EE-B6F8-6C8A57672BD6")!,
+                   date: Date.now, //date: DateFormatter.iso8601.date(from: "2023-02-05T17:01:12Z")!,
+                                estado: OrderState.recibido,
+                                email: "jcfmunoz@icloud.com", books: [1, 627,97])
+    ]
+                   
+    static let preview = BooksOrder(id: UUID(uuidString: "A5828CC2-DCCE-496F-9E69-722E385A99A1")!,
+                                    date: Date.now, //date: DateFormatter.iso8601.date(from: "2023-02-05T17:03:08Z")!,
+                                                          estado: .recibido,
+                                                          email: "jcfmunoz@icloud.com", books: [319, 838])
 }
 
-
-
+extension DateFormatter {
+    static let iso8601:DateFormatter = {
+        let df = DateFormatter()
+        //df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" // "2021-02-05T18:40:55"
+        df.dateFormat =  "yyyyMMdd'T'HHmmssZ"// "2021-02-05T18:40:55"
+        return df
+    }()
+    
+    static let short:DateFormatter = {
+        let df = DateFormatter()
+        df.locale = Locale.current
+        df.dateStyle = .medium
+        df.dateStyle = .none
+        return df
+    }()
+}
