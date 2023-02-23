@@ -19,7 +19,8 @@ struct ManolitosBookstoreApp: App {
                 if UIDevice.current.userInterfaceIdiom == .pad {
                     ContentView() // ContentPadView()
                 } else {
-                    ContentView()
+                    //ContentView()
+                    ContentAdminView()
                 }
             }
             .environmentObject(appVM)
