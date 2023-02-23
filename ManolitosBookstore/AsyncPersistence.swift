@@ -22,7 +22,7 @@ final class AsyncPersistence {
     func getAuthors() async throws -> Authors {
         try await queryJSON(request: .request(url: .getAuthors), type: Authors.self)
     }
-    func getAuthor(id: Author.ID) async throws -> Author {
+    func getAuthor(id: UUID) async throws -> Author {
         try await queryJSON(request: .request(url: .getAuthorFrom(id: id)), type: Author.self)
     }
 

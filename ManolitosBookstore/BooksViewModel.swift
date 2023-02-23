@@ -22,7 +22,7 @@ final class BooksViewModel: ObservableObject {
     @Published var readedBooks: Books = []
     private var booksInServer: Books = []
     private var latestBooksInServer: Books = []
-    var authorsInServer:[String:String] = [:]
+    var authorsInServer:[UUID:String] = [:]
     @Published var search = ""
     
     @Published var showError = false
@@ -40,51 +40,28 @@ final class BooksViewModel: ObservableObject {
             let booksFromJSON = persistence.loadJSON(url: .booksTestURL, arrayOf: Book.self)
             
             let authorsFromJSON = persistence.loadJSON(url: .authorsTestURL, arrayOf: Author.self)
-            var authorsDict:[String:String] = [:]
+            var authorsDict:[UUID:String] = [:]
             for author in authorsFromJSON {
                 authorsDict[author.id] = author.name
             }
             authorsInServer = authorsDict
-            
+            self.books = booksFromJSON
             //self.books = prepareForView(books: booksFromJSON)
-//            self.seasons = Dictionary(grouping: episodes) { episode in
-//                episode.season
-//            }.keys.map { $0 }.sorted()
-//            let fakeContext = PersistenceController.empty.container.viewContext
-//            self.context = fakeContext
-//            createDefaultUserInfo(episodes, context: fakeContext)
-        } else {
-//            let coreDataContext = PersistenceController.shared.container.viewContext
-//            self.context = coreDataContext
-//            self.episodes = persistence.loadJSON(arrayOf: BigBangEpisode.self)
-//            self.seasons = Dictionary(grouping: episodes) { episode in
-//                episode.season
-//            }.keys.map { $0 }.sorted()
-//
-//            let request = CDUserEpisodeInfo.fetch(NSPredicate.all)
-//            let resultUserEpisodesInfo = try? coreDataContext.fetch(request)
-//            if let result = resultUserEpisodesInfo?.count, result > 0 {
-//                //userEpisodeInfo is alredy in Database
+        }
+    }
+//    func createBookData(from books: Books) {
+//        var bookList:Books = []
+//        for book in books {
+//            var bookInfoView = book
+//            if book.author != nil {
+//                bookInfoView.author = authorsInServer[book.author!, default:  ""]
 //            } else {
-//                createDefaultUserInfo(episodes, context: coreDataContext)
+//                bookInfoView.author = ""
 //            }
-        }
-        
-        
-    }
-    func createBookData(from books: Books) {
-        var bookList:Books = []
-        for book in books {
-            var bookInfoView = book
-            if book.author != nil {
-                bookInfoView.author = authorsInServer[book.author!, default:  ""]
-            } else {
-                bookInfoView.author = ""
-            }
-            bookList.append(bookInfoView)
-        }
-        self.books = bookList
-    }
+//            bookList.append(bookInfoView)
+//        }
+//        self.books = bookList
+//    }
     
 //    func prepareForView(books: Books) -> Books {
 //        var bookList:Books = []
@@ -99,11 +76,11 @@ final class BooksViewModel: ObservableObject {
 //        return bookList
 //    }
     
-//    func authorName(for book: Book) -> String {
-//        if let authorID = book.author {
-//            if let authorName = authorsInServer[book.author!] {
-//                return authorName
-//            } else {
+    func authorName(for book: Book) -> String {
+        if let authorID = book.author {
+            if let authorName = authorsInServer[authorID] {
+                return authorName
+            } else {
 //                do {
 //                    Task(priority:.utility) {
 //                        let author = try await persistenceAsync.getAuthor(id: authorID)
@@ -113,10 +90,10 @@ final class BooksViewModel: ObservableObject {
 //                } catch {
 //                    return ""
 //                }
-//            }
-//        }
-//        return ""
-//    }
+            }
+        }
+        return ""
+    }
     
     
     @MainActor func getAllBooks() async {
@@ -146,7 +123,7 @@ final class BooksViewModel: ObservableObject {
     @MainActor func getAuthors() async {
         do {
             let authorsFromServer = try await AsyncPersistence.shared.getAuthors()
-            var authorsDict:[String:String] = [:]
+            var authorsDict:[UUID:String] = [:]
             for author in authorsFromServer {
                 authorsDict[author.id] = author.name
             }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum TabItem {
-  case discover, purchased, search, account, setting
+  case discover, purchased, search, setting //, account
 
 }
 
@@ -35,11 +35,11 @@ struct ContentView: View {
                 }
                 .tag(TabItem.search)
             
-            AccountDetailView() 
-                .tabItem {
-                    Label("Account", systemImage: "person.crop.circle.fill")
-                }
-                .tag(TabItem.account)
+//            AccountDetailView()
+//                .tabItem {
+//                    Label("Account", systemImage: "person.crop.circle.fill")
+//                }
+//                .tag(TabItem.account)
             
             SettingsListView()
                 .tabItem {

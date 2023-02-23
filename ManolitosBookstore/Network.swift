@@ -54,7 +54,7 @@ extension URL {
     static func getBooksWithTitle(containing search:String) -> URL {
         server.appending(path: kBooks).appending(path:"find").appending(path: "\(search)")
     }
-    static func getAuthorFrom(id:String) -> URL {
+    static func getAuthorFrom(id:UUID) -> URL {
         server.appending(path: kBooks).appending(path:"getAuthor").appending(path: "\(id)")
     }
 

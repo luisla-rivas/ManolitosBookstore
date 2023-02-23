@@ -33,6 +33,7 @@
 		A0D8A3A929952CFB00B2B995 /* AsyncPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D8A3A829952CFB00B2B995 /* AsyncPersistence.swift */; };
 		A0DB755629953CC40093887C /* latestBooks.json in Resources */ = {isa = PBXBuildFile; fileRef = A0DB755529953CC40093887C /* latestBooks.json */; };
 		A0DB755829955C190093887C /* BookRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB755729955C190093887C /* BookRowView.swift */; };
+		B683A85429A7639B002E3A03 /* BookGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B683A85329A7639B002E3A03 /* BookGridView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		A0D8A3A829952CFB00B2B995 /* AsyncPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncPersistence.swift; sourceTree = "<group>"; };
 		A0DB755529953CC40093887C /* latestBooks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = latestBooks.json; sourceTree = "<group>"; };
 		A0DB755729955C190093887C /* BookRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRowView.swift; sourceTree = "<group>"; };
+		B683A85329A7639B002E3A03 /* BookGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookGridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,14 +126,9 @@
 		A04A62F7299298A6005E8931 /* IOSViews */ = {
 			isa = PBXGroup;
 			children = (
-				A061FB32299645B7008E3255 /* DiscoverView.swift */,
-				A03EEED0299AB84100EF9759 /* BookstoreListView.swift */,
-				A061FB3029964543008E3255 /* LHGridView.swift */,
-				A04A62F52992989C005E8931 /* BookListView.swift */,
-				A0DB755729955C190093887C /* BookRowView.swift */,
-				A04A63032992C53C005E8931 /* BookDetailView.swift */,
-				A04A62FA29929D4D005E8931 /* AccountDetailView.swift */,
-				A04A62F829929925005E8931 /* SettingsView.swift */,
+				B683A85529A76C19002E3A03 /* Discover */,
+				B683A85629A76C42002E3A03 /* MyBooks */,
+				B683A85729A76C73002E3A03 /* Settings */,
 			);
 			name = IOSViews;
 			sourceTree = "<group>";
@@ -218,6 +215,36 @@
 				A0D8A3A829952CFB00B2B995 /* AsyncPersistence.swift */,
 			);
 			name = Network;
+			sourceTree = "<group>";
+		};
+		B683A85529A76C19002E3A03 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				A061FB32299645B7008E3255 /* DiscoverView.swift */,
+				A061FB3029964543008E3255 /* LHGridView.swift */,
+				B683A85329A7639B002E3A03 /* BookGridView.swift */,
+			);
+			name = Discover;
+			sourceTree = "<group>";
+		};
+		B683A85629A76C42002E3A03 /* MyBooks */ = {
+			isa = PBXGroup;
+			children = (
+				A03EEED0299AB84100EF9759 /* BookstoreListView.swift */,
+				A04A62F52992989C005E8931 /* BookListView.swift */,
+				A0DB755729955C190093887C /* BookRowView.swift */,
+				A04A63032992C53C005E8931 /* BookDetailView.swift */,
+			);
+			name = MyBooks;
+			sourceTree = "<group>";
+		};
+		B683A85729A76C73002E3A03 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A04A62FA29929D4D005E8931 /* AccountDetailView.swift */,
+				A04A62F829929925005E8931 /* SettingsView.swift */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A061FB3129964543008E3255 /* LHGridView.swift in Sources */,
+				B683A85429A7639B002E3A03 /* BookGridView.swift in Sources */,
 				A0283D94299D31EC00976E5A /* RowVM.swift in Sources */,
 				A061FB33299645B7008E3255 /* DiscoverView.swift in Sources */,
 				A0D64DC829941F68009ECE11 /* Network.swift in Sources */,

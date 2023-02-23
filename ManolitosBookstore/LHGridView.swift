@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LHGridView: View {
+    @EnvironmentObject var appVM: BooksViewModel
     let books:Books
     var body: some View {
         Group {
@@ -16,46 +17,7 @@ struct LHGridView: View {
                 LazyHGrid(rows: [GridItem(.fixed(300))], alignment: .center, spacing: 4) { //>iOS14
                     ForEach(books) { book in //, id:\.self
                         NavigationLink(value: book) {
-                            VStack(alignment: .center) {
-                                if let coverURL = book.cover {
-                                    AsyncImage(url: coverURL) { image in //318x384
-                                        image.resizable()
-                                            .scaledToFit()
-                                            .frame(height: 250, alignment: .center)
-                                    } placeholder: {
-                                        ProgressView()
-                                            .frame(height: 250, alignment: .center)
-                                    }
-                                } else {
-                                    Image(systemName: "book")
-                                        .font(.custom("AvernirNext", size: 100))
-                                        .foregroundColor(Color(uiColor: .secondaryLabel))
-                                        .frame(height: 250, alignment: .center)
-                                }
-                                Text("**\(book.title)**").foregroundColor(Color(uiColor: .label))
-                                    .truncationMode(.tail)
-                                    .lineLimit(2, reservesSpace: true) //
-                                    .fontWeight(.bold)
-                                //.font(.headline)
-                                VStack(alignment:.leading) {
-
-                                    Text("Author: **\(book.author ?? "")**")
-                                        
-                                        .font(.footnote).foregroundColor(.gray)
-                                    if let bookYear = book.year  {
-                                        Text("Year: **\(bookYear, specifier: "%.0d")**")
-                                            .font(.footnote).foregroundColor(.gray)
-                                    } else {
-                                        Text("Year: - ")
-                                    }
-                                }.padding([.leading, .trailing, .bottom])
-                            }
-                            .padding(.top)
-                            .frame(width: 200, alignment: .top)
-                            .background {
-                                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                    .fill(Color(uiColor:.quaternarySystemFill))
-                                }
+                            BookGridView(rowVM: RowVM(book: book))
                         }
                     }
                 }

@@ -13,10 +13,25 @@ struct SettingsListView: View {
     var body: some View {
         NavigationView {
             List {
-                Picker("Dark/Light mode", selection: $preferredColorScheme) {
-                    Text("Automatic").tag(0)
-                    Text("Light").tag(1)
-                    Text("Dark").tag(2)
+                Section {
+                    NavigationLink(destination: AccountDetailView()) {
+                        HStack {
+                            Label("Account", systemImage: "person.crop.circle")
+                            Spacer()
+                            Text("Manolito").foregroundColor(Color(uiColor: .secondaryLabel))
+                        }
+                    }
+                } header: {
+                    Text("")
+                }
+                Section {
+                    Picker("Dark/Light mode", selection: $preferredColorScheme) {
+                        Text("Automatic").tag(0)
+                        Text("Light").tag(1)
+                        Text("Dark").tag(2)
+                    }
+                } header: {
+                    Text("")
                 }
             }
             .navigationTitle("Settings")

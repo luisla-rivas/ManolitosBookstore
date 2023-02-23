@@ -44,7 +44,7 @@ struct BookDetailView: View {
                         
                         VStack (alignment: .leading) {
 
-                            Text("Author: **\(vm.book.author ?? "")**")
+//                            Text("Author: **\(vm.book.author ?? "")**")
                             //.font(.footnote).foregroundColor(.gray)
                             if let bookYear = vm.book.year  {
                                 Text("Year: **\(bookYear, specifier: "%.0d")**")

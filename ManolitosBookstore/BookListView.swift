@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BookListView: View {
-//    @EnvironmentObject var appVM:BooksViewModel
+    //@EnvironmentObject var appVM:BooksViewModel
     //@State var path:[Int] = []
     let books: Books
     var body: some View {

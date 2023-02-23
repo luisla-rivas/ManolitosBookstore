@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BookRowView: View {
-    @EnvironmentObject var appVM:BooksViewModel
+//    @EnvironmentObject var appVM:BooksViewModel
     let rowVM:RowVM
     var body: some View {
         HStack(alignment: .center) {
