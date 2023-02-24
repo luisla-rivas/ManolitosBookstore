@@ -34,6 +34,8 @@
 		A0DB755629953CC40093887C /* latestBooks.json in Resources */ = {isa = PBXBuildFile; fileRef = A0DB755529953CC40093887C /* latestBooks.json */; };
 		A0DB755829955C190093887C /* BookRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB755729955C190093887C /* BookRowView.swift */; };
 		B683A85429A7639B002E3A03 /* BookGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B683A85329A7639B002E3A03 /* BookGridView.swift */; };
+		B6FBF7BB29A8B84B00EA76FF /* StateLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FBF7BA29A8B84B00EA76FF /* StateLoginView.swift */; };
+		B6FBF7BD29A8DAE400EA76FF /* Extension+helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FBF7BC29A8DAE400EA76FF /* Extension+helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,8 @@
 		A0DB755529953CC40093887C /* latestBooks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = latestBooks.json; sourceTree = "<group>"; };
 		A0DB755729955C190093887C /* BookRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRowView.swift; sourceTree = "<group>"; };
 		B683A85329A7639B002E3A03 /* BookGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookGridView.swift; sourceTree = "<group>"; };
+		B6FBF7BA29A8B84B00EA76FF /* StateLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateLoginView.swift; sourceTree = "<group>"; };
+		B6FBF7BC29A8DAE400EA76FF /* Extension+helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+helper.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +174,8 @@
 				A0999F7D299E7B690094E5F8 /* Info.plist */,
 				A09C7B5D298C0619005EA4D2 /* ManolitosBookstoreApp.swift */,
 				A09C7B5F298C0619005EA4D2 /* ContentView.swift */,
+				B6FBF7BA29A8B84B00EA76FF /* StateLoginView.swift */,
+				B6FBF7BC29A8DAE400EA76FF /* Extension+helper.swift */,
 				A0D64DC629941F43009ECE11 /* Network */,
 				A04A62F7299298A6005E8931 /* IOSViews */,
 				A04A62F0299295F9005E8931 /* Models */,
@@ -390,11 +396,13 @@
 				A04A63042992C53C005E8931 /* BookDetailView.swift in Sources */,
 				A09C7B60298C0619005EA4D2 /* ContentView.swift in Sources */,
 				A0D64DC5299414FE009ECE11 /* ModelsAPI.swift in Sources */,
+				B6FBF7BB29A8B84B00EA76FF /* StateLoginView.swift in Sources */,
 				A04A62EF29926BF1005E8931 /* ModelDefinition.swift in Sources */,
 				A09C7B5E298C0619005EA4D2 /* ManolitosBookstoreApp.swift in Sources */,
 				A04A62FD2992A077005E8931 /* UserViewModel.swift in Sources */,
 				A04A63062992C607005E8931 /* BookDetailViewModel.swift in Sources */,
 				A03EEED1299AB84100EF9759 /* BookstoreListView.swift in Sources */,
+				B6FBF7BD29A8DAE400EA76FF /* Extension+helper.swift in Sources */,
 				A04A62F62992989C005E8931 /* BookListView.swift in Sources */,
 				A04A63022992C1BA005E8931 /* BooksViewModel.swift in Sources */,
 				A0D8A3A929952CFB00B2B995 /* AsyncPersistence.swift in Sources */,
