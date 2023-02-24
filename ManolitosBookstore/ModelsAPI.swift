@@ -33,9 +33,6 @@ struct BooksOrderRequest: Codable {
     let pedido: [Int]
 }
 
-
-typealias BooksOrders = [BooksOrder]
-
 // MARK: - PurchaseOrderState
 struct PurchaseOrderState: Codable {
     let estado: String
