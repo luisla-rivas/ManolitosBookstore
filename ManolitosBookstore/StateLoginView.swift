@@ -9,13 +9,14 @@ import SwiftUI
 
 enum Screens {
     case splash
-    case entrada
+    case welcome
     case login
     case access
 }
 
 struct StateLoginView: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var appVM:BooksViewModel
     
     @State var splashAnimation = false
     @State var screen:Screens = .splash
@@ -32,27 +33,32 @@ struct StateLoginView: View {
     @State var transicion:AnyTransition = .asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))
     
     var body: some View {
-        Group {
-            switch screen {
-            case .splash:
-                splash
-                    .transition(.move(edge: .leading))
-            case .entrada:
-                entrada
-                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-            case .login:
-                login
-                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-            case .access:
-                access
-                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+//        ZStack {
+//            Color("launchBackgroundColor")
+//                    .ignoresSafeArea()
+            Group {
+                switch screen {
+                case .splash:
+                    splash
+                        .transition(.move(edge: .leading))
+                case .welcome:
+                    welcome
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                case .login:
+                    login
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                case .access:
+                    access
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                }
             }
-        }
-        .background {
-            Color("launchBackgroundColor")
-                .ignoresSafeArea()
-        }
-        .animation(.default, value: screen)
+            //        .background {
+            //            Color("launchBackgroundColor")
+            //                .ignoresSafeArea()
+            //        }
+            .animation(.default, value: screen)
+//        }
+        
     }
     
     var splash: some View {
@@ -67,24 +73,51 @@ struct StateLoginView: View {
         .ignoresSafeArea()
         .onAppear {
             splashAnimation = true
-            Timer.scheduledTimer(withTimeInterval: 4, repeats: false) { _ in
-                screen = .entrada
+            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+                if let user = UserDefaults.standard.string(forKey: .kUserMail) {
+                    appVM.userMail = user
+                    screen = .access
+                } else {
+                    screen = .welcome
+                }
             }
         }
         .animation(.easeOut(duration: 1), value: splashAnimation)
     }
     
-    var entrada: some View {
+    var welcome: some View {
         ZStack {
             Color("launchBackgroundColor")
-            VStack {
-                Text("Bienvenido")
-                Button {
-                    screen = .login
-                } label: {
-                    Text("Acceder al sistema")
-                }
-                .buttonStyle(.borderedProminent)
+            VStack(alignment: .center,spacing: 0) {
+                VStack(spacing: 10) {
+                    Image("classicHeroe512")
+                    Text("Welcome to Trantor Bookstore!").font(.title)
+                        .multilineTextAlignment(.center)
+                    Text("You will need an account to place orders, and ... anda much more!")
+                        .multilineTextAlignment(.center)
+                        .lineLimit(3)
+                    
+                }.padding([.horizontal],40)
+                   
+                    
+                HStack(spacing: 50) {
+                    Button {
+                        screen = .access
+                    } label: {
+                        Text("Just watch!")
+                            .multilineTextAlignment(.center)
+                    }
+//                    .buttonStyle(.borderedProminent)
+//                    Spacer()
+                    Button {
+                        screen = .login
+                    } label: {
+                        Text("Login")
+                            .multilineTextAlignment(.center)
+                    }
+                    
+//                    .buttonStyle(.borderedProminent)
+                }.padding()
             }
         }
         .ignoresSafeArea()
@@ -109,19 +142,31 @@ struct StateLoginView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 SecureField("Introduzca el password", text: $password)
                     .textContentType(.password)
-                Button {
-                    if username == "paco" && password == "12345" {
-                        password = ""
-                        transicion = transEntrada
-                        screen = .access
-                    } else {
-                        errorMsg = "El usuario/clave no existe."
+                HStack {
+                    Button {
+                        transicion = transSalida
+                        screen = .welcome
+                    } label: {
+                        Text("Cancel").foregroundColor(.gray)
                     }
-                } label: {
-                    Text("Acceso")
-                }
-                .buttonStyle(.borderedProminent)
+                    .buttonStyle(.bordered)
+                    .padding(.top)
+                    Button {
+                        if username == "paco" && password == "12345" {
+                            password = ""
+                            transicion = transEntrada
+                            screen = .access
+                        } else {
+                            errorMsg = "El usuario/clave no existe."
+                        }
+                    } label: {
+                        Text("Acceso")
+                    }
+                    .buttonStyle(.borderedProminent)
                 .padding(.top)
+                    
+ 
+                }
                 Button {
                     showLostPassword.toggle()
                 } label: {
@@ -185,7 +230,10 @@ struct StateLoginView: View {
     }
     
     var access: some View {
-        ContentView()
+        ZStack {
+            Color("launchBackgroundColor").ignoresSafeArea()
+            ContentView()
+        }
         
         
         

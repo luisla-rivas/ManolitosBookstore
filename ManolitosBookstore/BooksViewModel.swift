@@ -21,6 +21,7 @@ final class BooksViewModel: ObservableObject {
     private let persistenceAsync = AsyncPersistence()
     private let persistence = ModelPersistence()
     private let authorsInServer = AuthorsStore.shared
+    var userMail: String?
     @Published var books:Books = []
     @Published var latestBooks:Books = []
     @Published var ordededBooks: Books = []

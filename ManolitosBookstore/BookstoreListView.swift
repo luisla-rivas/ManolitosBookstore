@@ -16,10 +16,13 @@ struct BookstoreListView: View {
             List {
                 Section {
                     BookListView(books:appVM.books)
+//                        .background(Color("launchBackgroundColor"))
                 } header: {
                     Text("Bookstore")
                 }
-            }.listStyle(.inset)
+
+            }
+//            .listStyle(.inset)
             .navigationDestination(for: Book.self) { book in
                 BookDetailView(vm: BookDetailViewModel(book: book))
             }
@@ -29,6 +32,7 @@ struct BookstoreListView: View {
                 await appVM.getAllBooks()
             }
         }
+        
         .searchable(text: $appVM.search)
         .alert("Network alert!",
                isPresented: $appVM.showError) {

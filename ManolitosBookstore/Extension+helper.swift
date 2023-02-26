@@ -12,3 +12,7 @@ extension Color {
 }
 
 
+extension String {
+    static let kUserMail = "userMail"
+    static let kUserPwd = "userPwd"
+}
