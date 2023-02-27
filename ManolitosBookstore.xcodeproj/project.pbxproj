@@ -211,8 +211,8 @@
 			children = (
 				A0999F7D299E7B690094E5F8 /* Info.plist */,
 				A09C7B5D298C0619005EA4D2 /* ManolitosBookstoreApp.swift */,
-				A09C7B5F298C0619005EA4D2 /* ContentView.swift */,
 				A07C36AA29A944B900DDB33B /* StateLoginView.swift */,
+				A09C7B5F298C0619005EA4D2 /* ContentView.swift */,
 				A07C36AC29A9452700DDB33B /* Extension+helper.swift */,
 				A0D64DC629941F43009ECE11 /* Network */,
 				A04A62F7299298A6005E8931 /* IOSViews */,

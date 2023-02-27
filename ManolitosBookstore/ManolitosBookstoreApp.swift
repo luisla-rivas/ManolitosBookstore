@@ -16,12 +16,8 @@ struct ManolitosBookstoreApp: App {
     var body: some Scene {
         WindowGroup {
             VStack {
-                if UIDevice.current.userInterfaceIdiom == .pad {
-                    ContentView() // ContentPadView()
-                } else {
                     StateLoginView()
-                }
-            }
+             }
             .environmentObject(appVM)
 //            .task {
 //                let (_,_) = await (appVM.getAllBooks(), appVM.getAuthors())

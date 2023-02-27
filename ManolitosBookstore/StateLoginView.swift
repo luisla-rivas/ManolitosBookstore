@@ -26,6 +26,7 @@ struct StateLoginView: View {
     @State var username = ""
     @State var password = ""
     @State var errorMsg = ""
+    var fordward = true
     
     var transEntrada:AnyTransition = .asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))
     var transSalida:AnyTransition = .asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing))
@@ -43,10 +44,11 @@ struct StateLoginView: View {
                         .transition(.move(edge: .leading))
                 case .welcome:
                     welcome
-                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                        .transition(.asymmetric(insertion: .move(edge: fordward ? .trailing : .leading), removal: .move(edge: .leading)))
+
                 case .login:
                     login
-                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: fordward ? .leading : .trailing)))
                 case .access:
                     access
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
@@ -146,6 +148,7 @@ struct StateLoginView: View {
                     Button {
                         transicion = transSalida
                         screen = .welcome
+                        
                     } label: {
                         Text("Cancel").foregroundColor(.gray)
                     }
@@ -232,7 +235,11 @@ struct StateLoginView: View {
     var access: some View {
         ZStack {
             Color("launchBackgroundColor").ignoresSafeArea()
-            ContentView()
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                ContentView() // ContentPadView()
+            } else {
+                ContentView()
+            }
         }
         
         
