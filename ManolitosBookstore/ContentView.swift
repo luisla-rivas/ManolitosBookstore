@@ -28,7 +28,7 @@ struct ContentView: View {
                     Label("My books", systemImage: "books.vertical.fill")
                 }
                 .tag(TabItem.purchased)
-            
+
             BookstoreListView()
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
@@ -47,7 +47,8 @@ struct ContentView: View {
                 }
                 .tag(TabItem.setting)
         }
-//        .background {
+        .background(Color.red)
+//            Color(.red)
 //            Color(red: 253.0/255.0, green: 221.0/255.0, blue: 106.0/255.0)
 //        }
     }

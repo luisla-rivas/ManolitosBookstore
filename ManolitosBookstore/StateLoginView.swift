@@ -10,6 +10,7 @@ import SwiftUI
 enum Screens {
     case splash
     case welcome
+//    case welcomeBack
     case login
     case access
 }
@@ -22,11 +23,12 @@ struct StateLoginView: View {
     @State var screen:Screens = .splash
     
     @State var showLostPassword = false
+    @State var showRegisterNewAccount = false
     
     @State var username = ""
     @State var password = ""
     @State var errorMsg = ""
-    var fordward = true
+    @State var forward = true
     
     var transEntrada:AnyTransition = .asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))
     var transSalida:AnyTransition = .asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing))
@@ -36,7 +38,7 @@ struct StateLoginView: View {
     var body: some View {
 //        ZStack {
 //            Color("launchBackgroundColor")
-//                    .ignoresSafeArea()
+//                .ignoresSafeArea()
             Group {
                 switch screen {
                 case .splash:
@@ -44,23 +46,23 @@ struct StateLoginView: View {
                         .transition(.move(edge: .leading))
                 case .welcome:
                     welcome
-                        .transition(.asymmetric(insertion: .move(edge: fordward ? .trailing : .leading), removal: .move(edge: .leading)))
-
+                        .transition(.asymmetric(insertion: .move(edge: forward ? .trailing : .leading ),
+                                                removal: .move(edge: .leading)))
                 case .login:
                     login
-                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: fordward ? .leading : .trailing)))
+                        .transition(.asymmetric(insertion: .move(edge: .trailing),
+                                                removal: .move(edge: forward ? .trailing : .leading )))
                 case .access:
                     access
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                 }
             }
-            //        .background {
-            //            Color("launchBackgroundColor")
-            //                .ignoresSafeArea()
-            //        }
+//            .background { //Necesario para mantener el color de fondo durante las transiciones
+//                Color("launchBackgroundColor")
+//                    .ignoresSafeArea()
+//            }
             .animation(.default, value: screen)
 //        }
-        
     }
     
     var splash: some View {
@@ -71,31 +73,31 @@ struct StateLoginView: View {
                 .font(.custom("Futura", size: 32))
                 .padding(.top, 225)
                 .offset(y: splashAnimation ? 0.0 : 500)
-        }
-        .ignoresSafeArea()
-        .onAppear {
-            splashAnimation = true
-            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-                if let user = UserDefaults.standard.string(forKey: .kUserMail) {
-                    appVM.userMail = user
-                    screen = .access
-                } else {
-                    screen = .welcome
+                .ignoresSafeArea()
+                .onAppear {
+                    splashAnimation = true
+                    appVM.tryAutomaticLogin()
+                    Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+                        if appVM.currentUser != nil {
+                            screen = .access
+                        } else {
+                            screen = .welcome
+                        }
+                    }
                 }
-            }
+                .animation(.easeOut(duration: 1), value: splashAnimation)
         }
-        .animation(.easeOut(duration: 1), value: splashAnimation)
     }
     
     var welcome: some View {
-        ZStack {
-            Color("launchBackgroundColor")
+//        ZStack {
+//            Color("launchBackgroundColor")
             VStack(alignment: .center,spacing: 0) {
                 VStack(spacing: 10) {
                     Image("classicHeroe512")
                     Text("Welcome to Trantor Bookstore!").font(.title)
                         .multilineTextAlignment(.center)
-                    Text("You will need an account to place orders, and ... anda much more!")
+                    Text("You will need an account to place orders, save book's ratings or your reading list and much more!")
                         .multilineTextAlignment(.center)
                         .lineLimit(3)
                     
@@ -104,112 +106,182 @@ struct StateLoginView: View {
                     
                 HStack(spacing: 50) {
                     Button {
+                        forward = true
                         screen = .access
                     } label: {
                         Text("Just watch!")
                             .multilineTextAlignment(.center)
                     }
-//                    .buttonStyle(.borderedProminent)
-//                    Spacer()
                     Button {
+                        forward = true
                         screen = .login
                     } label: {
                         Text("Login")
                             .multilineTextAlignment(.center)
                     }
-                    
-//                    .buttonStyle(.borderedProminent)
                 }.padding()
-            }
+//            }
+        }
+        .background {
+            Color("launchBackgroundColor")
         }
         .ignoresSafeArea()
+        .alert("Network alert!",
+               isPresented: $appVM.showError) {
+            Button {
+                appVM.errorMsg = ""
+            } label: {
+                Text("OK")
+            }
+        } message: {
+            Text(appVM.errorMsg)
+        }
     }
     
     var login: some View {
-        VStack {
-            Text("Login")
-                .font(.largeTitle)
-                .bold()
-            GroupBox {
-                Text("Usuario")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                TextField("Introduzca el usuario", text: $username)
-                    .textContentType(.username)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-                    .keyboardType(.emailAddress)
-                Text("Password")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                SecureField("Introduzca el password", text: $password)
-                    .textContentType(.password)
-                HStack {
-                    Button {
-                        transicion = transSalida
-                        screen = .welcome
-                        
-                    } label: {
-                        Text("Cancel").foregroundColor(.gray)
-                    }
-                    .buttonStyle(.bordered)
-                    .padding(.top)
-                    Button {
-                        if username == "paco" && password == "12345" {
-                            password = ""
-                            transicion = transEntrada
-                            screen = .access
-                        } else {
-                            errorMsg = "El usuario/clave no existe."
-                        }
-                    } label: {
-                        Text("Acceso")
-                    }
-                    .buttonStyle(.borderedProminent)
-                .padding(.top)
-                    
- 
-                }
-                Button {
-                    showLostPassword.toggle()
-                } label: {
-                    Text("¿Has perdido la clave?")
-                }
-            } label: {
-                Text("Acceso al sistema")
+        ZStack {
+            VStack {
+                Text("Login")
+                    .font(.largeTitle)
                     .bold()
-                    .padding(.bottom)
+                GroupBox {
+                    Text("User")
+                            .font(.headline)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    HStack {
+                        Image(systemName: "person.fill").font(.headline)
+                        TextField(" Write your email", text: $username)
+                            .textContentType(.username)
+                            .autocorrectionDisabled()
+                            .textInputAutocapitalization(.never)
+                            .keyboardType(.emailAddress)
+                    }
+//                    Text("Password")
+//                        .font(.headline)
+//                        .frame(maxWidth: .infinity, alignment: .leading)
+//                    HStack {
+//                        Image(systemName: "lock.fill").font(.headline)
+//                        SecureField("Write your password", text: $password)
+//                            .textContentType(.password)
+//                    }
+                    
+                    HStack {
+                        Button {
+                            //                        transicion = transSalida
+                            forward = false
+                            screen = .welcome
+                        } label: {
+                            Text("Cancel").foregroundColor(.gray).frame(width: 80)
+                        }
+                        .buttonStyle(.bordered)
+                        Button {
+                            if username == "paco" && password == "12345" {
+                                password = ""
+                                //                            transicion = transEntrada
+                                screen = .access
+                            } else {
+                                errorMsg = "User/password not found. Try again!"
+                            }
+                        } label: {
+                            Text("Login").frame(width: 80)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        
+                    }.padding(.top)
+                    
+                    HStack {
+                        Button {
+                            showLostPassword.toggle()
+                        } label: {
+                            Text("Forgot password?")
+                        }
+                        Spacer()
+                        Button {
+                            showRegisterNewAccount.toggle()
+                        } label: {
+                            Text("Register new account")
+                        }
+
+                    }.padding(.top)
+                    
+             
+                    
+                } label: {
+                    Text("Access to Trantor Bookstore")
+                        .bold()
+                        .padding(.bottom)
+                }
+                .textFieldStyle(.roundedBorder)
             }
-            .textFieldStyle(.roundedBorder)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+            .padding()
+
             
             if !errorMsg.isEmpty {
                 Text(errorMsg)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background {
-                        RoundedRectangle(cornerRadius: 10, style: .continuous)
-                            .fill(.red)
+                    .bold()
+                    .foregroundColor(.red)
+                    .padding(.top, 400)
+                    .onAppear {
+                        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+                                errorMsg = ""
+                        }
                     }
+
+//                    .background {
+//                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+//                            .fill(.red)
+//                    }
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-        .padding()
         .ignoresSafeArea()
         .sheet(isPresented: $showLostPassword) {
             lostPassword
+        }
+        .sheet(isPresented: $showRegisterNewAccount) {
+            registerAccount
+        }
+        .alert("Network alert!",
+               isPresented: $appVM.showError) {
+            Button {
+                appVM.errorMsg = ""
+            } label: {
+                Text("OK")
+            }
+        } message: {
+            Text(appVM.errorMsg)
         }
     }
     
     var lostPassword: some View {
         VStack {
-            Text("Lost Password")
+             HStack {
+                Spacer()
+                Button() {
+                    showLostPassword.toggle()
+                } label: {
+                    if UIDevice.current.userInterfaceIdiom == .pad {
+                        Text("Done")
+                    } else {
+                        Circle()
+                            .fill(Color(uiColor: .lightGray))
+                            .frame(width: 20)
+                            .overlay(alignment: .center) {
+                                Text("X")
+                            }
+                    }
+                }
+            }
+            
+            Spacer()
+            Text("Forgot Password")
                 .font(.largeTitle)
                 .bold()
             GroupBox {
-                Text("Usuario a recuperar")
+                Text("User")
                     .font(.headline)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                TextField("Introduzca el usuario", text: $username)
+                TextField("Insert user email", text: $username)
                     .textContentType(.username)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
@@ -217,12 +289,13 @@ struct StateLoginView: View {
                 Button {
                     showLostPassword.toggle()
                 } label: {
-                    Text("Recuperar clave")
+                    Text("Recover password")
                 }
                 .buttonStyle(.borderedProminent)
                 .padding(.top)
             }
             .textFieldStyle(.roundedBorder)
+            Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .padding()
@@ -231,6 +304,77 @@ struct StateLoginView: View {
             Color("launchBackgroundColor")
         }
     }
+    
+    
+    var registerAccount: some View {
+        VStack {
+             HStack {
+                Spacer()
+                Button() {
+                    showRegisterNewAccount.toggle()
+                } label: {
+                    if UIDevice.current.userInterfaceIdiom == .pad {
+                        Text("Done")
+                    } else {
+                        Circle()
+                            .fill(Color(uiColor: .lightGray))
+                            .frame(width: 20)
+                            .overlay(alignment: .center) {
+                                Text("X")
+                            }
+                    }
+                }
+            }
+            
+            Spacer()
+            Text("Register new account")
+                .font(.largeTitle)
+                .bold()
+            GroupBox {
+                Text("Name")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                TextField("Insert your first and last name", text: $username)
+                    .textContentType(.username)
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
+                    .keyboardType(.default)
+                Text("Email")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                TextField("Insert your email", text: $username)
+                    .textContentType(.username)
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
+                    .keyboardType(.emailAddress)
+                Text("Address")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                TextField("Insert your address", text: $username)
+                    .textContentType(.username)
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
+                    .keyboardType(.emailAddress)
+                Button {
+                    
+                    showRegisterNewAccount.toggle()
+                } label: {
+                    Text("Register Account")
+                }
+                .buttonStyle(.borderedProminent)
+                .padding(.top)
+            }
+            .textFieldStyle(.roundedBorder)
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .padding()
+        .ignoresSafeArea()
+        .background {
+            Color("launchBackgroundColor")
+        }
+    }
+    
     
     var access: some View {
         ZStack {

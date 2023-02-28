@@ -25,12 +25,19 @@ final class AsyncPersistence {
     func getAuthor(id: UUID) async throws -> Author {
         try await queryJSON(request: .request(url: .getAuthorFrom(id: id)), type: Author.self)
     }
+    
+    func checkUser(email: String) async throws -> Client {
+        let userIdentity =  RequestByEmail(email: email) //Create post Struct for CallRequest
+        let request = URLRequest.request(url: .postClientQuery, method: .post, body: userIdentity)
+        let result = try await queryJSON(request: request, type: Client.self)
+        return result
+    }
 
     
     func getPurchasedBooks() async throws -> BooksOrderedAndReaded {
         let userIdentity =  RequestByEmail(email: "jcfmunoz@icloud.com")
-        let requestPurchasedBooks = URLRequest.request(url: .postClientBooksReadedAndPurchaseQuery, method: .post, body: userIdentity)
-        let result = try await queryJSON(request: requestPurchasedBooks, type: BooksOrderedAndReaded.self)
+        let request = URLRequest.request(url: .postClientBooksReadedAndPurchaseQuery, method: .post, body: userIdentity)
+        let result = try await queryJSON(request: request, type: BooksOrderedAndReaded.self)
         return result
     }
     

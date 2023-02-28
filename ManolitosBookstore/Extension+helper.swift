@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension Color {
-    static let launchBackColor = Color("launchBackgroundColor")
+    static var launchColor: Color { Color("launchBackgroundColor") }
 }
 
 
@@ -16,3 +16,4 @@ extension String {
     static let kUserMail = "userMail"
     static let kUserPwd = "userPwd"
 }
+ 

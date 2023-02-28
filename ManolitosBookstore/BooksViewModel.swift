@@ -21,7 +21,8 @@ final class BooksViewModel: ObservableObject {
     private let persistenceAsync = AsyncPersistence()
     private let persistence = ModelPersistence()
     private let authorsInServer = AuthorsStore.shared
-    var userMail: String?
+    var currentUser: Client?
+    
     @Published var books:Books = []
     @Published var latestBooks:Books = []
     @Published var ordededBooks: Books = []
@@ -99,6 +100,28 @@ final class BooksViewModel: ObservableObject {
             }
         }
         return ""
+    }
+    
+    
+    func tryAutomaticLogin() {
+        //UserDefaults.standard.set("luisla.tester@luisla.com", forKey: .kUserMail)
+        if let userEmail = UserDefaults.standard.string(forKey: .kUserMail) {
+            Task(priority: .userInitiated) {
+                await getLoginUser(email: userEmail)
+            }
+        }
+    }
+    
+    
+    @MainActor func getLoginUser(email: String) async {
+        do {
+            let user = try await AsyncPersistence.shared.checkUser(email: email)
+            currentUser = user
+        } catch let error as APIErrors {
+            errorMsg = error.description
+        } catch {
+            errorMsg = error.localizedDescription
+        }
     }
     
     
