@@ -12,18 +12,13 @@ import Foundation
 
 //   let user = try? JSONDecoder().decode(User.self, from: jsonData)
 // MARK: - BookstoreUser
-struct BookstoreUser: Codable {
-    let name, email, location: String
-    let role: Role
-    
-    static let preview = BookstoreUser(name: "Luis Tester", email: "luisla.tester@luisla.com", location: "C/Alegría de Swift, 77 /n08025 Barcelona", role: .admin)
-}
-enum Role: String, Codable, CaseIterable {
-    case admin = "admin"
-    case client = "usuario"
-//    case client = "client"
-//    case provider = "provider"
-}
+//struct BookstoreUser: Codable {
+//    let name, email, location: String
+//    let role: Role
+//
+//    static let preview = BookstoreUser(name: "Luis Tester", email: "luisla.tester@luisla.com", location: "C/Alegría de Swift, 77 /n08025 Barcelona", role: .admin)
+//}
+
 
 //   let authors = try? JSONDecoder().decode(Authors.self, from: jsonData)
 // MARK: - Author
@@ -61,6 +56,13 @@ extension Book {
 
 //   let client = try? JSONDecoder().decode(Client.self, from: jsonData)
 // MARK: - Client
+enum Role: String, Codable, CaseIterable {
+    case admin = "admin"
+    case client = "usuario"
+//    case client = "client"
+//    case provider = "provider"
+}
+
 struct Client: Codable, Hashable {
     let name, email, location: String
     let role: Role
@@ -74,6 +76,7 @@ extension Client {
         Client(name: "Andres", email: "luisla.tester@luisla.com", location: "Avda. Precebe 13, Zaragoza", role: .client)
     ]
     static let preview = Client(name: "Paco", email: "jcfmunoz@icloud.com", location: "Avda. Precebe 13, Madrid", role: Role.client)
+    static let previewAdmin = Client(name: "Luis Tester", email: "luisla.tester@luisla.com", location: "C/Alegría de Swift, 77 /n08025 Barcelona", role: .admin)
 }
 
 

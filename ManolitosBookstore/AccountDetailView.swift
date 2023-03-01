@@ -7,16 +7,19 @@
 
 import SwiftUI
 
-//@StateObject var userVM = UserViewModel()
+
+
 struct AccountDetailView: View {
+    @StateObject var userVM: UserViewModel
+    
     var body: some View {
-        //NavigationStack {
+        NavigationStack {
             Form {
                 Section {
                     Text("Name")
                     Text("email@email.com")
                 } header: {
-                    Text("")
+                    Text("User")
                 }
                 Section {
                     Text("Calle del Swift, 77")
@@ -38,13 +41,13 @@ struct AccountDetailView: View {
 
             }
             .navigationTitle("Account")
-        //}
+        }
     }
 }
 
 struct AccountDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountDetailView()
+        AccountDetailView(userVM: UserViewModel(user: .preview))
 //            .environmentObject()
     }
 }

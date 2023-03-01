@@ -57,10 +57,10 @@ struct StateLoginView: View {
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                 }
             }
-//            .background { //Necesario para mantener el color de fondo durante las transiciones
-//                Color("launchBackgroundColor")
-//                    .ignoresSafeArea()
-//            }
+            .background { //Necesario para mantener el color de fondo durante las transiciones
+                Color("launchBackgroundColor")
+                    .ignoresSafeArea()
+            }
             .animation(.default, value: screen)
 //        }
     }
@@ -90,8 +90,8 @@ struct StateLoginView: View {
     }
     
     var welcome: some View {
-//        ZStack {
-//            Color("launchBackgroundColor")
+        ZStack {
+            Color("launchBackgroundColor")
             VStack(alignment: .center,spacing: 0) {
                 VStack(spacing: 10) {
                     Image("classicHeroe512")
@@ -120,7 +120,7 @@ struct StateLoginView: View {
                             .multilineTextAlignment(.center)
                     }
                 }.padding()
-//            }
+            }
         }
         .background {
             Color("launchBackgroundColor")
@@ -228,10 +228,10 @@ struct StateLoginView: View {
                         }
                     }
 
-//                    .background {
-//                        RoundedRectangle(cornerRadius: 10, style: .continuous)
-//                            .fill(.red)
-//                    }
+                    .background {
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .fill(.red)
+                    }
             }
         }
         .ignoresSafeArea()
@@ -327,44 +327,7 @@ struct StateLoginView: View {
             }
             
             Spacer()
-            Text("Register new account")
-                .font(.largeTitle)
-                .bold()
-            GroupBox {
-                Text("Name")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                TextField("Insert your first and last name", text: $username)
-                    .textContentType(.username)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-                    .keyboardType(.default)
-                Text("Email")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                TextField("Insert your email", text: $username)
-                    .textContentType(.username)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-                    .keyboardType(.emailAddress)
-                Text("Address")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                TextField("Insert your address", text: $username)
-                    .textContentType(.username)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-                    .keyboardType(.emailAddress)
-                Button {
-                    
-                    showRegisterNewAccount.toggle()
-                } label: {
-                    Text("Register Account")
-                }
-                .buttonStyle(.borderedProminent)
-                .padding(.top)
-            }
-            .textFieldStyle(.roundedBorder)
+            RegisterAccountView()
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -408,5 +371,50 @@ struct StateLoginView: View {
 struct StateLoginView_Previews: PreviewProvider {
     static var previews: some View {
         StateLoginView()
+    }
+}
+
+struct RegisterAccountView: View {
+    var body: some View {
+        VStack {
+            Text("Register new account")
+                .font(.largeTitle)
+                .bold()
+//            GroupBox {
+//                Text("Name")
+//                    .font(.headline)
+//                    .frame(maxWidth: .infinity, alignment: .leading)
+//                TextField("Insert your first and last name", text: $username)
+//                    .textContentType(.username)
+//                    .autocorrectionDisabled()
+//                    .textInputAutocapitalization(.never)
+//                    .keyboardType(.default)
+//                Text("Email")
+//                    .font(.headline)
+//                    .frame(maxWidth: .infinity, alignment: .leading)
+//                TextField("Insert your email", text: $username)
+//                    .textContentType(.username)
+//                    .autocorrectionDisabled()
+//                    .textInputAutocapitalization(.never)
+//                    .keyboardType(.emailAddress)
+//                Text("Address")
+//                    .font(.headline)
+//                    .frame(maxWidth: .infinity, alignment: .leading)
+//                TextField("Insert your address", text: $username)
+//                    .textContentType(.username)
+//                    .autocorrectionDisabled()
+//                    .textInputAutocapitalization(.never)
+//                    .keyboardType(.emailAddress)
+//                Button {
+//                    
+//                    showRegisterNewAccount.toggle()
+//                } label: {
+//                    Text("Register Account")
+//                }
+//                .buttonStyle(.borderedProminent)
+//                .padding(.top)
+//            }
+        }
+        .textFieldStyle(.roundedBorder)
     }
 }

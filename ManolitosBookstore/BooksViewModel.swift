@@ -101,7 +101,19 @@ final class BooksViewModel: ObservableObject {
         }
         return ""
     }
+    func logout(){
+        UserDefaults.standard.set("", forKey: .kUserMail)
+        currentUser = nil
+    }
     
+    func tryLogin(email: String){
+        
+        if !email.isEmpty {
+            Task(priority: .userInitiated) {
+                await getLoginUser(email: email)
+            }
+        }
+    }
     
     func tryAutomaticLogin() {
         //UserDefaults.standard.set("luisla.tester@luisla.com", forKey: .kUserMail)
@@ -116,6 +128,7 @@ final class BooksViewModel: ObservableObject {
     @MainActor func getLoginUser(email: String) async {
         do {
             let user = try await AsyncPersistence.shared.checkUser(email: email)
+            UserDefaults.standard.set(user.email, forKey: .kUserMail)
             currentUser = user
         } catch let error as APIErrors {
             errorMsg = error.description

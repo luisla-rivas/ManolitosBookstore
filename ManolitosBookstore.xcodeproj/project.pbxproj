@@ -30,6 +30,7 @@
 		A09C7B70298C061A005EA4D2 /* ManolitosBookstoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C7B6F298C061A005EA4D2 /* ManolitosBookstoreTests.swift */; };
 		A09C7B7A298C061A005EA4D2 /* ManolitosBookstoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C7B79298C061A005EA4D2 /* ManolitosBookstoreUITests.swift */; };
 		A09C7B7C298C061A005EA4D2 /* ManolitosBookstoreUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C7B7B298C061A005EA4D2 /* ManolitosBookstoreUITestsLaunchTests.swift */; };
+		A0D5ABD829AF6F1C00D1645F /* AccountVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D5ABD729AF6F1C00D1645F /* AccountVM.swift */; };
 		A0D64DC5299414FE009ECE11 /* ModelsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D64DC4299414FE009ECE11 /* ModelsAPI.swift */; };
 		A0D64DC829941F68009ECE11 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D64DC729941F68009ECE11 /* Network.swift */; };
 		A0D8A3A929952CFB00B2B995 /* AsyncPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D8A3A829952CFB00B2B995 /* AsyncPersistence.swift */; };
@@ -95,6 +96,7 @@
 		A09C7B75298C061A005EA4D2 /* ManolitosBookstoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ManolitosBookstoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A09C7B79298C061A005EA4D2 /* ManolitosBookstoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManolitosBookstoreUITests.swift; sourceTree = "<group>"; };
 		A09C7B7B298C061A005EA4D2 /* ManolitosBookstoreUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManolitosBookstoreUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A0D5ABD729AF6F1C00D1645F /* AccountVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVM.swift; sourceTree = "<group>"; };
 		A0D64DC4299414FE009ECE11 /* ModelsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsAPI.swift; sourceTree = "<group>"; };
 		A0D64DC729941F68009ECE11 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		A0D8A3A829952CFB00B2B995 /* AsyncPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncPersistence.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				A04A63012992C1BA005E8931 /* BooksViewModel.swift */,
+				A0D5ABD729AF6F1C00D1645F /* AccountVM.swift */,
 				A0283D93299D31EC00976E5A /* RowVM.swift */,
 				A046DE8A29A7912B008DA1C5 /* CRowVM.swift */,
 				A046DE9329A7D0A1008DA1C5 /* ORowVM.swift */,
@@ -424,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A061FB3129964543008E3255 /* LHGridView.swift in Sources */,
+				A0D5ABD829AF6F1C00D1645F /* AccountVM.swift in Sources */,
 				B683A85429A7639B002E3A03 /* BookGridView.swift in Sources */,
 				A0283D94299D31EC00976E5A /* RowVM.swift in Sources */,
 				A061FB33299645B7008E3255 /* DiscoverView.swift in Sources */,

@@ -28,7 +28,7 @@ final class ModelPersistence {
     }
     
 
-    func saveUser(info:BookstoreUser) {
+    func saveUser(info:Client) {
         // iOS 15, FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         do {
             let encoder = JSONEncoder()

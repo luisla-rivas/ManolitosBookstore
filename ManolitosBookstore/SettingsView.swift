@@ -9,12 +9,13 @@ import SwiftUI
 
 struct SettingsListView: View {
     @AppStorage("preferredColorScheme") var preferredColorScheme: Int = 0
+    @EnvironmentObject var appVM: BooksViewModel
     
     var body: some View {
         NavigationView {
             List {
                 Section {
-                    NavigationLink(destination: AccountDetailView()) {
+                    NavigationLink(destination: AccountDetailView(userVM: UserViewModel(user: appVM.currentUser))) {
                         HStack {
                             Label("Account", systemImage: "person.crop.circle")
                             Spacer()
