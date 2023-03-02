@@ -109,8 +109,14 @@ final class BooksViewModel: ObservableObject {
     func tryLogin(email: String){
         
         if !email.isEmpty {
-            Task(priority: .userInitiated) {
+            let task = Task(priority: .userInitiated) {
                 await getLoginUser(email: email)
+            }
+            switch await task.result {
+            case .success(let success):
+                
+            case .failure(let error):
+                
             }
         }
     }

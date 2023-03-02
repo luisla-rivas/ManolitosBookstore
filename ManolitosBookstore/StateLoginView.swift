@@ -175,13 +175,16 @@ struct StateLoginView: View {
                         }
                         .buttonStyle(.bordered)
                         Button {
-                            if username == "paco" && password == "12345" {
-                                password = ""
-                                //                            transicion = transEntrada
-                                screen = .access
-                            } else {
-                                errorMsg = "User/password not found. Try again!"
-                            }
+                            appVM.tryLogin(email: username)
+                            
+                            
+//                            if username == "paco" && password == "12345" {
+//                                password = ""
+//                                //                            transicion = transEntrada
+//                                screen = .access
+//                            } else {
+//                                errorMsg = "User/password not found. Try again!"
+//                            }
                         } label: {
                             Text("Login").frame(width: 80)
                         }
@@ -190,11 +193,11 @@ struct StateLoginView: View {
                     }.padding(.top)
                     
                     HStack {
-                        Button {
-                            showLostPassword.toggle()
-                        } label: {
-                            Text("Forgot password?")
-                        }
+//                        Button {
+//                            showLostPassword.toggle()
+//                        } label: {
+//                            Text("Forgot password?")
+//                        }
                         Spacer()
                         Button {
                             showRegisterNewAccount.toggle()
@@ -228,10 +231,10 @@ struct StateLoginView: View {
                         }
                     }
 
-                    .background {
-                        RoundedRectangle(cornerRadius: 10, style: .continuous)
-                            .fill(.red)
-                    }
+//                    .background {
+//                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+//                            .fill(.red)
+//                    }
             }
         }
         .ignoresSafeArea()
