@@ -18,6 +18,12 @@ final class AuthorsStore {
 }
 
 final class BooksViewModel: ObservableObject {
+    enum SortType:String {
+        case ascendent = "Ascendent"
+        case descendent = "Descendent"
+        case none = "None"
+    }
+    
     private let persistenceAsync = AsyncPersistence()
     private let persistence = ModelPersistence()
     private let authorsInServer = AuthorsStore.shared
@@ -25,10 +31,13 @@ final class BooksViewModel: ObservableObject {
     
     @Published var books:Books = []
     @Published var latestBooks:Books = []
-    @Published var ordededBooks: Books = []
-    @Published var readedBooks: Books = []
+    @Published var readedAndOrderedBooks: [BooksOrderedAndReaded] = []
+    @Published var myReadedBooks: Books = []
+    @Published var myOrderedBooks: Books = []
     private var booksInServer: Books = []
     private var latestBooksInServer: Books = []
+    private var myReadedIDBooks = [Int]()
+    private var myOrderedIDBooks = [Int]()
     
     @Published var search = ""
     
@@ -56,6 +65,48 @@ final class BooksViewModel: ObservableObject {
             //self.books = prepareForView(books: booksFromJSON)
         }
     }
+    
+    enum ShowRead: String, CaseIterable {
+        case onlyRead = "Only Read"
+        case onlyNotRead = "Not REad"
+        case all = "All Books"
+    }
+    @Published var showOnlyFavorites = false
+    @Published var showReadOrNotRead:ShowRead = .all
+    
+    var myFilteredBooks:Books {
+        return books.filter { book in //filter for Favorites
+//            if showOnlyFavorites {
+//                return self.isFavorite(id: episode.id)
+//            } else {
+//                return true
+//            }
+//        }.filter { book in //filter for iHaveRead
+            switch self.showReadOrNotRead {
+            case .onlyRead:
+                return self.iHaveReaded(id: book.idAPI)
+            case .onlyNotRead:
+                return !self.iHaveReaded(id: book.idAPI)
+            case .all:
+                return true
+            }
+        }.filter { book in //filter for Search
+            if search.isEmpty {
+                return true
+            } else {
+                return book.title.lowercased().contains(search.lowercased())
+            }
+        }
+    }
+//    func isFavorite(id:Int) -> Bool {
+//        favorites.fav.contains(where: { $0 == id })
+//    }
+    
+    func iHaveReaded(id: Int) -> Bool {
+        myReadedIDBooks.contains(id)
+    }
+    
+    
 //    func createBookData(from books: Books) {
 //        var bookList:Books = []
 //        for book in books {
@@ -101,6 +152,15 @@ final class BooksViewModel: ObservableObject {
         }
         return ""
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     func logout(){
         UserDefaults.standard.set("", forKey: .kUserMail)
         currentUser = nil
@@ -108,17 +168,17 @@ final class BooksViewModel: ObservableObject {
     
     func tryLogin(email: String){
         
-        if !email.isEmpty {
-            let task = Task(priority: .userInitiated) {
-                await getLoginUser(email: email)
-            }
-            switch await task.result {
-            case .success(let success):
-                
-            case .failure(let error):
-                
-            }
-        }
+//        if !email.isEmpty {
+//            let task = Task(priority: .userInitiated) {
+//                await getLoginUser(email: email)
+//            }
+//            switch await task.result {
+//            case .success(let success):
+//
+//            case .failure(let error):
+//
+//            }
+//        }
     }
     
     func tryAutomaticLogin() {
@@ -183,14 +243,21 @@ final class BooksViewModel: ObservableObject {
         }
     }
     
-    @MainActor func getOrderedAndReadedBooks() async {
+    @MainActor func getOrderedAndReadedBooksForCurrentUser() async {
         do {
-            let clientBooks = try await AsyncPersistence.shared.getPurchasedBooks() //DataLoad.shared.loadEmpleadosData()
-            let ordered = booksInServer.filter { clientBooks.ordered.contains($0.idAPI) }
-            self.ordededBooks = ordered //prepareForView(books: ordered)
-            let readed = booksInServer.filter { clientBooks.readed.contains($0.idAPI) }
-            self.readedBooks = readed //prepareForView(books: readed)
-            
+            if let email = currentUser?.email { //Only if a client is logged in
+                let clientBooks = try await AsyncPersistence.shared.getPurchasedBooks(email: email)
+                let ordered = booksInServer.filter { clientBooks.ordered.contains($0.idAPI) }
+                self.myOrderedBooks = ordered //prepareForView(books: ordered)
+                let readed = booksInServer.filter { clientBooks.readed.contains($0.idAPI) }
+                self.myReadedBooks = readed //prepareForView(books: readed)
+                self.myReadedIDBooks = clientBooks.readed
+                self.myOrderedIDBooks = clientBooks.ordered
+                print("\(email) ha solicitado los libros leidos y comprados")
+                print("\(clientBooks)")
+                print("Readed: \(readed)")
+            }
+                
         } catch let error as APIErrors {
             errorMsg = error.description
         } catch {

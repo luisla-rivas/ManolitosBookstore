@@ -21,12 +21,20 @@ struct DiscoverView: View {
                 }
                 
                 Section {
-                    BookListView(books:appVM.ordededBooks)
+                    if appVM.myReadedBooks.count > 0 {
+                        BookListView(books:appVM.myOrderedBooks)
+                    } else {
+                        Text("No purchased books yet.").font(.caption)
+                    }
                 } header: {
                     Text("Last Purchased")
                 }
                 Section {
-                    BookListView(books:appVM.readedBooks)
+                    if appVM.myReadedBooks.count > 0 {
+                        BookListView(books:appVM.myReadedBooks)
+                    } else {
+                        Text("No readed books yet.").font(.caption)
+                    }
                 } header: {
                     Text("Readed Books")
                 }
@@ -37,7 +45,7 @@ struct DiscoverView: View {
                 .navigationTitle("Manolito's Bookstore")
             //.searchable(text: $appVM.search)
                 .task {
-                    let (_,_) = await (appVM.getLatestBooks(), appVM.getOrderedAndReadedBooks())
+                    let (_,_) = await (appVM.getLatestBooks(), appVM.getOrderedAndReadedBooksForCurrentUser())
                 }
         }
         //.background(Color("launchBlackgroundColor"))

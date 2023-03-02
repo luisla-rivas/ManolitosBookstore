@@ -34,8 +34,8 @@ final class AsyncPersistence {
     }
 
     
-    func getPurchasedBooks() async throws -> BooksOrderedAndReaded {
-        let userIdentity =  RequestByEmail(email: "jcfmunoz@icloud.com")
+    func getPurchasedBooks(email: String) async throws -> BooksOrderedAndReaded {
+        let userIdentity =  RequestByEmail(email: email)
         let request = URLRequest.request(url: .postClientBooksReadedAndPurchaseQuery, method: .post, body: userIdentity)
         let result = try await queryJSON(request: request, type: BooksOrderedAndReaded.self)
         return result

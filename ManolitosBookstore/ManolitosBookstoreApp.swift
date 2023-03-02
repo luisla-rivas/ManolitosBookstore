@@ -19,9 +19,9 @@ struct ManolitosBookstoreApp: App {
                     StateLoginView()
              }
             .environmentObject(appVM)
-//            .task {
-//                let (_,_) = await (appVM.getAllBooks(), appVM.getAuthors())
-//            }
+            .task {
+                let (_,_) = await (appVM.getAllBooks(), appVM.getAuthors())
+            }
             .preferredColorScheme(ColorScheme.init(
                 .init(rawValue: preferredColorScheme) ?? .light))
             

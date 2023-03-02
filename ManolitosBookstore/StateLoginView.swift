@@ -87,6 +87,7 @@ struct StateLoginView: View {
                 }
                 .animation(.easeOut(duration: 1), value: splashAnimation)
         }
+        .ignoresSafeArea()
     }
     
     var welcome: some View {

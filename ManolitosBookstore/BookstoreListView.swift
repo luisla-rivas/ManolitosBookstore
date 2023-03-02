@@ -15,18 +15,18 @@ struct BookstoreListView: View {
         NavigationStack { //(path: $path)
             List {
                 Section {
-                    BookListView(books:appVM.books)
+                    BookListView(books:appVM.myFilteredBooks)
 //                        .background(Color("launchBackgroundColor"))
                 } header: {
                     Text("Bookstore")
                 }
 
             }
-//            .listStyle(.inset)
+            .listStyle(.inset)
             .navigationDestination(for: Book.self) { book in
                 BookDetailView(vm: BookDetailViewModel(book: book))
             }
-            .navigationTitle("Bookstore catalog")
+            .navigationTitle("Trantor catalog")
             //.searchable(text: $appVM.search)
             .refreshable {
                 await appVM.getAllBooks()
@@ -34,6 +34,7 @@ struct BookstoreListView: View {
         }
         
         .searchable(text: $appVM.search)
+        .navigationTitle("Bookstore catalog")
         .alert("Network alert!",
                isPresented: $appVM.showError) {
             Button {
