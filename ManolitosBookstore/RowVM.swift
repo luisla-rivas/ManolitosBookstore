@@ -12,14 +12,16 @@ final class RowVM:ObservableObject {
     
     let book:Book
     
-    @Published var cover: UIImage?
+    @Published var cover: Image?
     @Published var title = ""
     @Published var authorName = "-"
     @Published var year = ""
+    @Published var price: Double = 0.0
    
     init(book:Book) {
         self.book = book
         self.title = book.title
+        self.price = book.price
         if let bookYear = book.year {
             self.year = String(bookYear)
         } else {
@@ -35,7 +37,9 @@ final class RowVM:ObservableObject {
         if FileManager.default.fileExists(atPath: url.path()) {
             do {
                 let data = try Data(contentsOf: url)
-                self.cover = UIImage(data: data)
+                if let uiImage = UIImage(data: data) {
+                    self.cover = Image(uiImage: uiImage)
+                }
             } catch {
                 print("Error en la carga \(imageURL).")
             }
@@ -81,7 +85,10 @@ final class RowVM:ObservableObject {
     @MainActor func getImageAsync() async {
         guard let imageURL = book.cover else { return }
         do {
-            cover = try await AsyncPersistence.shared.getImage(url: imageURL)
+            let uicover = try await AsyncPersistence.shared.getImage(url: imageURL)
+            if uicover != nil {
+                cover = Image(uiImage: uicover!)
+            }
         } catch {
             print("Error en la carga \(imageURL)")
         }

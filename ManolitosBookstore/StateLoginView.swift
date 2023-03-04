@@ -10,7 +10,6 @@ import SwiftUI
 enum Screens {
     case splash
     case welcome
-//    case welcomeBack
     case login
     case access
 }
@@ -58,7 +57,7 @@ struct StateLoginView: View {
                 }
             }
             .background { //Necesario para mantener el color de fondo durante las transiciones
-                Color("launchBackgroundColor")
+                Color.myBackgroundColor
                     .ignoresSafeArea()
             }
             .animation(.default, value: screen)
@@ -67,7 +66,7 @@ struct StateLoginView: View {
     
     var splash: some View {
         ZStack {
-            Color("launchBackgroundColor")
+            Color.myBackgroundColor
             Image("classicHeroe512")
             Text("Trantor Bookstore")
                 .font(.custom("Futura", size: 32))
@@ -92,7 +91,7 @@ struct StateLoginView: View {
     
     var welcome: some View {
         ZStack {
-            Color("launchBackgroundColor")
+            Color.myBackgroundColor
             VStack(alignment: .center,spacing: 0) {
                 VStack(spacing: 10) {
                     Image("classicHeroe512")
@@ -124,7 +123,7 @@ struct StateLoginView: View {
             }
         }
         .background {
-            Color("launchBackgroundColor")
+            Color.myBackgroundColor
         }
         .ignoresSafeArea()
         .alert("Network alert!",
@@ -305,7 +304,7 @@ struct StateLoginView: View {
         .padding()
         .ignoresSafeArea()
         .background {
-            Color("launchBackgroundColor")
+            Color.myBackgroundColor
         }
     }
     
@@ -338,7 +337,7 @@ struct StateLoginView: View {
         .padding()
         .ignoresSafeArea()
         .background {
-            Color("launchBackgroundColor")
+            Color.myBackgroundColor
         }
     }
     

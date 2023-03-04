@@ -12,16 +12,12 @@ struct BookListView: View {
     //@State var path:[Int] = []
     let books: Books
     var body: some View {
-//        ScrollView {
-            LazyVStack(alignment: .leading) {
-                ForEach(books) { book in //, id:\.self
-                    NavigationLink(value: book) {
-                        BookRowView(rowVM: RowVM(book: book))
-                            .frame(alignment: .leading )
-                    }
-                }
+        ForEach(books) { book in 
+            NavigationLink(value: book) {
+                BookRowView(vm: RowVM(book: book))
+                    .frame(alignment: .leading )
             }
-//        }
+        }
     }
 }
 

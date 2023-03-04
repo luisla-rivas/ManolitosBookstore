@@ -9,14 +9,17 @@ import SwiftUI
 
 struct BookRowView: View {
 //    @EnvironmentObject var appVM:BooksViewModel
-    let rowVM:RowVM
+    let vm:RowVM
     var body: some View {
         HStack(alignment: .center) {
-            if let coverURL = rowVM.book.cover {
+            if let coverURL = vm.book.cover {
                 AsyncImage(url: coverURL) { image in //318x384
                     image.resizable()
                         .scaledToFit()
                         .frame(width: 70, height: 120, alignment: .leading)
+                        .onAppear {
+                            vm.cover = image
+                        }
                     //.clipShape(Circle())
                 } placeholder: {
                     ProgressView()
@@ -30,11 +33,11 @@ struct BookRowView: View {
             
             
             VStack (alignment: .leading, spacing: 5) {
-                Text("Title: **\(rowVM.title)**")
+                Text("Title: **\(vm.title)**")
                     //.font(.headline)
-                Text("Author: **\(rowVM.authorName)**")
+                Text("Author: **\(vm.authorName)**")
                     //.font(.footnote).foregroundColor(.gray)
-                Text("Year: **\(rowVM.year)**")
+                Text("Year: **\(vm.year)**")
 //                    Text("Year: **\(bookYear, specifier: "%.0d")**")
                        // .font(.footnote).foregroundColor(.gray)
 
@@ -46,7 +49,7 @@ struct BookRowView: View {
 
 struct BookRowView_Previews: PreviewProvider {
     static var previews: some View {
-        BookRowView(rowVM: RowVM(book: .preview))
+        BookRowView(vm: RowVM(book: .preview))
             .padding()
             .previewLayout(.sizeThatFits)
             .frame(width: 400,height: 150)

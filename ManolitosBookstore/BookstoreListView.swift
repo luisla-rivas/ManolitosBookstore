@@ -15,14 +15,21 @@ struct BookstoreListView: View {
         NavigationStack { //(path: $path)
             List {
                 Section {
+//                    ForEach(appVM.myFilteredBooks) { book in //, id:\.self
+//                        NavigationLink(value: book) {
+//                            BookRowView(rowVM: RowVM(book: book))
+//                                .frame(alignment: .leading )
+//                        }
+//                    }
                     BookListView(books:appVM.myFilteredBooks)
-//                        .background(Color("launchBackgroundColor"))
                 } header: {
                     Text("Bookstore")
                 }
 
             }
-            .listStyle(.inset)
+            
+//            .listStyle(.inset)
+//            .scrollContentBackground(.hidden)
             .navigationDestination(for: Book.self) { book in
                 BookDetailView(vm: BookDetailViewModel(book: book))
             }

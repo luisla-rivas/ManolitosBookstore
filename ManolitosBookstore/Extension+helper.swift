@@ -9,6 +9,7 @@ import SwiftUI
 
 extension Color {
     static var launchColor: Color { Color("launchBackgroundColor") }
+    static var myBackgroundColor: Color { Color("backgroundYellow") }
 }
 
 

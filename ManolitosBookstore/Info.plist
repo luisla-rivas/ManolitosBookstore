@@ -12,7 +12,7 @@
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>
-		<string>launchBackgroundColor</string>
+		<string>myBackgroundColor</string>
 		<key>UIImageName</key>
 		<string>classicHeroe512</string>
 	</dict>

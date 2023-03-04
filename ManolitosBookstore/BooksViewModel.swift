@@ -39,6 +39,8 @@ final class BooksViewModel: ObservableObject {
     private var myReadedIDBooks = [Int]()
     private var myOrderedIDBooks = [Int]()
     
+    var showingProduct = false
+    
     @Published var search = ""
     
     @Published var showError = false
@@ -191,7 +193,7 @@ final class BooksViewModel: ObservableObject {
     }
     
     
-    @MainActor func getLoginUser(email: String) async {
+   func getLoginUser(email: String) async { // @MainActor
         do {
             let user = try await AsyncPersistence.shared.checkUser(email: email)
             UserDefaults.standard.set(user.email, forKey: .kUserMail)
@@ -253,9 +255,9 @@ final class BooksViewModel: ObservableObject {
                 self.myReadedBooks = readed //prepareForView(books: readed)
                 self.myReadedIDBooks = clientBooks.readed
                 self.myOrderedIDBooks = clientBooks.ordered
-                print("\(email) ha solicitado los libros leidos y comprados")
-                print("\(clientBooks)")
-                print("Readed: \(readed)")
+                //print("\(email) ha solicitado los libros leidos y comprados")
+                //print("\(clientBooks)")
+                //print("Readed: \(readed)")
             }
                 
         } catch let error as APIErrors {
