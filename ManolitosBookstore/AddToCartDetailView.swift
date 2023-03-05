@@ -15,19 +15,20 @@ struct AddToCartDetailView: View {
   // MARK: - BODY
   
   var body: some View {
-    Button(action: {
+    Button {
 //      feedback.impactOccurred()
-    }, label: {
-      Spacer()
+    } label: {
+      //Spacer()
       Text("Add to cart".uppercased())
         .font(.system(.title2, design: .rounded))
         .fontWeight(.bold)
         .foregroundColor(.white)
-      Spacer()
-    }) //: BUTTON
-    .padding(15)
+      //Spacer()
+    } //: BUTTON
+    .padding(.horizontal, 20)
+    .padding(.vertical, 10)
     .background {
-        Color.myBackgroundColor
+        Color.myBackgroundPurple
     }
     .clipShape(Capsule())
   }

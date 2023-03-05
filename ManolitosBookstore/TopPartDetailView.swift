@@ -10,7 +10,7 @@ import SwiftUI
 struct TopPartDetailView: View {
     // MARK: - PROPERTY
     
-    var price: Double
+    var price: String
     var image: Image
     @State private var isAnimating: Bool = false
     
@@ -23,7 +23,7 @@ struct TopPartDetailView: View {
           Text("Price")
             .fontWeight(.semibold)
 
-            Text("\(price.formatted(.number.precision(.fractionLength(2))))€")
+            Text(price) //"\(price.formatted(.number.precision(.fractionLength(2))))€"
             .font(.title)
             .fontWeight(.black)
             .scaleEffect(1.35, anchor: .leading)
@@ -52,7 +52,7 @@ struct TopPartDetailView: View {
 
   struct TopPartDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        TopPartDetailView(price: Book.preview.price, image: Image("theTimeMachine"))
+        TopPartDetailView(price: Book.preview.price.inEuro, image: Image("theTimeMachine"))
         .previewLayout(.sizeThatFits)
         .padding()
     }

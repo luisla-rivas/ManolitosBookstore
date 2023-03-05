@@ -16,12 +16,12 @@ final class RowVM:ObservableObject {
     @Published var title = ""
     @Published var authorName = "-"
     @Published var year = ""
-    @Published var price: Double = 0.0
+    @Published var price: String = ""
    
     init(book:Book) {
         self.book = book
         self.title = book.title
-        self.price = book.price
+        self.price = book.price.inEuro
         if let bookYear = book.year {
             self.year = String(bookYear)
         } else {

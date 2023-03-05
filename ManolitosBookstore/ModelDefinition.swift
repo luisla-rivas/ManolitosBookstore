@@ -30,7 +30,7 @@ typealias Authors = [Author]
 
 
 // MARK: - Book
-struct Book: Identifiable, Codable, Hashable {
+struct Book: Identifiable, Codable, Hashable  {
     let id:UUID = UUID()
     let cover: URL?
     let year: Int?
@@ -41,7 +41,7 @@ struct Book: Identifiable, Codable, Hashable {
     let isbn, summary: String?
     let pages: Int?
     let plot: String?
-    let price: Double
+    let price: Double?
     
     enum CodingKeys: String, CodingKey {
         case idAPI = "id", title, author, year, cover, isbn, plot, rating, summary, pages, price
@@ -124,19 +124,4 @@ extension BooksOrder {
                                                           email: "jcfmunoz@icloud.com", books: [319, 838])
 }
 
-extension DateFormatter {
-    static let iso8601:DateFormatter = {
-        let df = DateFormatter()
-        //df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" // "2021-02-05T18:40:55"
-        df.dateFormat =  "yyyyMMdd'T'HHmmssZ"// "2021-02-05T18:40:55"
-        return df
-    }()
-    
-    static let short:DateFormatter = {
-        let df = DateFormatter()
-        df.locale = Locale.current
-        df.dateStyle = .medium
-        df.dateStyle = .none
-        return df
-    }()
-}
+

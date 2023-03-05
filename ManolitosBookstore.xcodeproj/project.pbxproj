@@ -27,6 +27,7 @@
 		A061FB33299645B7008E3255 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A061FB32299645B7008E3255 /* DiscoverView.swift */; };
 		A07C36AB29A944B900DDB33B /* StateLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07C36AA29A944B900DDB33B /* StateLoginView.swift */; };
 		A07C36AD29A9452700DDB33B /* Extension+helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07C36AC29A9452700DDB33B /* Extension+helper.swift */; };
+		A07F88A829B33D93008BF4CA /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07F88A729B33D93008BF4CA /* RatingView.swift */; };
 		A09C7B5E298C0619005EA4D2 /* ManolitosBookstoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C7B5D298C0619005EA4D2 /* ManolitosBookstoreApp.swift */; };
 		A09C7B60298C0619005EA4D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C7B5F298C0619005EA4D2 /* ContentView.swift */; };
 		A09C7B62298C061A005EA4D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A09C7B61298C061A005EA4D2 /* Assets.xcassets */; };
@@ -92,6 +93,7 @@
 		A061FB32299645B7008E3255 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		A07C36AA29A944B900DDB33B /* StateLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateLoginView.swift; sourceTree = "<group>"; };
 		A07C36AC29A9452700DDB33B /* Extension+helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+helper.swift"; sourceTree = "<group>"; };
+		A07F88A729B33D93008BF4CA /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		A0999F7D299E7B690094E5F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A09C7B5A298C0619005EA4D2 /* ManolitosBookstore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManolitosBookstore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A09C7B5D298C0619005EA4D2 /* ManolitosBookstoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManolitosBookstoreApp.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			children = (
 				A042C1F629B2501600E9572B /* HeaderDetailView.swift */,
 				A042C1F929B254AB00E9572B /* TopPartDetailView.swift */,
+				A07F88A729B33D93008BF4CA /* RatingView.swift */,
 				A042C20029B2C34E00E9572B /* AddToCartDetailView.swift */,
 			);
 			name = DetailViewSections;
@@ -192,6 +195,7 @@
 		A04A62F7299298A6005E8931 /* IOSViews */ = {
 			isa = PBXGroup;
 			children = (
+				A07F88A929B33DAA008BF4CA /* Components */,
 				B683A85529A76C19002E3A03 /* Discover */,
 				B683A85629A76C42002E3A03 /* MyBooks */,
 				B683A85729A76C73002E3A03 /* Settings */,
@@ -214,6 +218,13 @@
 				A04A63052992C607005E8931 /* BookDetailViewModel.swift */,
 			);
 			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		A07F88A929B33DAA008BF4CA /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Components;
 			sourceTree = "<group>";
 		};
 		A09C7B51298C0619005EA4D2 = {
@@ -481,6 +492,7 @@
 				A04A63022992C1BA005E8931 /* BooksViewModel.swift in Sources */,
 				A0D8A3A929952CFB00B2B995 /* AsyncPersistence.swift in Sources */,
 				A04A62FF2992A0DF005E8931 /* ModelPersistence.swift in Sources */,
+				A07F88A829B33D93008BF4CA /* RatingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,7 @@ enum APIErrors:Error {
     case nonHTTP
     case status(Int)
     case invalidData
+    case login(String)
     
     var description:String {
         switch self {
@@ -29,6 +30,8 @@ enum APIErrors:Error {
             return "Status error: \(int)."
         case .invalidData:
             return "Invalid data."
+        case .login(let reason):
+            return "Login fault: \(reason)"
         }
     }
 }

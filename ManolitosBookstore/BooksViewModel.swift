@@ -18,6 +18,13 @@ final class AuthorsStore {
 }
 
 final class BooksViewModel: ObservableObject {
+    enum Screens {
+        case splash
+        case welcome
+        case login
+        case access
+    }
+    
     enum SortType:String {
         case ascendent = "Ascendent"
         case descendent = "Descendent"
@@ -28,7 +35,7 @@ final class BooksViewModel: ObservableObject {
     private let persistence = ModelPersistence()
     private let authorsInServer = AuthorsStore.shared
     var currentUser: Client?
-    
+    @Published var screen:Screens = .splash
     @Published var books:Books = []
     @Published var latestBooks:Books = []
     @Published var readedAndOrderedBooks: [BooksOrderedAndReaded] = []
@@ -70,7 +77,7 @@ final class BooksViewModel: ObservableObject {
     
     enum ShowRead: String, CaseIterable {
         case onlyRead = "Only Read"
-        case onlyNotRead = "Not REad"
+        case onlyNotRead = "Not Read"
         case all = "All Books"
     }
     @Published var showOnlyFavorites = false
@@ -161,30 +168,23 @@ final class BooksViewModel: ObservableObject {
     
     
     
-    
+   //MARK: - LOGINs
     
     func logout(){
         UserDefaults.standard.set("", forKey: .kUserMail)
         currentUser = nil
     }
     
-    func tryLogin(email: String){
-        
-//        if !email.isEmpty {
-//            let task = Task(priority: .userInitiated) {
-//                await getLoginUser(email: email)
-//            }
-//            switch await task.result {
-//            case .success(let success):
-//
-//            case .failure(let error):
-//
-//            }
-//        }
+    func tryLogin(email: String) {
+        if !email.isEmpty {
+            Task(priority: .userInitiated) {
+                    await getLoginUser(email: email)
+                }
+            }
     }
     
     func tryAutomaticLogin() {
-        //UserDefaults.standard.set("luisla.tester@luisla.com", forKey: .kUserMail)
+        UserDefaults.standard.set("luisla.tester@luisla.cm", forKey: .kUserMail)
         if let userEmail = UserDefaults.standard.string(forKey: .kUserMail) {
             Task(priority: .userInitiated) {
                 await getLoginUser(email: userEmail)
@@ -193,11 +193,12 @@ final class BooksViewModel: ObservableObject {
     }
     
     
-   func getLoginUser(email: String) async { // @MainActor
+    @MainActor func getLoginUser(email: String) async {
         do {
             let user = try await AsyncPersistence.shared.checkUser(email: email)
             UserDefaults.standard.set(user.email, forKey: .kUserMail)
             currentUser = user
+            screen = .access
         } catch let error as APIErrors {
             errorMsg = error.description
         } catch {
@@ -205,7 +206,7 @@ final class BooksViewModel: ObservableObject {
         }
     }
     
-    
+    //MARK: - @MainActor get AllBooks
     @MainActor func getAllBooks() async {
         do {
             let booksFromServer = try await AsyncPersistence.shared.getAllBooks() //DataLoad.shared.loadEmpleadosData()

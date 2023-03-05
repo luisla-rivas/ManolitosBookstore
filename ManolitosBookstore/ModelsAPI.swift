@@ -43,3 +43,10 @@ struct PurchaseOrderState: Codable {
 struct ModifyOrderStateRequest: Codable {
     let id, estado, admin: String
 }
+
+
+// MARK: - UserError
+struct UserError: Codable {
+    let error: Bool
+    let reason: String
+}

@@ -34,16 +34,37 @@ struct BookRowView: View {
             
             VStack (alignment: .leading, spacing: 5) {
                 Text("Title: **\(vm.title)**")
-                    //.font(.headline)
+                //.font(.headline)
                 Text("Author: **\(vm.authorName)**")
-                    //.font(.footnote).foregroundColor(.gray)
+                //.font(.footnote).foregroundColor(.gray)
                 Text("Year: **\(vm.year)**")
-//                    Text("Year: **\(bookYear, specifier: "%.0d")**")
-                       // .font(.footnote).foregroundColor(.gray)
+                //                    Text("Year: **\(bookYear, specifier: "%.0d")**")
+                // .font(.footnote).foregroundColor(.gray)
+                
+                //2.1 Rating and Price
+                HStack(alignment: .bottom) {
+                    RatingView(rating: vm.book.rating ?? 0.0, maxRating: 5)
+                        .frame(maxWidth: 80)
+//                        .offset(y: 8)
+                    Spacer()
+                    Text(vm.book.price.inEuro)
+                        //.font(.caption)
+                        .padding(.horizontal)
+                        .padding(.vertical, 5)
+                        .background {
+                            RoundedRectangle(cornerRadius: 5, style: .continuous)
+                                .fill(Color.myPriceColor)
 
+                        }
+                }
+                
             }
             Spacer()
         }
+//        .padding()
+//            .background{
+//            Color(uiColor: .quaternaryLabel)
+//        }
     }
 }
 

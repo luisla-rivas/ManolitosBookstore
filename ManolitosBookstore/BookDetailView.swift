@@ -27,16 +27,20 @@ struct BookDetailView: View {
                 .padding(.horizontal)
             
             // DETAIL TOP PART
-            TopPartDetailView(price: vm.book.price, image: Image( "theTimeMachine"))
+            TopPartDetailView(price: vm.book.price.inEuro, image: Image( "theTimeMachine"))
                 .padding(.horizontal)
                 .zIndex(1)
             
             // DETAIL BOTTOM PART
             VStack(alignment: .center, spacing: 0) {
-                // RATINGS + SIZES
-                //                RatingsSizesDetailView()
-                //                    .padding(.top, -20)
-                //                    .padding(.bottom, 10)
+                 //RATINGS + SIZES
+                
+                HStack {
+                    RatingView(rating: vm.book.rating ?? 0.0, maxRating: 5).frame(maxWidth: 100)
+                        .padding(.top, -40)
+                    .padding(.bottom, 10)
+                    Spacer()
+                }
                 
                 // DESCRIPTION
                 ScrollView(.vertical, showsIndicators: false){
@@ -65,7 +69,7 @@ struct BookDetailView: View {
         .zIndex(0)
         //.ignoresSafeArea(.all, edges: .all)
         .background {
-            Color.myBackgroundColor.ignoresSafeArea(.all, edges: .all)
+            Color.gray.ignoresSafeArea(.all, edges: .all)
         }
     }
 

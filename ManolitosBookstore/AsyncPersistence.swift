@@ -40,6 +40,7 @@ final class AsyncPersistence {
         let result = try await queryJSON(request: request, type: BooksOrderedAndReaded.self)
         return result
     }
+   
     
     func queryJSON<T:Codable>(request:URLRequest,
                               type:T.Type,
@@ -54,6 +55,15 @@ final class AsyncPersistence {
                 } catch {
                     throw APIErrors.json(error)
                 }
+            } else if response.statusCode == 404 {
+                do {
+                    let userError = try JSONDecoder().decode(UserError.self, from: data)
+                    throw APIErrors.login(userError.reason)
+                } catch let error as APIErrors {
+                    throw error
+                } catch  {
+                    throw APIErrors.general(error)
+                }
             } else {
                 throw APIErrors.status(response.statusCode)
             }
@@ -63,6 +73,28 @@ final class AsyncPersistence {
             throw APIErrors.general(error)
         }
     }
+//    func queryJSON<T:Codable>(request:URLRequest,
+//                              type:T.Type,
+//                              decoder:JSONDecoder = JSONDecoder(),
+//                              statusOK:Int = 200) async throws -> T {
+//        do {
+//            let (data, response) = try await URLSession.shared.data(for: request)
+//            guard let response = response as? HTTPURLResponse else { throw APIErrors.nonHTTP }
+//            if response.statusCode == 200 {
+//                do {
+//                    return try decoder.decode(T.self, from: data)
+//                } catch {
+//                    throw APIErrors.json(error)
+//                }
+//            } else {
+//                throw APIErrors.status(response.statusCode)
+//            }
+//        } catch let error as APIErrors {
+//            throw error
+//        } catch {
+//            throw APIErrors.general(error)
+//        }
+//    }
 
 //    func query(request:URLRequest,
 //               statusOK:Int = 200) async throws -> Bool {

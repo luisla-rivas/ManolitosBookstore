@@ -50,10 +50,10 @@ struct ContentView: View {
                 .tag(TabItem.setting)
 
         }
-        .onAppear() {
-            //UIToolbar.appearance().backgroundColor = .systemYellow
-            UITabBar.appearance().backgroundColor = .systemYellow 
-        }
+//        .onAppear() {
+//            //UIToolbar.appearance().backgroundColor = .systemYellow
+//            UITabBar.appearance().backgroundColor = .systemYellow 
+//        }
 //        .background(Color.red)
 ////        Color(.red)
 //        Color(red: 253.0/255.0, green: 221.0/255.0, blue: 106.0/255.0)

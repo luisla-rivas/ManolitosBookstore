@@ -7,19 +7,15 @@
 
 import SwiftUI
 
-enum Screens {
-    case splash
-    case welcome
-    case login
-    case access
-}
+
 
 struct StateLoginView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var appVM:BooksViewModel
     
     @State var splashAnimation = false
-    @State var screen:Screens = .splash
+    //@State var screen:Screens = .splash
+    
     
     @State var showLostPassword = false
     @State var showRegisterNewAccount = false
@@ -35,11 +31,8 @@ struct StateLoginView: View {
     @State var transicion:AnyTransition = .asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))
     
     var body: some View {
-//        ZStack {
-//            Color("launchBackgroundColor")
-//                .ignoresSafeArea()
             Group {
-                switch screen {
+                switch appVM.screen {
                 case .splash:
                     splash
                         .transition(.move(edge: .leading))
@@ -50,18 +43,18 @@ struct StateLoginView: View {
                 case .login:
                     login
                         .transition(.asymmetric(insertion: .move(edge: .trailing),
-                                                removal: .move(edge: forward ? .trailing : .leading )))
+                                                removal: .move(edge: forward ? .leading : .trailing )))
                 case .access:
                     access
-                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                        .transition(.asymmetric(insertion: .move(edge: .trailing),
+                                                removal: .move(edge: .leading)))
                 }
             }
             .background { //Necesario para mantener el color de fondo durante las transiciones
                 Color.myBackgroundColor
                     .ignoresSafeArea()
             }
-            .animation(.default, value: screen)
-//        }
+            .animation(.default, value: appVM.screen)
     }
     
     var splash: some View {
@@ -78,9 +71,9 @@ struct StateLoginView: View {
                     appVM.tryAutomaticLogin()
                     Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
                         if appVM.currentUser != nil {
-                            screen = .access
+                            appVM.screen = .access
                         } else {
-                            screen = .welcome
+                            appVM.screen = .welcome
                         }
                     }
                 }
@@ -106,15 +99,15 @@ struct StateLoginView: View {
                     
                 HStack(spacing: 50) {
                     Button {
-                        forward = true
-                        screen = .access
+                        forward = false
+                        appVM.screen = .access
                     } label: {
                         Text("Just watch!")
                             .multilineTextAlignment(.center)
                     }
                     Button {
                         forward = true
-                        screen = .login
+                        appVM.screen = .login
                     } label: {
                         Text("Login")
                             .multilineTextAlignment(.center)
@@ -169,18 +162,19 @@ struct StateLoginView: View {
                         Button {
                             //                        transicion = transSalida
                             forward = false
-                            screen = .welcome
+                            appVM.screen = .welcome
                         } label: {
                             Text("Cancel").foregroundColor(.gray).frame(width: 80)
                         }
                         .buttonStyle(.bordered)
+                        
                         Button {
-                            appVM.tryLogin(email: username)
-                            
-                            
+                            forward = true
+                            appVM.tryLogin(email: username) //if user OK -> screen = .access
+                            errorMsg = "Verifying user in server ..."
 //                            if username == "paco" && password == "12345" {
 //                                password = ""
-//                                //                            transicion = transEntrada
+//                                transicion = transEntrada
 //                                screen = .access
 //                            } else {
 //                                errorMsg = "User/password not found. Try again!"
@@ -189,7 +183,6 @@ struct StateLoginView: View {
                             Text("Login").frame(width: 80)
                         }
                         .buttonStyle(.borderedProminent)
-                        
                     }.padding(.top)
                     
                     HStack {
@@ -204,7 +197,6 @@ struct StateLoginView: View {
                         } label: {
                             Text("Register new account")
                         }
-
                     }.padding(.top)
                     
              
@@ -218,8 +210,6 @@ struct StateLoginView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             .padding()
-
-            
             if !errorMsg.isEmpty {
                 Text(errorMsg)
                     .bold()
@@ -230,11 +220,6 @@ struct StateLoginView: View {
                                 errorMsg = ""
                         }
                     }
-
-//                    .background {
-//                        RoundedRectangle(cornerRadius: 10, style: .continuous)
-//                            .fill(.red)
-//                    }
             }
         }
         .ignoresSafeArea()
