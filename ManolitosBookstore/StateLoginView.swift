@@ -39,15 +39,15 @@ struct StateLoginView: View {
                 case .welcome:
                     welcome
                         .transition(.asymmetric(insertion: .move(edge: forward ? .trailing : .leading ),
-                                                removal: .move(edge: .leading)))
+                                                removal: .move(edge: .leading )))
                 case .login:
                     login
-                        .transition(.asymmetric(insertion: .move(edge: .trailing),
-                                                removal: .move(edge: forward ? .leading : .trailing )))
+                        .transition(.asymmetric(insertion: .move(edge: forward ? .trailing : .leading ),
+                                                removal: .move(edge: forward ? .trailing : .leading )))
                 case .access:
                     access
-                        .transition(.asymmetric(insertion: .move(edge: .trailing),
-                                                removal: .move(edge: .leading)))
+                        .transition(.asymmetric(insertion: .move(edge:  .trailing  ),
+                                                removal: .move(edge: forward ? .leading : .trailing )))
                 }
             }
             .background { //Necesario para mantener el color de fondo durante las transiciones
@@ -169,7 +169,7 @@ struct StateLoginView: View {
                         .buttonStyle(.bordered)
                         
                         Button {
-                            forward = true
+                            forward = false
                             appVM.tryLogin(email: username) //if user OK -> screen = .access
                             errorMsg = "Verifying user in server ..."
 //                            if username == "paco" && password == "12345" {
@@ -214,7 +214,7 @@ struct StateLoginView: View {
                 Text(errorMsg)
                     .bold()
                     .foregroundColor(.red)
-                    .padding(.top, 400)
+                    .padding(.top, 380)
                     .onAppear {
                         Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
                                 errorMsg = ""
