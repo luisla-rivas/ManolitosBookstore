@@ -14,35 +14,39 @@ struct EditCustomerView: View {
     @FocusState var field: DetailField?
 
     var body: some View {
-        Form {
-            Section {
-                MyTextField(label: "Name", text: $vm.name, validation: vm.fieldNotEmpty)
-                    .textContentType(.name)
-                    .textInputAutocapitalization(.words)
-                    .focused($field, equals: .name)
-                MyTextField(label: "Email", text: $vm.email, validation: vm.validateEmail)
-                    .textContentType(.emailAddress)
-                    .keyboardType(.emailAddress)
-                    .textInputAutocapitalization(.never)
-                    .autocorrectionDisabled()
-                    .focused($field, equals: .email)
-            } header: {
-                Text("Personal data")
-            }
-             
-            Section {
-                MyTextField(label: "Address", text: $vm.location, validation: vm.fieldNotEmpty)
-                    .textContentType(.fullStreetAddress)
-                    .textInputAutocapitalization(.words)
-                    .focused($field, equals: .location)
-            } header: {
-                Text("Delivery Address")
+        VStack {
+            myNavigationSheet
+            Form {
+                Section {
+                    MyTextField(label: "Name", text: $vm.name, validation: vm.fieldNotEmpty)
+                        .textContentType(.name)
+                        .textInputAutocapitalization(.words)
+                        .focused($field, equals: .name)
+                    MyTextField(label: "Email", text: $vm.email, validation: vm.validateEmail)
+                        .textContentType(.emailAddress)
+                        .keyboardType(.emailAddress)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                        .focused($field, equals: .email)
+                } header: {
+                    Text("Personal data")
+                }
+                
+                Section {
+                    MyTextField(label: "Address", text: $vm.location, validation: vm.fieldNotEmpty)
+                        .textContentType(.fullStreetAddress)
+                        .textInputAutocapitalization(.words)
+                        .focused($field, equals: .location)
+                } header: {
+                    Text("Delivery Address")
+                }
             }
         }
-        .navigationTitle(vm.user == nil ? "New user" : "Edit User")
-        .navigationBarTitleDisplayMode(vm.user == nil ? .large : .inline)
+
+        //.navigationTitle(vm.user == nil ? "New user" : "Edit User")
+        //.navigationBarTitleDisplayMode(vm.user == nil ? .large : .inline)
         .toolbar {
-            ToolbarItem(placement: .confirmationAction) {
+            /* used in Navigation Detail View           ToolbarItem(placement: .confirmationAction) {
                 if vm.user == nil {
                     Button {
                         vm.createUser()
@@ -68,6 +72,7 @@ struct EditCustomerView: View {
                     }
                 }
             }
+         */
             ToolbarItem(placement: .keyboard) {
                 HStack {
                     Button {
@@ -89,6 +94,37 @@ struct EditCustomerView: View {
                 }
             }
         }
+
+    }
+    
+    var myNavigationSheet: some View {
+        HStack {
+            Button {
+                dismiss()
+            } label: {
+                Text("Cancel")
+            }
+            Spacer()
+            Text("\(vm.user == nil ? "New user" : "Edit User")")
+            Spacer()
+            if vm.user == nil {
+                Button {
+                    vm.createUser()
+                    dismiss()
+                } label: {
+                    Text("Add")
+                }
+            } else {
+                Button {
+                    vm.updateUser()
+                    dismiss()
+                } label: {
+                    Text("Save")
+                    
+                }.disabled(vm.mustDisableSaveButton)
+            }
+            
+        }.padding()
     }
 }
 

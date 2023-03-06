@@ -30,7 +30,7 @@ final class UserViewModel: ObservableObject {
         }
     }
 
-    func saveInfo() -> Client {
+    func returnSavedUSer() -> Client {
         return Client(name: name, email: email, location: location, role: role)
     }
 
@@ -64,16 +64,15 @@ final class UserViewModel: ObservableObject {
     }
     
     func updateUser() {
-        let update = Client(name: self.name, email: self.email, location: self.location, role: Role.client)
-        //TODO: - Create function
+        returnSavedUSer()
         //Task { await updateUserAsync(update: update) }
     }
     
     
-//    var mustDisableSaveButton:Bool {
-//        return (name == user.name &&
-//            email == user.email &&
-//            location == user.location &&
-//            role == user.role)
-//    }
+    var mustDisableSaveButton:Bool {
+        return (name == user!.name &&
+            email == user!.email &&
+            location == user!.location &&
+            role == user!.role)
+    }
 }
