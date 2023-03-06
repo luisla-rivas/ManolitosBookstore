@@ -267,4 +267,7 @@ final class BooksViewModel: ObservableObject {
             errorMsg = error.localizedDescription
         }
     }
+    
+    //MARK: - CUSTOMERS
+    
 }

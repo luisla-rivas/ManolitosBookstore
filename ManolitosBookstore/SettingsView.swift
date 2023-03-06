@@ -19,7 +19,14 @@ struct SettingsListView: View {
                         HStack {
                             Label("Account", systemImage: "person.crop.circle")
                             Spacer()
-                            Text("Manolito").foregroundColor(Color(uiColor: .secondaryLabel))
+                            Text(appVM.currentUser?.name ?? "-").foregroundColor(Color(uiColor: .secondaryLabel))
+                        }
+                    }
+                    NavigationLink(destination: CustomerDetailView(vm: CRowVM(customer: appVM.currentUser!))) {
+                        HStack {
+                            Label("Account", systemImage: "person.crop.circle")
+                            Spacer()
+                            Text(appVM.currentUser?.name ?? "-").foregroundColor(Color(uiColor: .secondaryLabel))
                         }
                     }
                 } header: {

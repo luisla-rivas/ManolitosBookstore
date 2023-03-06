@@ -42,6 +42,11 @@
 		A0DB755629953CC40093887C /* latestBooks.json in Resources */ = {isa = PBXBuildFile; fileRef = A0DB755529953CC40093887C /* latestBooks.json */; };
 		A0DB755829955C190093887C /* BookRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB755729955C190093887C /* BookRowView.swift */; };
 		B683A85429A7639B002E3A03 /* BookGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B683A85329A7639B002E3A03 /* BookGridView.swift */; };
+		B6CAEBE629B5DE79005D2991 /* CustomerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE8729A78EF6008DA1C5 /* CustomerDetailView.swift */; };
+		B6CAEBE729B5DE80005D2991 /* CRowVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE8A29A7912B008DA1C5 /* CRowVM.swift */; };
+		B6CAEBE929B5DF56005D2991 /* BookstoreCustomerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE8329A78EBB008DA1C5 /* BookstoreCustomerListView.swift */; };
+		B6CAEBEA29B5DF5A005D2991 /* CustomerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE8129A78E82008DA1C5 /* CustomerListView.swift */; };
+		B6CAEBEB29B5DF5E005D2991 /* CustomerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE8529A78EE4008DA1C5 /* CustomerRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -474,10 +479,13 @@
 				A0DB755829955C190093887C /* BookRowView.swift in Sources */,
 				A04A62FB29929D4D005E8931 /* AccountDetailView.swift in Sources */,
 				A042C20229B2C63C00E9572B /* AddToCartDetailView.swift in Sources */,
+				B6CAEBEB29B5DF5E005D2991 /* CustomerRowView.swift in Sources */,
 				A04A62F929929925005E8931 /* SettingsView.swift in Sources */,
 				A042C1FA29B254AB00E9572B /* TopPartDetailView.swift in Sources */,
+				B6CAEBE929B5DF56005D2991 /* BookstoreCustomerListView.swift in Sources */,
 				A042C1F729B2501600E9572B /* HeaderDetailView.swift in Sources */,
 				A04A63042992C53C005E8931 /* BookDetailView.swift in Sources */,
+				B6CAEBE729B5DE80005D2991 /* CRowVM.swift in Sources */,
 				A042C1FC29B26E1900E9572B /* CustumShape.swift in Sources */,
 				A09C7B60298C0619005EA4D2 /* ContentView.swift in Sources */,
 				A0D64DC5299414FE009ECE11 /* ModelsAPI.swift in Sources */,
@@ -487,7 +495,9 @@
 				A04A62FD2992A077005E8931 /* UserViewModel.swift in Sources */,
 				A04A63062992C607005E8931 /* BookDetailViewModel.swift in Sources */,
 				A03EEED1299AB84100EF9759 /* BookstoreListView.swift in Sources */,
+				B6CAEBE629B5DE79005D2991 /* CustomerDetailView.swift in Sources */,
 				A07C36AD29A9452700DDB33B /* Extension+helper.swift in Sources */,
+				B6CAEBEA29B5DF5A005D2991 /* CustomerListView.swift in Sources */,
 				A04A62F62992989C005E8931 /* BookListView.swift in Sources */,
 				A04A63022992C1BA005E8931 /* BooksViewModel.swift in Sources */,
 				A0D8A3A929952CFB00B2B995 /* AsyncPersistence.swift in Sources */,

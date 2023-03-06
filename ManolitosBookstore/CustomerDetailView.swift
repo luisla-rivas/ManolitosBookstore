@@ -8,9 +8,26 @@
 import SwiftUI
 
 struct CustomerDetailView: View {
+    
     @ObservedObject var vm:CRowVM
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Form {
+                VStack(alignment: .leading) {
+                    Text("**Name:** \(vm.name)")
+                    Text("**Email:** \(vm.email)")
+                    Text("**Location:** \(vm.location)")
+                    if vm.customer.role == Role.admin {
+                        Text("**Role:** \(vm.role)")
+                    }
+                    Spacer()
+                }
+            }
+            ScrollView {
+                Text("PO num 1")
+                Text("PO num 1")
+            }
+        }
     }
 }
 
