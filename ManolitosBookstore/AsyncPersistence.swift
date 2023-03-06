@@ -44,7 +44,13 @@ final class AsyncPersistence {
     func getAllOrders() async throws -> BooksOrders {
         try await queryJSON(request: .request(url: .getAllOrders), type: BooksOrders.self)
     }
-   
+    
+    func postCreateUser(customer: Client) async throws -> Bool {
+        try await query(request: .request(url: .postAndPutClient, method: .post, body:customer))
+    }
+    func putUpdateUser(customer: Client) async throws -> Bool {
+        try await query(request: .request(url: .postAndPutClient, method: .put, body:customer))
+    }
     
     func queryJSON<T:Codable>(request:URLRequest,
                               type:T.Type,
@@ -77,6 +83,24 @@ final class AsyncPersistence {
             throw APIErrors.general(error)
         }
     }
+
+    func query(request:URLRequest,
+               statusOK:Int = 200) async throws -> Bool {
+        do {
+            let (_, response) = try await URLSession.shared.data(for: request)
+            guard let response = response as? HTTPURLResponse else { throw APIErrors.nonHTTP }
+            if response.statusCode == statusOK {
+                return true
+            } else {
+                throw APIErrors.status(response.statusCode)
+            }
+        } catch let error as APIErrors {
+            throw error
+        } catch {
+            throw APIErrors.general(error)
+        }
+    }
+
 //    func queryJSON<T:Codable>(request:URLRequest,
 //                              type:T.Type,
 //                              decoder:JSONDecoder = JSONDecoder(),

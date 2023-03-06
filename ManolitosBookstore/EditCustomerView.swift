@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EditCustomerView: View {
-
+    @EnvironmentObject var appVM: BooksViewModel
     @ObservedObject var vm: UserViewModel
     @Environment(\.dismiss) var dismiss
     @FocusState var field: DetailField?
@@ -49,14 +49,14 @@ struct EditCustomerView: View {
             /* used in Navigation Detail View           ToolbarItem(placement: .confirmationAction) {
                 if vm.user == nil {
                     Button {
-                        vm.createUser()
+                        appVM.create(user: vm.createUser())
                         dismiss()
                     } label: {
                         Text("Add")
                     }
                 } else {
                     Button {
-                        vm.updateUser()
+                        appVM.create(user: vm.updateUser())
                         dismiss()
                     } label: {
                         Text("Save")

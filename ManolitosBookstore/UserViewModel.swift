@@ -57,15 +57,14 @@ final class UserViewModel: ObservableObject {
         }
     }
     
-    func createUser() {
+    func createUser() -> Client {
         let new = Client(name: self.name, email: self.email, location: self.location, role: Role.client)
-        //TODO: - Create function
-        //Task { await createUserAsync(new: new) }
+        return new
     }
     
-    func updateUser() {
-        returnSavedUSer()
-        //Task { await updateUserAsync(update: update) }
+    func updateUser() -> Client {
+        let update = Client(name: self.name, email: self.email, location: self.location, role: Role.client)
+        return update
     }
     
     

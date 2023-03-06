@@ -171,6 +171,7 @@ final class BooksViewModel: ObservableObject {
     
    //MARK: - LOGINs
     
+    
     func logout(){
         UserDefaults.standard.set("-", forKey: .kUserMail)
         currentUser = nil
@@ -193,6 +194,12 @@ final class BooksViewModel: ObservableObject {
             }
         }
     }
+    func tryCreate(user: Client) {
+        Task(priority: .userInitiated) {
+            await create(user: user)
+        }
+    }
+
     
     
     @MainActor func getLoginUser(email: String) async {
@@ -207,6 +214,49 @@ final class BooksViewModel: ObservableObject {
             errorMsg = error.localizedDescription
         }
     }
+    
+    func tryCreate(user: Client) {
+        Task(priority: .userInitiated) {
+            await create(user: user)
+        }
+    }
+        
+    @MainActor func create(user: Client) async { //
+            do {
+                let ok = try await AsyncPersistence.shared.postCreateUser(customer: user)
+                if ok {
+                    UserDefaults.standard.set(user.email, forKey: .kUserMail)
+                    currentUser = user
+                    screen = .access
+                }
+            } catch let error as APIErrors {
+                errorMsg = error.description
+            } catch {
+                errorMsg = error.localizedDescription
+            }
+        }
+    
+    
+    func tryUpdate(user: Client) {
+        Task(priority: .userInitiated) {
+            await create(user: user)
+        }
+    }
+    
+    @MainActor func update(user: Client) async { //
+            do {
+                let ok = try await AsyncPersistence.shared.putUpdateUser(customer: user)
+                if ok {
+                    UserDefaults.standard.set(user.email, forKey: .kUserMail)
+                    currentUser = user
+                    screen = .access
+                }
+            } catch let error as APIErrors {
+                errorMsg = error.description
+            } catch {
+                errorMsg = error.localizedDescription
+            }
+        }
     
     //MARK: - @MainActor get AllBooks
     @MainActor func getAllBooks() async {
