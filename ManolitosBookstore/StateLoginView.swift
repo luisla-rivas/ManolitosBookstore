@@ -180,7 +180,7 @@ struct StateLoginView: View {
 //                                errorMsg = "User/password not found. Try again!"
 //                            }
                         } label: {
-                            Text("Login").frame(width: 80)
+                            Text("Log In").frame(width: 80)
                         }
                         .buttonStyle(.borderedProminent)
                     }.padding(.top)
@@ -333,7 +333,12 @@ struct StateLoginView: View {
             if UIDevice.current.userInterfaceIdiom == .pad {
                 ContentView() // ContentPadView()
             } else {
-                ContentView()
+                if appVM.currentUser?.role == .admin {
+                    ContentAdminView()
+                } else {
+                    ContentView()
+                    
+                }
             }
         }
         

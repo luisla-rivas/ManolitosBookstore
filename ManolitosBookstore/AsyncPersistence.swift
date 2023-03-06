@@ -40,6 +40,10 @@ final class AsyncPersistence {
         let result = try await queryJSON(request: request, type: BooksOrderedAndReaded.self)
         return result
     }
+    
+    func getAllOrders() async throws -> BooksOrders {
+        try await queryJSON(request: .request(url: .getAllOrders), type: BooksOrders.self)
+    }
    
     
     func queryJSON<T:Codable>(request:URLRequest,

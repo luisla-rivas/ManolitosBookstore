@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct BookstoreOrderListView: View {
-    //@EnvironmentObject var appVM:BooksViewModel
+    @EnvironmentObject var appVM:BooksViewModel
     //@State var path:[Int] = []
     
     var body: some View {
+        Text("NavigationStack")
+ /*
         NavigationStack { //(path: $path)
-            List {
+            List(appVM.ordersGrouped, id:\.self) { orders in
                 Section {
-                    POrderListView(orders: BooksOrder.list)
+                    POrderListView(orders: orders)
                 } header: {
-                    Text("Customers")
+                    Text(orders.first?.estado.rawValue ?? "")
                 }
             }.listStyle(.inset)
             .navigationDestination(for: BooksOrder.self) { po in
@@ -44,6 +46,7 @@ struct BookstoreOrderListView: View {
 //            let (_,_) = await (appVM.getAllBooks(), appVM.getAuthors())
 //            appVM.createBookData(from: appVM.booksInServer)
 //        }
+  */
     }
 }
 
@@ -51,5 +54,6 @@ struct BookstoreOrderListView: View {
 struct BookstoreOrderListView_Previews: PreviewProvider {
     static var previews: some View {
         BookstoreOrderListView()
+            .environmentObject(BooksViewModel(.inPreview))
     }
 }

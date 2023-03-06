@@ -12,25 +12,29 @@ struct SettingsListView: View {
     @EnvironmentObject var appVM: BooksViewModel
     
     var body: some View {
-        NavigationView {
+        //let _ = Self._printChanges()
+        NavigationStack {
             List {
                 Section {
-                    NavigationLink(destination: AccountDetailView(userVM: UserViewModel(user: appVM.currentUser))) {
+                    if appVM.currentUser != nil {                    NavigationLink(destination: AccountDetailView()) {
+                            HStack {
+                                Label("Account", systemImage: "person.crop.circle")
+                                Spacer()
+                                Text(appVM.currentUser?.name ?? "-").foregroundColor(Color(uiColor: .secondaryLabel))
+                            }
+                        }
+                    } else {
                         HStack {
                             Label("Account", systemImage: "person.crop.circle")
                             Spacer()
-                            Text(appVM.currentUser?.name ?? "-").foregroundColor(Color(uiColor: .secondaryLabel))
+                            Button {
+                                appVM.screen = .login
+                            } label: {
+                                Text("Login")
+                                    .foregroundColor(.accentColor)
+                            }
                         }
                     }
-                    NavigationLink(destination: CustomerDetailView(vm: CRowVM(customer: appVM.currentUser!))) {
-                        HStack {
-                            Label("Account", systemImage: "person.crop.circle")
-                            Spacer()
-                            Text(appVM.currentUser?.name ?? "-").foregroundColor(Color(uiColor: .secondaryLabel))
-                        }
-                    }
-                } header: {
-                    Text("")
                 }
                 Section {
                     Picker("Dark/Light mode", selection: $preferredColorScheme) {
@@ -50,5 +54,6 @@ struct SettingsListView: View {
 struct SettingsListView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsListView()
+            .environmentObject(BooksViewModel(.inPreview))
     }
 }

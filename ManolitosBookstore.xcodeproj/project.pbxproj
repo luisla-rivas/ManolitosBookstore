@@ -35,6 +35,15 @@
 		A09C7B70298C061A005EA4D2 /* ManolitosBookstoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C7B6F298C061A005EA4D2 /* ManolitosBookstoreTests.swift */; };
 		A09C7B7A298C061A005EA4D2 /* ManolitosBookstoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C7B79298C061A005EA4D2 /* ManolitosBookstoreUITests.swift */; };
 		A09C7B7C298C061A005EA4D2 /* ManolitosBookstoreUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C7B7B298C061A005EA4D2 /* ManolitosBookstoreUITestsLaunchTests.swift */; };
+		A0C22D3829B53B2500365187 /* ContentAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C22D3729B53B2500365187 /* ContentAdminView.swift */; };
+		A0C22D3A29B53BB600365187 /* BookstoreOrderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C22D3929B53BB600365187 /* BookstoreOrderListView.swift */; };
+		A0C22D3B29B53BD000365187 /* POrderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE8E29A7C449008DA1C5 /* POrderListView.swift */; };
+		A0C22D3C29B53BD300365187 /* OrderRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE9129A7C484008DA1C5 /* OrderRowView.swift */; };
+		A0C22D3D29B53BD700365187 /* OrderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE9729A7D75E008DA1C5 /* OrderDetailView.swift */; };
+		A0C22D3F29B53BE000365187 /* CustomerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE8129A78E82008DA1C5 /* CustomerListView.swift */; };
+		A0C22D4129B53BE700365187 /* CustomerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE8729A78EF6008DA1C5 /* CustomerDetailView.swift */; };
+		A0C22D4329B53C0200365187 /* ORowVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE9329A7D0A1008DA1C5 /* ORowVM.swift */; };
+		A0C22D4429B53C0600365187 /* OrderDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE8C29A7B889008DA1C5 /* OrderDetailVM.swift */; };
 		A0D5ABD829AF6F1C00D1645F /* AccountVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D5ABD729AF6F1C00D1645F /* AccountVM.swift */; };
 		A0D64DC5299414FE009ECE11 /* ModelsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D64DC4299414FE009ECE11 /* ModelsAPI.swift */; };
 		A0D64DC829941F68009ECE11 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D64DC729941F68009ECE11 /* Network.swift */; };
@@ -42,10 +51,8 @@
 		A0DB755629953CC40093887C /* latestBooks.json in Resources */ = {isa = PBXBuildFile; fileRef = A0DB755529953CC40093887C /* latestBooks.json */; };
 		A0DB755829955C190093887C /* BookRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB755729955C190093887C /* BookRowView.swift */; };
 		B683A85429A7639B002E3A03 /* BookGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B683A85329A7639B002E3A03 /* BookGridView.swift */; };
-		B6CAEBE629B5DE79005D2991 /* CustomerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE8729A78EF6008DA1C5 /* CustomerDetailView.swift */; };
 		B6CAEBE729B5DE80005D2991 /* CRowVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE8A29A7912B008DA1C5 /* CRowVM.swift */; };
 		B6CAEBE929B5DF56005D2991 /* BookstoreCustomerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE8329A78EBB008DA1C5 /* BookstoreCustomerListView.swift */; };
-		B6CAEBEA29B5DF5A005D2991 /* CustomerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE8129A78E82008DA1C5 /* CustomerListView.swift */; };
 		B6CAEBEB29B5DF5E005D2991 /* CustomerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE8529A78EE4008DA1C5 /* CustomerRowView.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,7 +90,6 @@
 		A046DE8E29A7C449008DA1C5 /* POrderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POrderListView.swift; sourceTree = "<group>"; };
 		A046DE9129A7C484008DA1C5 /* OrderRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRowView.swift; sourceTree = "<group>"; };
 		A046DE9329A7D0A1008DA1C5 /* ORowVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ORowVM.swift; sourceTree = "<group>"; };
-		A046DE9529A7D6B4008DA1C5 /* BookstoreOrderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookstoreOrderListView.swift; sourceTree = "<group>"; };
 		A046DE9729A7D75E008DA1C5 /* OrderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailView.swift; sourceTree = "<group>"; };
 		A04A62EE29926BF1005E8931 /* ModelDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDefinition.swift; sourceTree = "<group>"; };
 		A04A62F52992989C005E8931 /* BookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListView.swift; sourceTree = "<group>"; };
@@ -111,6 +117,8 @@
 		A09C7B75298C061A005EA4D2 /* ManolitosBookstoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ManolitosBookstoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A09C7B79298C061A005EA4D2 /* ManolitosBookstoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManolitosBookstoreUITests.swift; sourceTree = "<group>"; };
 		A09C7B7B298C061A005EA4D2 /* ManolitosBookstoreUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManolitosBookstoreUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A0C22D3729B53B2500365187 /* ContentAdminView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentAdminView.swift; sourceTree = "<group>"; };
+		A0C22D3929B53BB600365187 /* BookstoreOrderListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookstoreOrderListView.swift; sourceTree = "<group>"; };
 		A0D5ABD729AF6F1C00D1645F /* AccountVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVM.swift; sourceTree = "<group>"; };
 		A0D64DC4299414FE009ECE11 /* ModelsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsAPI.swift; sourceTree = "<group>"; };
 		A0D64DC729941F68009ECE11 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -179,7 +187,7 @@
 		A046DE9029A7C457008DA1C5 /* Orders */ = {
 			isa = PBXGroup;
 			children = (
-				A046DE9529A7D6B4008DA1C5 /* BookstoreOrderListView.swift */,
+				A0C22D3929B53BB600365187 /* BookstoreOrderListView.swift */,
 				A046DE8E29A7C449008DA1C5 /* POrderListView.swift */,
 				A046DE9129A7C484008DA1C5 /* OrderRowView.swift */,
 				A046DE9729A7D75E008DA1C5 /* OrderDetailView.swift */,
@@ -259,6 +267,7 @@
 				A09C7B5D298C0619005EA4D2 /* ManolitosBookstoreApp.swift */,
 				A07C36AA29A944B900DDB33B /* StateLoginView.swift */,
 				A09C7B5F298C0619005EA4D2 /* ContentView.swift */,
+				A0C22D3729B53B2500365187 /* ContentAdminView.swift */,
 				A042C1FD29B26E2F00E9572B /* Utility */,
 				A0D64DC629941F43009ECE11 /* Network */,
 				A04A62F7299298A6005E8931 /* IOSViews */,
@@ -332,8 +341,8 @@
 		B683A85729A76C73002E3A03 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				A04A62FA29929D4D005E8931 /* AccountDetailView.swift */,
 				A04A62F829929925005E8931 /* SettingsView.swift */,
+				A04A62FA29929D4D005E8931 /* AccountDetailView.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -475,8 +484,10 @@
 				B683A85429A7639B002E3A03 /* BookGridView.swift in Sources */,
 				A0283D94299D31EC00976E5A /* RowVM.swift in Sources */,
 				A061FB33299645B7008E3255 /* DiscoverView.swift in Sources */,
+				A0C22D3829B53B2500365187 /* ContentAdminView.swift in Sources */,
 				A0D64DC829941F68009ECE11 /* Network.swift in Sources */,
 				A0DB755829955C190093887C /* BookRowView.swift in Sources */,
+				A0C22D3D29B53BD700365187 /* OrderDetailView.swift in Sources */,
 				A04A62FB29929D4D005E8931 /* AccountDetailView.swift in Sources */,
 				A042C20229B2C63C00E9572B /* AddToCartDetailView.swift in Sources */,
 				B6CAEBEB29B5DF5E005D2991 /* CustomerRowView.swift in Sources */,
@@ -492,17 +503,22 @@
 				A07C36AB29A944B900DDB33B /* StateLoginView.swift in Sources */,
 				A04A62EF29926BF1005E8931 /* ModelDefinition.swift in Sources */,
 				A09C7B5E298C0619005EA4D2 /* ManolitosBookstoreApp.swift in Sources */,
+				A0C22D3A29B53BB600365187 /* BookstoreOrderListView.swift in Sources */,
+				A0C22D3B29B53BD000365187 /* POrderListView.swift in Sources */,
+				A0C22D4129B53BE700365187 /* CustomerDetailView.swift in Sources */,
 				A04A62FD2992A077005E8931 /* UserViewModel.swift in Sources */,
 				A04A63062992C607005E8931 /* BookDetailViewModel.swift in Sources */,
 				A03EEED1299AB84100EF9759 /* BookstoreListView.swift in Sources */,
-				B6CAEBE629B5DE79005D2991 /* CustomerDetailView.swift in Sources */,
 				A07C36AD29A9452700DDB33B /* Extension+helper.swift in Sources */,
-				B6CAEBEA29B5DF5A005D2991 /* CustomerListView.swift in Sources */,
 				A04A62F62992989C005E8931 /* BookListView.swift in Sources */,
+				A0C22D4429B53C0600365187 /* OrderDetailVM.swift in Sources */,
 				A04A63022992C1BA005E8931 /* BooksViewModel.swift in Sources */,
+				A0C22D3C29B53BD300365187 /* OrderRowView.swift in Sources */,
+				A0C22D4329B53C0200365187 /* ORowVM.swift in Sources */,
 				A0D8A3A929952CFB00B2B995 /* AsyncPersistence.swift in Sources */,
 				A04A62FF2992A0DF005E8931 /* ModelPersistence.swift in Sources */,
 				A07F88A829B33D93008BF4CA /* RatingView.swift in Sources */,
+				A0C22D3F29B53BE000365187 /* CustomerListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,14 +8,15 @@
 import SwiftUI
 
 enum TabAdmin {
-  case books, customers, orders, setting //, account
+  case books, customers, orders, setting, account
 
 }
 
 struct ContentAdminView: View {
     @State private var selection: TabItem = .purchased
-    
+
     var body: some View {
+        let _ = Self._printChanges()
         TabView(selection: $selection) {
            
             BookstoreListView()

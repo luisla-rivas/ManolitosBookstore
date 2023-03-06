@@ -45,6 +45,7 @@ final class BooksViewModel: ObservableObject {
     private var latestBooksInServer: Books = []
     private var myReadedIDBooks = [Int]()
     private var myOrderedIDBooks = [Int]()
+    private var ordersInServer:BooksOrders = []
     
     var showingProduct = false
     
@@ -171,8 +172,9 @@ final class BooksViewModel: ObservableObject {
    //MARK: - LOGINs
     
     func logout(){
-        UserDefaults.standard.set("", forKey: .kUserMail)
+        UserDefaults.standard.set("-", forKey: .kUserMail)
         currentUser = nil
+        screen = .welcome
     }
     
     func tryLogin(email: String) {
@@ -184,7 +186,7 @@ final class BooksViewModel: ObservableObject {
     }
     
     func tryAutomaticLogin() {
-        UserDefaults.standard.set("luisla.tester@luisla.cm", forKey: .kUserMail)
+        //UserDefaults.standard.set("luisla.tester@luisla.cm", forKey: .kUserMail) //To force wrong user in testing
         if let userEmail = UserDefaults.standard.string(forKey: .kUserMail) {
             Task(priority: .userInitiated) {
                 await getLoginUser(email: userEmail)
@@ -268,6 +270,46 @@ final class BooksViewModel: ObservableObject {
         }
     }
     
-    //MARK: - CUSTOMERS
+    //MARK: - ADMIN procedures ORDERS
+    enum ShowOrders: String, CaseIterable {
+        case received = "Received PO"
+        case sent = "Sent PO"
+        case delivered = "Delivered PO"
+        case all = "All Purchase Orders"
+    }
+    @Published var showByOrdersStatus:ShowOrders = .all
     
+//    var ordersGrouped:[[BooksOrder]] {
+//        Dictionary(grouping: ordersInServer) { order in
+//            order.estado
+//        }
+//        .values.sorted(by: { $0.first?.estado.rawValue ?? "" < $1.first?.estado.rawValue ?? "" })
+//        .map { orders in
+//            orders.filter { order in
+//                switch self.showByOrdersStatus {
+//                case .received:
+//                    return order.estado == .recibido
+//                case .sent:
+//                    return order.estado == .enviado
+//                case .delivered:
+//                    return order.estado == .entregado
+//                case .all:
+//                    return true
+//                }
+//            }
+//        }
+//    }
+    
+    
+    @MainActor func getAllOrders() async {
+        //https://trantorapi-acacademy.herokuapp.com/api/shop/allOrders
+        do {
+            let ordersFromServer = try await AsyncPersistence.shared.getAllOrders()
+            ordersInServer = ordersFromServer
+        } catch let error as APIErrors {
+            errorMsg = error.description
+        } catch {
+            errorMsg = error.localizedDescription
+        }
+    }
 }

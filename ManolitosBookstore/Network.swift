@@ -67,6 +67,7 @@ extension URL {
     static let postClientBooksReadedQuery = server.appending(path: kClient).appending(path: "readedBooks")
     static let postClientBooksReadedAndPurchaseQuery = server.appending(path: kClient).appending(path: "reportBooksUser")
     
+    static let getAllOrders = server.appending(path: kPurchase).appending(path: "allOrders")
     static let postNewPurchaseOrder = server.appending(path: kPurchase).appending(path: "newOrder")
     static let postClientPO = server.appending(path: kPurchase).appending(path: "orders")
     static let putPOStatus = server.appending(path: kPurchase).appending(path: "orderStatus")
