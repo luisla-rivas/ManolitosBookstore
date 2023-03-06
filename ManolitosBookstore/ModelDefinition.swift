@@ -76,7 +76,7 @@ extension Client {
         Client(name: "Perico", email: "luisla.tester@luisla.com", location: "Avda. Precebe 13, Barcelona", role: .client),
         Client(name: "Andres", email: "luisla.tester@luisla.com", location: "Avda. Precebe 13, Zaragoza", role: .client)
     ]
-    static let preview = Client(name: "Paco", email: "jcfmunoz@icloud.com", location: "Avda. Precebe 13, Madrid", role: Role.client)
+    static let preview = Client(name: "Luis Perico Delgado", email: "luisla.tester@luisla.com", location: "Avda. Percebe 13, Madrid", role: Role.client)
     static let previewAdmin = Client(name: "Luis Tester", email: "luisla.tester@luisla.com", location: "C/Alegría de Swift, 77 /n08025 Barcelona", role: .admin)
 }
 

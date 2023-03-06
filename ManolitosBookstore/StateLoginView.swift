@@ -315,7 +315,7 @@ struct StateLoginView: View {
             }
             
             Spacer()
-            RegisterAccountView()
+            EditCustomerView(vm: UserViewModel(user: appVM.currentUser))
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)

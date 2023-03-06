@@ -73,7 +73,7 @@ struct AccountDetailView: View {
 //            Text("Edit User")
 //        }
         .sheet(isPresented: $presentEdit) {
-            Text("Edit User")
+            EditCustomerView(vm: UserViewModel(user: appVM.currentUser))
         }
 //        .sheet(isPresented: $presentLogin) {
 //            Text("Login")
