@@ -194,13 +194,6 @@ final class BooksViewModel: ObservableObject {
             }
         }
     }
-    func tryCreate(user: Client) {
-        Task(priority: .userInitiated) {
-            await create(user: user)
-        }
-    }
-
-    
     
     @MainActor func getLoginUser(email: String) async {
         do {
@@ -221,7 +214,7 @@ final class BooksViewModel: ObservableObject {
         }
     }
         
-    @MainActor func create(user: Client) async { //
+    @MainActor private func create(user: Client) async { //
             do {
                 let ok = try await AsyncPersistence.shared.postCreateUser(customer: user)
                 if ok {
@@ -243,7 +236,7 @@ final class BooksViewModel: ObservableObject {
         }
     }
     
-    @MainActor func update(user: Client) async { //
+    @MainActor private func update(user: Client) async { //
             do {
                 let ok = try await AsyncPersistence.shared.putUpdateUser(customer: user)
                 if ok {

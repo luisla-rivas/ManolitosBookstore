@@ -57,7 +57,7 @@ final class UserViewModel: ObservableObject {
         }
     }
     
-    func createUser() -> Client {
+    func newUser() -> Client {
         let new = Client(name: self.name, email: self.email, location: self.location, role: Role.client)
         return new
     }

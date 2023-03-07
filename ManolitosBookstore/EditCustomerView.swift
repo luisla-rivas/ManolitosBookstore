@@ -109,14 +109,14 @@ struct EditCustomerView: View {
             Spacer()
             if vm.user == nil {
                 Button {
-                    vm.createUser()
+                    appVM.tryCreate(user: vm.newUser())
                     dismiss()
                 } label: {
                     Text("Add")
                 }
             } else {
                 Button {
-                    vm.updateUser()
+                    appVM.tryUpdate(user: vm.updateUser()) 
                     dismiss()
                 } label: {
                     Text("Save")
