@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OrderDetailView: View {
     @EnvironmentObject var appVM:BooksViewModel
-    @ObservedObject var vm:OrderDetailVM
+    @ObservedObject var vm:ORowVM
     var body: some View {
         
         VStack(alignment: .leading) {
@@ -38,7 +38,7 @@ struct OrderDetailView: View {
 struct OrderDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            OrderDetailView(vm: OrderDetailVM(order: .preview))
+            OrderDetailView(vm: ORowVM(order: .preview))
                 .environmentObject(BooksViewModel(.inPreview))
         }
     }

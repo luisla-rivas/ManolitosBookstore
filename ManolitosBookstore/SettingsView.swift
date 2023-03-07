@@ -49,15 +49,12 @@ struct SettingsListView: View {
                 }
             }
             .navigationTitle("Settings")
-            .navigationDestination(for: BooksOrder.self) { po in
-                OrderDetailView(vm: OrderDetailVM(order: po))
-            }
-            .navigationDestination(for: BooksOrder.self) { po in
-                OrderDetailView(vm: OrderDetailVM(order: po))
-            }
-            .navigationDestination(for: Book.self) { book in
-                BookDetailView(vm: RowVM(book: book))
-            }
+//            .navigationDestination(for: BooksOrder.self) { po in
+//                OrderDetailView(vm: ORowVM(order: po))
+//            }
+//            .navigationDestination(for: Book.self) { book in
+//                BookDetailView(vm: RowVM(book: book))
+//            }
         }
     }
 }

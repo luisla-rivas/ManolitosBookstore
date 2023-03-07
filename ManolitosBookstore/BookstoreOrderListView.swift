@@ -20,10 +20,10 @@ struct BookstoreOrderListView: View {
                     Text(orders.first?.estado.rawValue.uppercased() ?? "")
                 }
             }
-            .listStyle(.inset)
+            //.listStyle(.inset)
             //.searchable(text: $appVM.search)
             .navigationDestination(for: BooksOrder.self) { po in
-                OrderDetailView(vm: OrderDetailVM(order: po))
+                OrderDetailView(vm: ORowVM(order: po))
             }
             .navigationDestination(for: Book.self) { book in
                 BookDetailView(vm: RowVM(book: book))
