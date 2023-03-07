@@ -19,9 +19,8 @@ struct BookstoreListView: View {
                 } header: {
                     Text("Bookstore")
                 }
-
+                
             }
-            
 //            .listStyle(.inset)
 //            .scrollContentBackground(.hidden)
             .navigationDestination(for: Book.self) { book in

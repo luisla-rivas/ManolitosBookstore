@@ -14,19 +14,24 @@ struct MyBooksListView: View {
         NavigationStack { //(path: $path)
             List {
                 Section {
+                    if appVM.currentUser != nil {
                     BookListView(books:appVM.myFilteredBooks)
+                    } else {
+                        Text("You must be logged to watch your purchase book list!")
+                            .padding()
+                            .lineLimit(2, reservesSpace: true)
+                    }
                 } header: {
-                    Text("Bookstore")
+                    Text("My Books")
                 }
 
             }
-            
 //            .listStyle(.inset)
 //            .scrollContentBackground(.hidden)
             .navigationDestination(for: Book.self) { book in
                 BookDetailView(vm: BookDetailViewModel(book: book))
             }
-            .navigationTitle("Trantor catalog")
+            .navigationTitle("My book list")
             //.searchable(text: $appVM.search)
             .refreshable {
                 await appVM.getAllBooks()
