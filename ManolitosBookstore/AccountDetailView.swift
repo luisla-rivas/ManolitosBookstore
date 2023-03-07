@@ -14,6 +14,7 @@ struct AccountDetailView: View {
     @Environment(\.dismiss) var dismiss
     @State private var presentEdit = false
     @State private var alertLogoutConfirmation = false
+    @State private var roleSelection:Role = .admin
     
     var body: some View {
 //        let _ = Self._printChanges()
@@ -28,6 +29,21 @@ struct AccountDetailView: View {
                 Text(appVM.currentUser?.location ?? "---")
             } header: {
                 Text("Billing Address")
+            }
+            
+            if appVM.currentUser != nil, appVM.roleAsLogged == .admin {
+                Section {
+                    Picker("Admin/Client role", selection: $roleSelection ) {
+                        ForEach(Role.allCases, id: \.self) { cases in
+                            Text(cases.rawValue)
+                        }
+                    }
+                } header: {
+                    Text("Select your role")
+                }.onChange(of: roleSelection) { newValue in
+                    appVM.currentUser?.role = newValue
+                    appVM.screen = .access
+                }
             }
             
             if appVM.currentUser != nil {

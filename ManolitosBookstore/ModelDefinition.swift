@@ -66,7 +66,7 @@ enum Role: String, Codable, CaseIterable {
 
 struct Client: Codable, Hashable {
     let name, email, location: String
-    let role: Role
+    var role: Role
 }
 typealias Clients = [Client]
 

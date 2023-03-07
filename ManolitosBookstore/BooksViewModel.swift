@@ -34,7 +34,8 @@ final class BooksViewModel: ObservableObject {
     private let persistenceAsync = AsyncPersistence()
     private let persistence = ModelPersistence()
     private let authorsInServer = AuthorsStore.shared
-    var currentUser: Client?
+    @Published var currentUser: Client?
+    var roleAsLogged:Role = .client
     @Published var screen:Screens = .splash
     @Published var books:Books = []
     @Published var latestBooks:Books = []
@@ -72,6 +73,8 @@ final class BooksViewModel: ObservableObject {
             }
             authorsInServer.nameForID = authorsDict
             self.books = booksFromJSON
+            self.currentUser = Client(name: "Test name", email: "test@email.com", location: "Test Location", role: .admin)
+            self.roleAsLogged = .admin
             //self.books = prepareForView(books: booksFromJSON)
         }
     }
@@ -227,6 +230,7 @@ final class BooksViewModel: ObservableObject {
             let user = try await AsyncPersistence.shared.checkUser(email: email)
             UserDefaults.standard.set(user.email, forKey: .kUserMail)
             currentUser = user
+            roleAsLogged = user.role
             screen = .access
         } catch let error as APIErrors {
             errorMsg = error.description
