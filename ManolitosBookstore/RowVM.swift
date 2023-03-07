@@ -57,37 +57,14 @@ final class RowVM:ObservableObject {
             //Task { await getAuthorAsync() }
             //print("getting author async...")
         }
-        
-//        let url = URL.cachesDirectory.appending(path: authorID)
-//        if FileManager.default.fileExists(atPath: url.path()) {
-//            do {
-//                let data = try Data(contentsOf: url)
-//                self.author = UIImage(data: data)
-//            } catch {
-//                print("Error en la carga \(coverURL).")
-//            }
-//        } else {
-//            Task { await getImageAsync() }
-//        }
     }
-    
-    
-    
-//    var subscribers = Set<AnyCancellable>()
-//
-//    func getImageCombine() {
-//        guard let avatar = empleado.avatar else { return }
-//        CombinePersistence.shared.getImagePublisher(url: avatar)
-//            .assign(to: \.avatar, on: self)
-//            .store(in: &subscribers)
-//    }
     
     @MainActor func getImageAsync() async {
         guard let imageURL = book.cover else { return }
         do {
-            let uicover = try await AsyncPersistence.shared.getImage(url: imageURL)
-            if uicover != nil {
-                cover = Image(uiImage: uicover!)
+            let uiCover = try await AsyncPersistence.shared.getImage(url: imageURL)
+            if let uicover = uiCover {
+                cover = Image(uiImage: uicover)
             }
         } catch {
             print("Error en la carga \(imageURL)")

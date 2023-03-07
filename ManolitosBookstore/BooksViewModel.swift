@@ -190,14 +190,7 @@ final class BooksViewModel: ObservableObject {
         return ""
     }
     
-    
-    
-    
-    
-    
-    
    //MARK: - LOGINs
-    
     
     func logout(){
         UserDefaults.standard.set("-", forKey: .kUserMail)
@@ -235,6 +228,7 @@ final class BooksViewModel: ObservableObject {
         }
     }
     
+    //MARK: Create User
     func tryCreate(user: Client) {
         Task(priority: .userInitiated) {
             await create(user: user)
@@ -256,7 +250,7 @@ final class BooksViewModel: ObservableObject {
             }
         }
     
-    
+    //MARK: Update User
     func tryUpdate(user: Client) {
         Task(priority: .userInitiated) {
             await create(user: user)

@@ -24,7 +24,7 @@ struct BookstoreListView: View {
 //            .listStyle(.inset)
 //            .scrollContentBackground(.hidden)
             .navigationDestination(for: Book.self) { book in
-                BookDetailView(vm: BookDetailViewModel(book: book))
+                BookDetailView(vm: RowVM(book: book))
             }
             .navigationTitle("Trantor catalog")
             //.searchable(text: $appVM.search)

@@ -12,19 +12,29 @@ struct BookRowView: View {
     let vm:RowVM
     var body: some View {
         HStack(alignment: .center) {
-            if let coverURL = vm.book.cover {
-                AsyncImage(url: coverURL) { image in //318x384
-                    image.resizable()
+            if vm.book.cover != nil{
+                if let image = vm.cover {
+                    image
+                        .resizable()
                         .scaledToFit()
                         .frame(width: 70, height: 120, alignment: .leading)
-                        .onAppear {
-                            vm.cover = image
-                        }
-                    //.clipShape(Circle())
-                } placeholder: {
+                } else {
                     ProgressView()
                         .frame(width: 70, height: 120, alignment: .center)
                 }
+//            if let coverURL = vm.book.cover {
+//                AsyncImage(url: coverURL) { image in //318x384
+//                    image.resizable()
+//                        .scaledToFit()
+//                        .frame(width: 70, height: 120, alignment: .leading)
+//                        .onAppear {
+//                            vm.cover = image
+//                        }
+//                    //.clipShape(Circle())
+//                } placeholder: {
+//                    ProgressView()
+//                        .frame(width: 70, height: 120, alignment: .center)
+//                }
             } else {
                 Image(systemName: "book")
                     .font(.largeTitle)

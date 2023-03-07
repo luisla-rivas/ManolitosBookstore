@@ -10,14 +10,14 @@ import SwiftUI
 struct HeaderDetailView: View {
     // MARK: - PROPERTY
     
-    let title: String
+    @ObservedObject var vm: RowVM
     
     // MARK: - BODY
     
     var body: some View {
       VStack(alignment: .leading, spacing: 6) {
-        Text("Classical Fantastic Books")
-        Text(title)
+          Text(vm.authorName)
+          Text(vm.title)
           .font(.largeTitle)
           .fontWeight(.black)
       }
@@ -29,7 +29,7 @@ struct HeaderDetailView: View {
 
   struct HeaderDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderDetailView(title: Book.preview.title)
+        HeaderDetailView(vm: RowVM(book: Book.preview))
         .previewLayout(.sizeThatFits)
         .padding()
         .background(Color.gray)

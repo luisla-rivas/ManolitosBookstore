@@ -230,11 +230,11 @@
 				A04A63012992C1BA005E8931 /* BooksViewModel.swift */,
 				A0D5ABD729AF6F1C00D1645F /* AccountVM.swift */,
 				A0283D93299D31EC00976E5A /* RowVM.swift */,
+				A04A63052992C607005E8931 /* BookDetailViewModel.swift */,
 				A046DE8A29A7912B008DA1C5 /* CRowVM.swift */,
 				A046DE9329A7D0A1008DA1C5 /* ORowVM.swift */,
 				A046DE8C29A7B889008DA1C5 /* OrderDetailVM.swift */,
 				A04A62FC2992A077005E8931 /* UserViewModel.swift */,
-				A04A63052992C607005E8931 /* BookDetailViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";

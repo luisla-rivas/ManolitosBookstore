@@ -9,10 +9,11 @@ import SwiftUI
 
 struct BookDetailView: View {
 //    d@EnvironmentObject var appVM: BooksViewModel
-    @ObservedObject var vm: BookDetailViewModel
+    @ObservedObject var vm: RowVM//BookDetailViewModel
     @Environment(\.dismiss) var dismiss
     @State var ratingDetent = false
     @State var isEditing = false
+    @State private var isAnimating: Bool = false
     
     // MARK: - BODY
     var body: some View {
@@ -23,11 +24,11 @@ struct BookDetailView: View {
             //                .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
             
             // HEADER
-            HeaderDetailView(title: vm.book.title)
+            HeaderDetailView(vm: vm)
                 .padding(.horizontal)
             
             // DETAIL TOP PART
-            TopPartDetailView(price: vm.book.price.inEuro, image: Image( "theTimeMachine"))
+            TopPartDetailView(vm: vm)
                 .padding(.horizontal)
                 .zIndex(1)
             
@@ -69,7 +70,7 @@ struct BookDetailView: View {
         .zIndex(0)
         //.ignoresSafeArea(.all, edges: .all)
         .background {
-            Color.gray.ignoresSafeArea(.all, edges: .all)
+            Color.myBackgroundColor.ignoresSafeArea(.all, edges: .all)
         }
     }
 
@@ -133,7 +134,7 @@ struct BookDetailView: View {
 struct BookDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            BookDetailView(vm: BookDetailViewModel(book: .preview))
+            BookDetailView(vm: RowVM(book: .preview))
             //            .environmentObject()
         }
     }

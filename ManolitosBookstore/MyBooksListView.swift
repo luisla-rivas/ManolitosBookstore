@@ -29,7 +29,8 @@ struct MyBooksListView: View {
 //            .listStyle(.inset)
 //            .scrollContentBackground(.hidden)
             .navigationDestination(for: Book.self) { book in
-                BookDetailView(vm: BookDetailViewModel(book: book))
+                //                BookDetailView(vm: BookDetailViewModel(book: book))
+                BookDetailView(vm: RowVM(book: book))
             }
             .navigationTitle("My book list")
             //.searchable(text: $appVM.search)
