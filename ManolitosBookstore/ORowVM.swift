@@ -16,6 +16,7 @@ final class ORowVM:ObservableObject {
     @Published var date = ""
     @Published var state = ""
     @Published var booksIdAPI = ""
+    
 
     
     init(order: BooksOrder) {
@@ -26,4 +27,7 @@ final class ORowVM:ObservableObject {
         self.state = order.estado.rawValue
         self.booksIdAPI = order.books.reduce("") { "\($0), \($1)" }
     }
+    
+    
+    
 }

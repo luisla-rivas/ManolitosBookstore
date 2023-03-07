@@ -1,0 +1,22 @@
+[
+    {
+        "date": "2023-03-02T16:25:20Z",
+        "npedido": "E0DFF675-16B0-43D1-89E2-38A37CB1181D",
+        "books": [
+            319,
+            548
+        ],
+        "estado": "recibido",
+        "email": "luisla.tester@luisla.com"
+    },
+    {
+        "date": "2023-03-05T07:58:26Z",
+        "npedido": "BF8A76C2-1FC8-4097-986A-7EA8652351E4",
+        "books": [
+            535,
+            678
+        ],
+        "estado": "recibido",
+        "email": "luisla.tester@luisla.com"
+    }
+]

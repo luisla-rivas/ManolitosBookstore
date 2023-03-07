@@ -28,7 +28,7 @@ struct AddToCartDetailView: View {
     .padding(.horizontal, 20)
     .padding(.vertical, 10)
     .background {
-        Color.myBackgroundPurple
+        Color.myBackgroundColor
     }
     .clipShape(Capsule())
   }

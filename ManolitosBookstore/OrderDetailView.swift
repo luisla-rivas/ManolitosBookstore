@@ -8,29 +8,38 @@
 import SwiftUI
 
 struct OrderDetailView: View {
+    @EnvironmentObject var appVM:BooksViewModel
     @ObservedObject var vm:OrderDetailVM
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text("Purchase Order Number:")
-                    //.font(.title3)
-                Text("**\(vm.numberPO)**")
-                    .lineLimit(1)
-                    .truncationMode(.middle)
-                    .font(.title3)
-                Text(vm.email)
-                Text(vm.date)
-                    .font(.caption)
-                Text(vm.date)
-                    .font(.caption)
+        
+        VStack(alignment: .leading) {
+            HStack {
+                Text(Date.now.formatted(date: .abbreviated, time: .omitted))
+                    .bold()
+                Spacer()
+                Text("State: **\(vm.state.capitalized)**")
+                
             }
+            Divider()
+            
+            //Text("**\(vm.numberPO)**")
+            //Text(vm.email)
+            //Text(vm.booksIdAPI)
+            BookListView(books: appVM.booksWith(idsAPI: vm.order.books))
+            
             Spacer()
         }
+        .padding()
+        .navigationTitle("Purchase order detail")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 struct OrderDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderDetailView(vm: OrderDetailVM(order: .preview))
+        NavigationStack {
+            OrderDetailView(vm: OrderDetailVM(order: .preview))
+                .environmentObject(BooksViewModel(.inPreview))
+        }
     }
 }

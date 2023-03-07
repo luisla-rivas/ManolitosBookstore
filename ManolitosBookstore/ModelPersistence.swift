@@ -8,7 +8,7 @@
 import Foundation
 
 extension URL {
-//    static let episodesDataURL = Bundle.main.url(forResource: "BigBang", withExtension: "json")!
+    static let ordersTestURL = Bundle.main.url(forResource: "orders", withExtension: "json")!
     static let booksTestURL = Bundle.main.url(forResource: "latestBooks", withExtension: "json")!
     static let authorsTestURL = Bundle.main.url(forResource: "authors", withExtension: "json")!
 
@@ -16,11 +16,11 @@ extension URL {
 }
 
 final class ModelPersistence {
-    func loadJSON<T:Codable>(url:URL = .userInfoSaveURL, arrayOf: T.Type) -> [T] {
+    func loadJSON<T:Codable>(url:URL = .userInfoSaveURL, arrayOf: T.Type, decoder: JSONDecoder = JSONDecoder() ) -> [T] {
  
         do {
             let data = try Data(contentsOf: url)
-            return try JSONDecoder().decode([T].self, from: data)
+            return try decoder.decode([T].self, from: data)
         } catch {
             print("Error en la carga \(error)")
             return []

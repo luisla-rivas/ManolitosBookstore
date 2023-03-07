@@ -15,7 +15,7 @@ struct MyBooksListView: View {
             List {
                 Section {
                     if appVM.currentUser != nil {
-                    BookListView(books:appVM.myFilteredBooks)
+                        BookListView(books:appVM.myFilteredBooks)
                     } else {
                         Text("You must be logged to watch your purchase book list!")
                             .padding()
@@ -24,35 +24,33 @@ struct MyBooksListView: View {
                 } header: {
                     Text("My Books")
                 }
-
+                
             }
-//            .listStyle(.inset)
-//            .scrollContentBackground(.hidden)
+            //.searchable(text: $appVM.search)
+            //.listStyle(.inset)
+            //.scrollContentBackground(.hidden)
             .navigationDestination(for: Book.self) { book in
-                //                BookDetailView(vm: BookDetailViewModel(book: book))
                 BookDetailView(vm: RowVM(book: book))
             }
             .navigationTitle("My book list")
-            //.searchable(text: $appVM.search)
+            
             .refreshable {
                 await appVM.getAllBooks()
             }
-        }
-        
-        .searchable(text: $appVM.search)
-        .navigationTitle("My book list")
-        .alert("Network alert!",
-               isPresented: $appVM.showError) {
-            Button {
-                appVM.errorMsg = ""
-            } label: {
-                Text("OK")
+            
+            .alert("Network alert!",
+                   isPresented: $appVM.showError) {
+                Button {
+                    appVM.errorMsg = ""
+                } label: {
+                    Text("OK")
+                }
+            } message: {
+                Text(appVM.errorMsg)
             }
-        } message: {
-            Text(appVM.errorMsg)
-        }
-        .task {
-            let _ = await (appVM.getOrderedAndReadedBooksForCurrentUser())
+            .task {
+                let _ = await appVM.getOrderedAndReadedBooksForCurrentUser()
+            }
         }
     }
 }

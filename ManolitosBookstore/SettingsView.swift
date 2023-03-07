@@ -25,7 +25,7 @@ struct SettingsListView: View {
                         }
                     } else {
                         HStack {
-                            Label("Account", systemImage: "person.crop.circle")
+                            Label("User", systemImage: "person.crop.circle")
                             Spacer()
                             Button {
                                 appVM.screen = .login
@@ -35,6 +35,8 @@ struct SettingsListView: View {
                             }
                         }
                     }
+                } header: {
+                    Text("Account")
                 }
                 Section {
                     Picker("Dark/Light mode", selection: $preferredColorScheme) {
@@ -43,10 +45,19 @@ struct SettingsListView: View {
                         Text("Dark").tag(2)
                     }
                 } header: {
-                    Text("")
+                    Text("Appearance")
                 }
             }
             .navigationTitle("Settings")
+            .navigationDestination(for: BooksOrder.self) { po in
+                OrderDetailView(vm: OrderDetailVM(order: po))
+            }
+            .navigationDestination(for: BooksOrder.self) { po in
+                OrderDetailView(vm: OrderDetailVM(order: po))
+            }
+            .navigationDestination(for: Book.self) { book in
+                BookDetailView(vm: RowVM(book: book))
+            }
         }
     }
 }

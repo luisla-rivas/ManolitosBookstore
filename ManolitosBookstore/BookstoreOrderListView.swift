@@ -12,41 +12,41 @@ struct BookstoreOrderListView: View {
     //@State var path:[Int] = []
     
     var body: some View {
-        Text("NavigationStack")
- /*
         NavigationStack { //(path: $path)
-            List(appVM.ordersGrouped, id:\.self) { orders in
+            List(appVM.myOrdersGrouped, id:\.self) { orders in
                 Section {
                     POrderListView(orders: orders)
                 } header: {
-                    Text(orders.first?.estado.rawValue ?? "")
+                    Text(orders.first?.estado.rawValue.uppercased() ?? "")
                 }
-            }.listStyle(.inset)
+            }
+            .listStyle(.inset)
+            //.searchable(text: $appVM.search)
             .navigationDestination(for: BooksOrder.self) { po in
                 OrderDetailView(vm: OrderDetailVM(order: po))
             }
+            .navigationDestination(for: Book.self) { book in
+                BookDetailView(vm: RowVM(book: book))
+            }            
             .navigationTitle("Purchase Orders")
-            //.searchable(text: $appVM.search)
-//            .refreshable {
-//                await appVM.getAllBooks()
-//            }
+            .refreshable {
+                await appVM.getAllBooks()
+            }
+            .alert("Network alert!",
+                   isPresented: $appVM.showError) {
+                Button {
+                    appVM.errorMsg = ""
+                } label: {
+                    Text("OK")
+                }
+            } message: {
+                Text(appVM.errorMsg)
+            }
+            .task {
+                let _ = await appVM.getOrdersForCurrentUser()
+            }
         }
-//        .searchable(text: $appVM.search)
-//        .alert("Network alert!",
-//               isPresented: $appVM.showError) {
-//            Button {
-//                appVM.errorMsg = ""
-//            } label: {
-//                Text("OK")
-//            }
-//        } message: {
-//            Text(appVM.errorMsg)
-//        }
-//        .task {
-//            let (_,_) = await (appVM.getAllBooks(), appVM.getAuthors())
-//            appVM.createBookData(from: appVM.booksInServer)
-//        }
-  */
+
     }
 }
 

@@ -41,6 +41,7 @@ final class BooksViewModel: ObservableObject {
     @Published var readedAndOrderedBooks: [BooksOrderedAndReaded] = []
     @Published var myReadedBooks: Books = []
     @Published var myOrderedBooks: Books = []
+    @Published var myPurchaseOrders: BooksOrders = []
     private var booksInServer: Books = []
     private var latestBooksInServer: Books = []
     private var myReadedIDBooks = [Int]()
@@ -72,7 +73,10 @@ final class BooksViewModel: ObservableObject {
             }
             authorsInServer.nameForID = authorsDict
             self.books = booksFromJSON
-            //self.books = prepareForView(books: booksFromJSON)
+            let decoderISO = JSONDecoder()
+            decoderISO.dateDecodingStrategy = .iso8601
+            let ordersFromJSON = persistence.loadJSON(url: .ordersTestURL, arrayOf: BooksOrder.self, decoder: decoderISO)
+            self.myPurchaseOrders = ordersFromJSON
         }
     }
     
@@ -188,6 +192,26 @@ final class BooksViewModel: ObservableObject {
             }
         }
         return ""
+    }
+    
+    func bookWith(idAPI: Int) -> Book? {
+        booksInServer.first(where: { $0.idAPI == idAPI })
+    }
+    
+    func booksWith(idsAPI: [Int]) -> Books {
+        let n = idsAPI.count
+        let selected:Books = idsAPI.compactMap { bookID in
+            booksInServer.first(where: { book in
+            book.idAPI == bookID })
+        }
+        if selected.count == n {
+            return selected
+        } else {
+            errorMsg = "Some book ids were not found!"
+            showError.toggle()
+            return []
+        }
+        
     }
     
    //MARK: - LOGINs
@@ -334,7 +358,7 @@ final class BooksViewModel: ObservableObject {
         }
     }
     
-    //MARK: - ADMIN procedures ORDERS
+    //MARK: - ORDERS
     enum ShowOrders: String, CaseIterable {
         case received = "Received PO"
         case sent = "Sent PO"
@@ -343,27 +367,40 @@ final class BooksViewModel: ObservableObject {
     }
     @Published var showByOrdersStatus:ShowOrders = .all
     
-//    var ordersGrouped:[[BooksOrder]] {
-//        Dictionary(grouping: ordersInServer) { order in
-//            order.estado
-//        }
-//        .values.sorted(by: { $0.first?.estado.rawValue ?? "" < $1.first?.estado.rawValue ?? "" })
-//        .map { orders in
-//            orders.filter { order in
-//                switch self.showByOrdersStatus {
-//                case .received:
-//                    return order.estado == .recibido
-//                case .sent:
-//                    return order.estado == .enviado
-//                case .delivered:
-//                    return order.estado == .entregado
-//                case .all:
-//                    return true
-//                }
-//            }
-//        }
-//    }
+    var myOrdersGrouped:[[BooksOrder]] {
+        Dictionary(grouping: myPurchaseOrders) { order in
+            order.estado
+        }
+        .values //.sorted(by: { $0.first?.date ?? Date.now < $1.first?.date ?? Date.now })
+        .map { orders in
+            orders.filter { order in
+                switch self.showByOrdersStatus {
+                case .received:
+                    return order.estado == .recibido
+                case .sent:
+                    return order.estado == .enviado
+                case .delivered:
+                    return order.estado == .entregado
+                case .all:
+                    return true
+                }
+            }
+        }
+    }
     
+    
+    @MainActor func getOrdersForCurrentUser() async {
+        if let email = currentUser?.email { //Only if a client is logged in
+            do {
+                let loggedUserOrdersFromServer = try await AsyncPersistence.shared.getPurchaseOrders(for: email )
+                myPurchaseOrders = loggedUserOrdersFromServer
+            } catch let error as APIErrors {
+                errorMsg = error.description
+            } catch {
+                errorMsg = error.localizedDescription
+            }
+        }
+    }
     
     @MainActor func getAllOrders() async {
         //https://trantorapi-acacademy.herokuapp.com/api/shop/allOrders

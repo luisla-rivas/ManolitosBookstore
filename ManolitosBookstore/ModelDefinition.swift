@@ -99,7 +99,6 @@ struct BooksOrder: Codable, Identifiable, Hashable {
         case recibido, enviado, entregado
     }
 }
-
 typealias BooksOrders = [BooksOrder]
 
 extension BooksOrder {

@@ -27,8 +27,25 @@ struct AccountDetailView: View {
             Section {
                 Text(appVM.currentUser?.location ?? "---")
             } header: {
-                Text("Billing Address")
+                Text("Address") //Delivery/Billing address
             }
+  
+            //TODO: - NavigationStack conflicts
+            //
+            /*
+            if appVM.currentUser != nil {
+                Section {
+                    NavigationLink(destination: BookstoreOrderListView()) { //POrderListView(orders: appVM.myPurchaseOrders))
+                            HStack {
+                                Label("Purchase Orders", systemImage: "purchased")
+                            }
+                        }
+                } header: {
+                    Text("My orders")
+                }
+  
+            }
+             */
             
             if appVM.currentUser != nil {
                 Button {
@@ -48,6 +65,7 @@ struct AccountDetailView: View {
         .textFieldStyle(.roundedBorder)
         .navigationTitle("Account")
 //        .navigationBarTitleDisplayMode(.inline)
+
         .toolbar {
             //                ToolbarItem(placement: .navigationBarLeading) {
             //                    Menu("Sort") {
