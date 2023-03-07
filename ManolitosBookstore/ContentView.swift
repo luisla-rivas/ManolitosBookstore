@@ -13,6 +13,8 @@ enum TabItem {
 }
 
 struct ContentView: View {
+    @EnvironmentObject var appVM:BooksViewModel
+    
     @State private var selection: TabItem = .purchased
     
     var body: some View {
@@ -25,7 +27,7 @@ struct ContentView: View {
                 }
                 .tag(TabItem.discover)
             
-            BookstoreListView()
+            MyBooksListView()
                 .tabItem {
                     Label("My books", systemImage: "books.vertical.fill")
                 }
@@ -33,7 +35,7 @@ struct ContentView: View {
             
             BookstoreListView()
                 .tabItem {
-                    Label("Search", systemImage: "magnifyingglass")
+                    Label("Bookstore", systemImage: "bag.fill")
                 }
                 .tag(TabItem.search)
             

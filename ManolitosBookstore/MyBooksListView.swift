@@ -1,21 +1,20 @@
 //
-//  BookstoreListView.swift
+//  MyBooksListView.swift
 //  ManolitosBookstore
 //
-//  Created by Luis Lasierra on 13/2/23.
+//  Created by Luis Lasierra on 7/3/23.
 //
 
 import SwiftUI
 
-struct BookstoreListView: View {
+struct MyBooksListView: View {
     @EnvironmentObject var appVM:BooksViewModel
-    //@State var path:[Int] = []
     
     var body: some View {
         NavigationStack { //(path: $path)
             List {
                 Section {
-                    BookListView(books:appVM.filteredBooks)
+                    BookListView(books:appVM.myFilteredBooks)
                 } header: {
                     Text("Bookstore")
                 }
@@ -35,7 +34,7 @@ struct BookstoreListView: View {
         }
         
         .searchable(text: $appVM.search)
-        .navigationTitle("Bookstore catalog")
+        .navigationTitle("My book list")
         .alert("Network alert!",
                isPresented: $appVM.showError) {
             Button {
@@ -46,16 +45,15 @@ struct BookstoreListView: View {
         } message: {
             Text(appVM.errorMsg)
         }
-//        .task {
-//            let (_,_) = await (appVM.getAllBooks(), appVM.getAuthors())
-//            appVM.createBookData(from: appVM.booksInServer)
-//        }
+        .task {
+            let _ = await (appVM.getOrderedAndReadedBooksForCurrentUser())
+        }
     }
 }
 
-struct BookstoreListView_Previews: PreviewProvider {
+struct MyBooksListView_Previews: PreviewProvider {
     static var previews: some View {
-        BookstoreListView()
+        MyBooksListView()
             .environmentObject(BooksViewModel(.inPreview))
     }
 }

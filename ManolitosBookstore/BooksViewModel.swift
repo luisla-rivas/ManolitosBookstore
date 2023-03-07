@@ -81,13 +81,14 @@ final class BooksViewModel: ObservableObject {
         case onlyNotRead = "Not Read"
         case all = "All Books"
     }
-    @Published var showOnlyFavorites = false
+    //@Published var showOnlyFavorites = false
     @Published var showReadOrNotRead:ShowRead = .all
+    //@Published var showOnlyPurchased:Bool = false
     
     var myFilteredBooks:Books {
-        return books.filter { book in //filter for Favorites
+        return myOrderedBooks.filter { book in //filter for Favorites
 //            if showOnlyFavorites {
-//                return self.isFavorite(id: episode.id)
+//                return self.isFavorite(id: book.id)
 //            } else {
 //                return true
 //            }
@@ -108,6 +109,32 @@ final class BooksViewModel: ObservableObject {
             }
         }
     }
+    
+    var filteredBooks:Books {
+        return books.filter { book in //filter for Favorites
+//            if showOnlyFavorites {
+//                return self.isFavorite(id: book.id)
+//            } else {
+//                return true
+//            }
+//        }.filter { book in //filter for iHaveRead
+            switch self.showReadOrNotRead {
+            case .onlyRead:
+                return self.iHaveReaded(id: book.idAPI)
+            case .onlyNotRead:
+                return !self.iHaveReaded(id: book.idAPI)
+            case .all:
+                return true
+            }
+        }.filter { book in //filter for Search
+            if search.isEmpty {
+                return true
+            } else {
+                return book.title.lowercased().contains(search.lowercased())
+            }
+        }
+    }
+    
 //    func isFavorite(id:Int) -> Bool {
 //        favorites.fav.contains(where: { $0 == id })
 //    }

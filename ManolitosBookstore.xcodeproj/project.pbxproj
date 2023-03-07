@@ -56,6 +56,7 @@
 		B6CAEBEB29B5DF5E005D2991 /* CustomerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE8529A78EE4008DA1C5 /* CustomerRowView.swift */; };
 		B6CC2FFD29B6317300D2C9B6 /* EditCustomerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CC2FFC29B6317300D2C9B6 /* EditCustomerView.swift */; };
 		B6CC2FFF29B6328900D2C9B6 /* MyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CC2FFE29B6328900D2C9B6 /* MyTextField.swift */; };
+		B6D3A1C329B737FD00F6B040 /* MyBooksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D3A1C229B737FD00F6B040 /* MyBooksListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,7 @@
 		B683A85329A7639B002E3A03 /* BookGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookGridView.swift; sourceTree = "<group>"; };
 		B6CC2FFC29B6317300D2C9B6 /* EditCustomerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCustomerView.swift; sourceTree = "<group>"; };
 		B6CC2FFE29B6328900D2C9B6 /* MyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTextField.swift; sourceTree = "<group>"; };
+		B6D3A1C229B737FD00F6B040 /* MyBooksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBooksListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				A03EEED0299AB84100EF9759 /* BookstoreListView.swift */,
+				B6D3A1C229B737FD00F6B040 /* MyBooksListView.swift */,
 				A04A62F52992989C005E8931 /* BookListView.swift */,
 				A0DB755729955C190093887C /* BookRowView.swift */,
 				A04A63032992C53C005E8931 /* BookDetailView.swift */,
@@ -519,6 +522,7 @@
 				A07C36AD29A9452700DDB33B /* Extension+helper.swift in Sources */,
 				A04A62F62992989C005E8931 /* BookListView.swift in Sources */,
 				A0C22D4429B53C0600365187 /* OrderDetailVM.swift in Sources */,
+				B6D3A1C329B737FD00F6B040 /* MyBooksListView.swift in Sources */,
 				A04A63022992C1BA005E8931 /* BooksViewModel.swift in Sources */,
 				A0C22D3C29B53BD300365187 /* OrderRowView.swift in Sources */,
 				A0C22D4329B53C0200365187 /* ORowVM.swift in Sources */,
