@@ -47,6 +47,21 @@ extension Double? {
     }
 }
 
+extension Double {
+    var inEuro: String {
+        let formatter = NumberFormatter ( )
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: "ES-es")//.current
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+        if let num = formatter.string(from: NSNumber(value: self)) {
+            return num
+        } else {
+            return "-"+formatter.currencySymbol
+        }
+    }
+}
+
 enum Currency: String, Codable {
     case eur
     case usd

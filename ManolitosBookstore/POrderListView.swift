@@ -19,7 +19,7 @@ struct POrderListView: View {
                             .frame(alignment: .leading )
                             .padding(.bottom, 10)
                     }
-                }
+                }.listRowSeparator(.hidden)
 //            }
     }
 }

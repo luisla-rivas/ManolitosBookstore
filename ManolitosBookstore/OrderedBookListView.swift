@@ -9,15 +9,25 @@ import SwiftUI
 
 struct OrderedBookListView: View {
     let books: Books
+    var total: Double {
+        books.reduce(0.0) { result , book in
+            result + (book.price ?? 0.0)
+        }
+    }
     
     var body: some View {
         ForEach(books) { book in
-            HStack {
+            HStack() {
                 Text(book.title)
                 Spacer()
                 Text(book.price.inEuro)
             }
         }
+        HStack {
+            Text("     Total amount:")
+            Spacer()
+            Text("\(total.inEuro)")
+        }.padding(.top, 2)
     }
 }
 
