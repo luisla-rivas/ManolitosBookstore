@@ -99,9 +99,9 @@ final class BooksViewModel: ObservableObject {
 //        }.filter { book in //filter for iHaveRead
             switch self.showReadOrNotRead {
             case .onlyRead:
-                return self.iHaveReaded(id: book.idAPI)
+                return self.iHaveReaded(idAPI: book.idAPI)
             case .onlyNotRead:
-                return !self.iHaveReaded(id: book.idAPI)
+                return !self.iHaveReaded(idAPI: book.idAPI)
             case .all:
                 return true
             }
@@ -124,9 +124,9 @@ final class BooksViewModel: ObservableObject {
 //        }.filter { book in //filter for iHaveRead
             switch self.showReadOrNotRead {
             case .onlyRead:
-                return self.iHaveReaded(id: book.idAPI)
+                return self.iHaveReaded(idAPI: book.idAPI)
             case .onlyNotRead:
-                return !self.iHaveReaded(id: book.idAPI)
+                return !self.iHaveReaded(idAPI: book.idAPI)
             case .all:
                 return true
             }
@@ -139,41 +139,7 @@ final class BooksViewModel: ObservableObject {
         }
     }
     
-//    func isFavorite(id:Int) -> Bool {
-//        favorites.fav.contains(where: { $0 == id })
-//    }
-    
-    func iHaveReaded(id: Int) -> Bool {
-        myReadedIDBooks.contains(id)
-    }
-    
-    
-//    func createBookData(from books: Books) {
-//        var bookList:Books = []
-//        for book in books {
-//            var bookInfoView = book
-//            if book.author != nil {
-//                bookInfoView.author = authorsInServer[book.author!, default:  ""]
-//            } else {
-//                bookInfoView.author = ""
-//            }
-//            bookList.append(bookInfoView)
-//        }
-//        self.books = bookList
-//    }
-    
-//    func prepareForView(books: Books) -> Books {
-//        var bookList:Books = []
-//        for var book in books {
-//            if book.author != nil {
-//                book.author = authorsInServer[book.author!, default:  ""]
-//            } else {
-//                book.author = ""
-//            }
-//            bookList.append(book)
-//        }
-//        return bookList
-//    }
+
     
     func authorName(for book: Book) -> String {
         if let authorID = book.author {
@@ -213,6 +179,40 @@ final class BooksViewModel: ObservableObject {
         }
         
     }
+    
+    //MARK: - READED
+    
+//    func isFavorite(id:Int) -> Bool {
+//        favorites.fav.contains(where: { $0 == id })
+//    }
+    
+    func iHaveReaded(idAPI: Int) -> Bool {
+        myReadedIDBooks.contains(idAPI)
+    }
+    
+    func toggleReaded(idsAPI: [Int]) {
+        if let userEmail = currentUser?.email {
+            let readedBooksByCurrentUser = BooksReaded(books: idsAPI, email: userEmail)
+            Task(priority: .userInitiated) {
+                await postToggle(booksReaded: readedBooksByCurrentUser)
+            }
+        }
+    }
+    
+    @MainActor private func postToggle(booksReaded: BooksReaded) async {
+        do {
+            let ok = try await AsyncPersistence.shared.postToogle(booksReaded: booksReaded)
+            if ok {
+                await getOrderedAndReadedBooksForCurrentUser()
+            }
+        } catch let error as APIErrors {
+            errorMsg = error.description
+        } catch {
+            errorMsg = error.localizedDescription
+        }
+    }
+    
+    
     
    //MARK: - LOGINs
     

@@ -39,16 +39,20 @@ struct DiscoverView: View {
                     Text("Readed Books")
                 }
             }.listStyle(.grouped)
-                .navigationDestination(for: Book.self) { book in
-                    BookDetailView(vm: RowVM(book: book))
+            .navigationDestination(for: Book.self) { book in
+                BookDetailView(vm: RowVM(book: book))
+            }
+            .navigationTitle("Manolito's Bookstore")
+            .refreshable {
+                let (_,_) = await (appVM.getLatestBooks(), appVM.getOrderedAndReadedBooksForCurrentUser())
+            }
+            .onAppear() {
+                Task { await appVM.getOrderedAndReadedBooksForCurrentUser()
                 }
-                .navigationTitle("Manolito's Bookstore")
-            //.searchable(text: $appVM.search)
-                .task {
-                    let (_,_) = await (appVM.getLatestBooks(), appVM.getOrderedAndReadedBooksForCurrentUser())
-                }
+            }
+            
+            //.background(Color("launchBlackgroundColor"))
         }
-        //.background(Color("launchBlackgroundColor"))
     }
 }
 

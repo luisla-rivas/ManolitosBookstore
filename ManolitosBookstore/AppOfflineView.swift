@@ -14,9 +14,9 @@ struct AppOfflineView: View {
                 .fill(.regularMaterial)
                 .ignoresSafeArea()
             VStack {
-                Text("NO Network connection")
+                Text("No Network connection.")
                     .font(.headline)
-                Text("App requires internet connection to work.")
+                Text("App requires internet connection to work!")
                     .font(.callout)
                     .foregroundStyle(.secondary)
             }

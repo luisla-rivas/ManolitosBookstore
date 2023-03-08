@@ -33,11 +33,6 @@ struct MyBooksListView: View {
                 BookDetailView(vm: RowVM(book: book))
             }
             .navigationTitle("My book list")
-            
-            .refreshable {
-                await appVM.getAllBooks()
-            }
-            
             .alert("Network alert!",
                    isPresented: $appVM.showError) {
                 Button {
@@ -48,8 +43,11 @@ struct MyBooksListView: View {
             } message: {
                 Text(appVM.errorMsg)
             }
+            .refreshable {
+                await appVM.getOrderedAndReadedBooksForCurrentUser()
+            }
             .task {
-                let _ = await appVM.getOrderedAndReadedBooksForCurrentUser()
+                await appVM.getOrderedAndReadedBooksForCurrentUser()
             }
         }
     }

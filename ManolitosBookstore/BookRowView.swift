@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct BookRowView: View {
-//    @EnvironmentObject var appVM:BooksViewModel
+    @EnvironmentObject var appVM:BooksViewModel
     let vm:RowVM
     var body: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .center, spacing: 6) {
             if vm.book.cover != nil{
                 if let image = vm.cover {
                     image
@@ -43,29 +43,43 @@ struct BookRowView: View {
             
             
             VStack (alignment: .leading, spacing: 5) {
-                Text("Title: **\(vm.title)**")
+                HStack {
+                    Text("Title: **\(vm.title)**")
+                    Spacer()
+                    if appVM.iHaveReaded(idAPI: vm.book.idAPI) {
+                        Image(systemName: "bookmark").foregroundColor(.blue)
+                    }
+                }
                 //.font(.headline)
                 Text("Author: **\(vm.authorName)**")
                 //.font(.footnote).foregroundColor(.gray)
-                Text("Year: **\(vm.year)**")
-                //                    Text("Year: **\(bookYear, specifier: "%.0d")**")
-                // .font(.footnote).foregroundColor(.gray)
-                
-                //2.1 Rating and Price
-                HStack(alignment: .bottom) {
-                    RatingView(rating: vm.book.rating ?? 0.0, maxRating: 5)
-                        .frame(maxWidth: 80)
-//                        .offset(y: 8)
+                HStack {
+                    Text("Year: **\(vm.year)**")
                     Spacer()
-                    Text(vm.book.price.inEuro)
-                        //.font(.caption)
-                        .padding(.horizontal)
-                        .padding(.vertical, 5)
-                        .background {
-                            RoundedRectangle(cornerRadius: 5, style: .continuous)
-                                .fill(Color.myPriceColor)
+                    Text("Price: **\(vm.book.price.inEuro)**")
+   
+                }
+                
+                //2.1 Rating
+                HStack(alignment: .bottom) {
+                    Text("Rating:")
+                    Spacer()
+                    RatingView(rating: vm.book.rating ?? 0.0, maxRating: 5)
+                        .frame(maxWidth: 80).offset(y: -2)
 
-                        }
+                    Text("(\(Double(vm.book.rating ?? 0.0).formatted(.number.precision(.fractionLength(2)))) /5.0)")
+
+
+
+//                    Text(vm.book.price.inEuro)
+//                        //.font(.caption)
+//                        .padding(.horizontal)
+//                        .padding(.vertical, 5)
+//                        .background {
+//                            RoundedRectangle(cornerRadius: 5, style: .continuous)
+//                                .fill(Color.myPriceColor)
+//
+//                        }
                 }
                 
             }

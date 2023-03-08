@@ -57,8 +57,13 @@ final class AsyncPersistence {
     func postCreateUser(customer: Client) async throws -> Bool {
         try await query(request: .request(url: .postAndPutClient, method: .post, body:customer))
     }
+    
     func putUpdateUser(customer: Client) async throws -> Bool {
         try await query(request: .request(url: .postAndPutClient, method: .put, body:customer))
+    }
+    
+    func postToogle(booksReaded: BooksReaded) async throws -> Bool {
+        try await query(request: .request(url: .postSetClientBooksReaded, method: .post, body:booksReaded))
     }
     
     func queryJSON<T:Codable>(request:URLRequest,
