@@ -63,7 +63,7 @@ final class UserViewModel: ObservableObject {
     }
     
     func updateUser() -> Client {
-        let update = Client(name: self.name, email: self.email, location: self.location, role: Role.client)
+        let update = Client(name: self.name, email: self.email, location: self.location, role: self.role)
         return update
     }
     

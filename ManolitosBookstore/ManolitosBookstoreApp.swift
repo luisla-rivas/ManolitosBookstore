@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct ManolitosBookstoreApp: App {
+    @StateObject var monitorNetwork = NetworkStatus()
     @AppStorage("preferredColorScheme") var preferredColorScheme: Int = 0
     
     @StateObject var appVM = BooksViewModel(.inPreview)
@@ -18,6 +19,12 @@ struct ManolitosBookstoreApp: App {
             VStack {
                     StateLoginView()
              }
+            .overlay {
+                if monitorNetwork.status == .offline {
+                    AppOfflineView()
+                        .transition(.opacity)
+                }
+            }
             .environmentObject(appVM)
             .task {
                 let (_,_) = await (appVM.getAllBooks(), appVM.getAuthors())

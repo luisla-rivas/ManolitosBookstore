@@ -135,12 +135,6 @@ struct DetailView_Previews: PreviewProvider {
         }
     }
 }
-//struct EditCustomerView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EditCustomerView()
-//    }
-//}
-
 
 
 enum DetailField {

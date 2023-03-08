@@ -277,7 +277,7 @@ final class BooksViewModel: ObservableObject {
     //MARK: Update User
     func tryUpdate(user: Client) {
         Task(priority: .userInitiated) {
-            await create(user: user)
+            await update(user: user)
         }
     }
     
