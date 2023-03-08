@@ -95,6 +95,7 @@ struct BookRowView: View {
 struct BookRowView_Previews: PreviewProvider {
     static var previews: some View {
         BookRowView(vm: RowVM(book: .preview))
+            .environmentObject(BooksViewModel(.inPreview))
             .padding()
             .previewLayout(.sizeThatFits)
             .frame(width: 400,height: 150)

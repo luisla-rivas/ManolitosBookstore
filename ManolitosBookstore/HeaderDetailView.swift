@@ -15,13 +15,13 @@ struct HeaderDetailView: View {
     // MARK: - BODY
     
     var body: some View {
-      VStack(alignment: .leading, spacing: 6) {
-          Text(vm.authorName)
+      VStack(alignment: .leading, spacing: 8) {
+          Text(vm.authorName).bold()
           Text(vm.title)
           .font(.largeTitle)
           .fontWeight(.black)
-      }
-      .foregroundColor(.white)
+      }.padding(.top, 8)
+      .foregroundColor(.white)//(.myBackgroundPink)
     }
   }
 

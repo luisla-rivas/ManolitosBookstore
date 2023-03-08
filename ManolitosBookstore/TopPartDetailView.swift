@@ -26,7 +26,7 @@ struct TopPartDetailView: View {
                     Text(vm.price) //"\(price.formatted(.number.precision(.fractionLength(2))))€"
                         .font(.title)
                         .fontWeight(.black)
-                        .scaleEffect(1.35, anchor: .leading)
+                        .scaleEffect(1.25, anchor: .leading)
                         .zIndex(2)
                 }
                 .offset(y: isAnimating ? -50 : -75)
@@ -35,25 +35,25 @@ struct TopPartDetailView: View {
             }
             .zIndex(2)
             // PHOTO
-            HStack {
+            HStack{
                 Spacer()
                 if vm.book.cover != nil{
                     if let image = vm.cover {
                         image
                             .resizable()
                             .scaledToFit()
-                            .frame(maxWidth: 300, maxHeight:300)
+                            .frame(maxWidth: 250, maxHeight:300, alignment: .trailing)
                             .shadow(radius: 4, x: -3, y: 3)
                             .offset(y: isAnimating ? 0 : -35)
                     } else {
                         ProgressView()
-                            .frame(width: 70, height: 120, alignment: .center)
+                            .frame(width: 250, height: 250, alignment: .center)
                     }
                 } else {
                     Image(systemName: "book")
                         .resizable()
                         .scaledToFit()
-                        .frame(maxHeight:300)
+                        .frame(maxWidth: 250, maxHeight:300, alignment: .trailing)
                         .shadow(radius: 4, x: -3, y: 3)
                         .offset(y: isAnimating ? 0 : -35)
                 }
@@ -72,7 +72,7 @@ struct TopPartDetailView: View {
 struct TopPartDetailView_Previews: PreviewProvider {
     static var previews: some View {
         TopPartDetailView(vm: RowVM(book: .preview))
-            .previewLayout(.sizeThatFits)
+//            .previewLayout(.sizeThatFits)
             .padding()
     }
 }

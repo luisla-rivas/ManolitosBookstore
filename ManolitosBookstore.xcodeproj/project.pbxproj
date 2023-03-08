@@ -25,6 +25,7 @@
 		A04A63062992C607005E8931 /* BookDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04A63052992C607005E8931 /* BookDetailViewModel.swift */; };
 		A061FB3129964543008E3255 /* LHGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A061FB3029964543008E3255 /* LHGridView.swift */; };
 		A061FB33299645B7008E3255 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A061FB32299645B7008E3255 /* DiscoverView.swift */; };
+		A076601529B90727001C1942 /* QuantityAndReadedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A076601429B90727001C1942 /* QuantityAndReadedDetailView.swift */; };
 		A07C36AB29A944B900DDB33B /* StateLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07C36AA29A944B900DDB33B /* StateLoginView.swift */; };
 		A07C36AD29A9452700DDB33B /* Extension+helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07C36AC29A9452700DDB33B /* Extension+helper.swift */; };
 		A07F88A829B33D93008BF4CA /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07F88A729B33D93008BF4CA /* RatingView.swift */; };
@@ -110,6 +111,7 @@
 		A04A63052992C607005E8931 /* BookDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewModel.swift; sourceTree = "<group>"; };
 		A061FB3029964543008E3255 /* LHGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LHGridView.swift; sourceTree = "<group>"; };
 		A061FB32299645B7008E3255 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
+		A076601429B90727001C1942 /* QuantityAndReadedDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityAndReadedDetailView.swift; sourceTree = "<group>"; };
 		A07C36AA29A944B900DDB33B /* StateLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateLoginView.swift; sourceTree = "<group>"; };
 		A07C36AC29A9452700DDB33B /* Extension+helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+helper.swift"; sourceTree = "<group>"; };
 		A07F88A729B33D93008BF4CA /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				A042C1F629B2501600E9572B /* HeaderDetailView.swift */,
 				A042C1F929B254AB00E9572B /* TopPartDetailView.swift */,
 				A07F88A729B33D93008BF4CA /* RatingView.swift */,
+				A076601429B90727001C1942 /* QuantityAndReadedDetailView.swift */,
 				A042C20029B2C34E00E9572B /* AddToCartDetailView.swift */,
 			);
 			name = DetailViewSections;
@@ -507,6 +510,7 @@
 				A061FB3129964543008E3255 /* LHGridView.swift in Sources */,
 				A0D5ABD829AF6F1C00D1645F /* AccountVM.swift in Sources */,
 				B683A85429A7639B002E3A03 /* BookGridView.swift in Sources */,
+				A076601529B90727001C1942 /* QuantityAndReadedDetailView.swift in Sources */,
 				A0AEA92E29B7AA4700DD166B /* OrderedBookListView.swift in Sources */,
 				A0283D94299D31EC00976E5A /* RowVM.swift in Sources */,
 				A061FB33299645B7008E3255 /* DiscoverView.swift in Sources */,
