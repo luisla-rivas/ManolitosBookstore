@@ -13,6 +13,7 @@ enum TabAdmin {
 }
 
 struct ContentAdminView: View {
+    @EnvironmentObject var appVM:BooksViewModel
     @State private var selection: TabItem = .purchased
 
     var body: some View {
@@ -21,7 +22,7 @@ struct ContentAdminView: View {
            
             BookstoreListView()
                 .tabItem {
-                    Label("Books", systemImage: "books.vertical.fill")
+                    Label("Catalog", systemImage: "books.vertical.fill")
                 }
                 .tag(TabAdmin.books)
             

@@ -15,7 +15,7 @@ enum TabItem {
 struct ContentView: View {
     @EnvironmentObject var appVM:BooksViewModel
     
-    @State private var selection: TabItem = .purchased
+    @State private var selection: TabItem = .discover
     
     var body: some View {
 
@@ -26,12 +26,13 @@ struct ContentView: View {
                     Label("Discover", systemImage: "star.fill")
                 }
                 .tag(TabItem.discover)
-            
-            MyBooksListView()
-                .tabItem {
-                    Label("My books", systemImage: "books.vertical.fill")
-                }
-                .tag(TabItem.purchased)
+            if appVM.currentUser != nil {
+                MyBooksListView()
+                    .tabItem {
+                        Label("My books", systemImage: "books.vertical.fill")
+                    }
+                    .tag(TabItem.purchased)
+            }
             
             BookstoreListView()
                 .tabItem {
@@ -39,11 +40,13 @@ struct ContentView: View {
                 }
                 .tag(TabItem.search)
             
-            BookstoreOrderListView()
-                .tabItem {
-                    Label("Orders", systemImage: "purchased")
-                }
-                .tag(TabItem.orders)
+            if appVM.currentUser != nil {
+                MyOrderListView()
+                    .tabItem {
+                        Label("Orders", systemImage: "purchased")
+                    }
+                    .tag(TabItem.orders)
+            }
 
             SettingsListView()
                 .tabItem {
@@ -56,7 +59,7 @@ struct ContentView: View {
 //            //UIToolbar.appearance().backgroundColor = .systemYellow
 //            UITabBar.appearance().backgroundColor = .systemYellow 
 //        }
-//        .background(Color.red)
+        .background(Color.red)
 ////        Color(.red)
 //        Color(red: 253.0/255.0, green: 221.0/255.0, blue: 106.0/255.0)
     }
