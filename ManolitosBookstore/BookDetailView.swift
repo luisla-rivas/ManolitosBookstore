@@ -14,6 +14,7 @@ struct BookDetailView: View {
     @State var ratingDetent = false
     @State var isEditing = false
     @State private var isAnimating: Bool = false
+    @State private var showCart: Bool = false
     
     // MARK: - BODY
     var body: some View {
@@ -83,7 +84,7 @@ struct BookDetailView: View {
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button {
-                    
+                    showCart.toggle()
                 } label: {
                     ZStack{
                         Image(systemName: "cart")
@@ -100,6 +101,8 @@ struct BookDetailView: View {
         //.ignoresSafeArea(.all, edges: .all)
         .background {
             Color.myBackgroundColor.ignoresSafeArea(.all, edges: .all)
+        }.sheet(isPresented: $showCart) {
+            ReviewBooksOrderingView(showView: $showCart)
         }
     }
 }

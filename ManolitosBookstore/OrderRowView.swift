@@ -17,7 +17,7 @@ struct OrderRowView: View {
             Spacer()
             VStack(alignment: .leading) {
                 HStack {
-                    Text(Date.now.formatted(date: .abbreviated, time: .omitted))
+                    Text(vm.order.date.formatted(date: .abbreviated, time: .omitted))
                         .bold()
                     Spacer()
                     Text("State: **\(vm.state.capitalized)**")

@@ -17,16 +17,6 @@ struct BookListView: View {
                 BookRowView(vm: RowVM(book: book))
                     .frame(alignment: .leading )
                     .swipeActions(edge: .leading, allowsFullSwipe: false) {
-//                        Button {
-//                            appVM.toggleFavorite(id: episode.id)
-//                        } label: {
-//                            if !appVM.isFavorite(id: episode.id) {
-//                                Label("Add Favorite", systemImage: Tag.favorite.rawValue)
-//                            } else {
-//                                Label("Remove Favorite", systemImage: "star")
-//                            }
-//                        }
-//                        .tint(appVM.isFavorite(id: episode.id) ? .red : .favoriteColor )
                         Button {
                             appVM.toggleReaded(idsAPI:[book.idAPI])
                         } label: {

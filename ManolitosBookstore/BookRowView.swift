@@ -47,7 +47,7 @@ struct BookRowView: View {
                     Text("Title: **\(vm.title)**")
                     Spacer()
                     if appVM.iHaveReaded(idAPI: vm.book.idAPI) {
-                        Image(systemName: "bookmark").foregroundColor(.blue)
+                        Image(systemName: "bookmark.fill").foregroundColor(.blue)
                     }
                 }
                 //.font(.headline)

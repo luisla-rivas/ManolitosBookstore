@@ -11,7 +11,6 @@ struct QuantityAndReadedDetailView: View {
     @EnvironmentObject var appVM: BooksViewModel
     @ObservedObject var vm: RowVM
     // MARK: - PROPERTY
-    @State private var iHaveReaded: Bool = false
     @State private var counter: Int = 1
     
     // MARK: - BODY
@@ -64,10 +63,9 @@ struct QuantityAndReadedDetailView: View {
                 
                 //Readed TAG
                 Button {
-                    iHaveReaded.toggle()
-                    //feedback.impactOccurred()
+                    appVM.toggleReaded(idsAPI:[vm.book.idAPI])
                 } label: {
-                    Image(systemName: iHaveReaded ? "bookmark.fill" : "bookmark.slash.fill")
+                    Image(systemName: appVM.iHaveReaded(idAPI: vm.book.idAPI) ? "bookmark.fill" : "bookmark.slash.fill")
                         .foregroundColor(.blue)
                 }
             }
