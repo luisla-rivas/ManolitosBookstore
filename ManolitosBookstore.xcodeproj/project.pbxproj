@@ -54,6 +54,7 @@
 		A0D8A3A929952CFB00B2B995 /* AsyncPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D8A3A829952CFB00B2B995 /* AsyncPersistence.swift */; };
 		A0DB755629953CC40093887C /* latestBooks.json in Resources */ = {isa = PBXBuildFile; fileRef = A0DB755529953CC40093887C /* latestBooks.json */; };
 		A0DB755829955C190093887C /* BookRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB755729955C190093887C /* BookRowView.swift */; };
+		B6184C2A29B9FDEF00D3E75A /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6184C2929B9FDEF00D3E75A /* BadgeView.swift */; };
 		B6452C6629B8A2FA00D07D54 /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6452C6529B8A2FA00D07D54 /* NetworkStatus.swift */; };
 		B6452C6829B8A3ED00D07D54 /* AppOfflineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6452C6729B8A3ED00D07D54 /* AppOfflineView.swift */; };
 		B683A85429A7639B002E3A03 /* BookGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B683A85329A7639B002E3A03 /* BookGridView.swift */; };
@@ -138,6 +139,7 @@
 		A0D8A3A829952CFB00B2B995 /* AsyncPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncPersistence.swift; sourceTree = "<group>"; };
 		A0DB755529953CC40093887C /* latestBooks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = latestBooks.json; sourceTree = "<group>"; };
 		A0DB755729955C190093887C /* BookRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRowView.swift; sourceTree = "<group>"; };
+		B6184C2929B9FDEF00D3E75A /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		B6452C6529B8A2FA00D07D54 /* NetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatus.swift; sourceTree = "<group>"; };
 		B6452C6729B8A3ED00D07D54 /* AppOfflineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOfflineView.swift; sourceTree = "<group>"; };
 		B683A85329A7639B002E3A03 /* BookGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookGridView.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				A07F88A729B33D93008BF4CA /* RatingView.swift */,
 				A076601429B90727001C1942 /* QuantityAndReadedDetailView.swift */,
 				A042C20029B2C34E00E9572B /* AddToCartDetailView.swift */,
+				B6184C2929B9FDEF00D3E75A /* BadgeView.swift */,
 			);
 			name = DetailViewSections;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A061FB3129964543008E3255 /* LHGridView.swift in Sources */,
+				B6184C2A29B9FDEF00D3E75A /* BadgeView.swift in Sources */,
 				A0D5ABD829AF6F1C00D1645F /* AccountVM.swift in Sources */,
 				B683A85429A7639B002E3A03 /* BookGridView.swift in Sources */,
 				A076601529B90727001C1942 /* QuantityAndReadedDetailView.swift in Sources */,

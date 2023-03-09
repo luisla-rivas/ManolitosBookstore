@@ -42,6 +42,7 @@ final class BooksViewModel: ObservableObject {
     @Published var myReadedBooks: Books = []
     @Published var myOrderedBooks: Books = []
     @Published var myPurchaseOrders: BooksOrders = []
+    @Published var myCart: [Int] = []
     private var booksInServer: Books = []
     private var latestBooksInServer: Books = []
     private var myReadedIDBooks = [Int]()

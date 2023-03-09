@@ -33,7 +33,8 @@ struct BookDetailView: View {
             VStack(alignment: .center, spacing: 0) {
                 HStack {
                     VStack(alignment: .leading ,spacing: 8) {
-                        Text("Rating").bold().frame(width: .infinity)
+                        Text("Rating").bold()
+                        //.frame(width: .infinity)
                         RatingView(rating: vm.book.rating ?? 0.0, maxRating: 5).frame(maxWidth: 100)
                     }
                     Spacer()
@@ -62,11 +63,10 @@ struct BookDetailView: View {
                     }
                 }
             
-                QuantityAndReadedDetailView(vm: vm)
-                    .padding(.vertical, 10)
+
                 
-                AddToCartDetailView()
-                    .padding(.vertical, 10)
+//                AddToCartDetailView()
+//                    .padding(.vertical, 10)
             }
             .padding()//(.horizontal)
             .background {
@@ -74,28 +74,24 @@ struct BookDetailView: View {
                     .clipShape(CustomShape())
                     .padding(.top, -85)
             }
+            QuantityAndReadedDetailView(vm: vm)
+                .padding(.horizontal)
 //            Spacer()
         }
         .navigationTitle("Book details")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            //                ToolbarItem(placement: .navigationBarLeading) {
-            //                    Menu("Sort") {
-            //                        ForEach(ScoresViewModel.SortType.allCases, id:\.self) { opcion in
-            //                            Button {
-            //                                scoresVM.sortType = opcion
-            //                            } label: {
-            //                                Text(opcion.rawValue)
-            //                            }
-            //                        }
-            //                    }
-            //                }
             ToolbarItem(placement: .confirmationAction) {
                 Button {
                     
                 } label: {
-                    Image(systemName: "cart")
-                        .badge("1")
+                    ZStack{
+                        Image(systemName: "cart")
+                        if appVM.myCart.count > 0 {
+                            BadgeView(quantity: appVM.myCart.count)
+                        }
+                    }
+                    
                         //.font(.title)
                 }
             }
@@ -106,69 +102,21 @@ struct BookDetailView: View {
             Color.myBackgroundColor.ignoresSafeArea(.all, edges: .all)
         }
     }
-
-//        ScrollView {
-//                VStack{
-//                    GeometryReader { g in
-//                    VStack (alignment: .center, spacing: 20) {
-//                        VStack {
-//                            if let coverURL = vm.book.cover {
-//                                AsyncImage(url: coverURL) { image in //318x384
-//                                    image.resizable()
-//                                        .scaledToFill()
-//
-//                                    //.clipShape(Circle())
-//                                } placeholder: {
-//                                    ProgressView()
-//                                        .frame(alignment: .center)
-//                                }
-//                            } else {
-//                                Image(systemName: "book")
-//                                    .font(.largeTitle)
-//                                    .frame(alignment: .center)
-//                            }
-//                        }
-////                        .frame(width: (g.size.width)/4, alignment: .leading)
-//
-//                        Text("\(vm.book.title)")
-//                            .font(.title)
-//
-//                        VStack (alignment: .leading) {
-//
-////                            Text("Author: **\(vm.book.author ?? "")**")
-//                            //.font(.footnote).foregroundColor(.gray)
-//                            if let bookYear = vm.book.year  {
-//                                Text("Year: **\(bookYear, specifier: "%.0d")**")
-//                                // .font(.footnote).foregroundColor(.gray)
-//                            } else {
-//                                Text("Year: - ")
-//                            }
-//                        }
-////                        .frame(width: g.size.width*3/4, alignment: .leading)
-//                        VStack (alignment: .leading) {
-//                            Text("**Summary**")
-//                            Text("\(vm.book.summary ?? "")")
-//                                .lineLimit(nil)
-//
-//                        }
-//
-//                    }
-//
-//
-//                }
-//
-//            }
-//                .padding()
-//            //        .navigationTitle("\(vm.book.title)")
-//        }
-//    }
 }
+
+
 
 struct BookDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
-            BookDetailView(vm: RowVM(book: .preview))
-                .environmentObject(BooksViewModel(.inPreview))
+        TabView {
+            NavigationStack {
+                BookDetailView(vm: RowVM(book: .preview))
+                    .environmentObject(BooksViewModel(.inPreview))
+            }
+            .tabItem {
+                Label("Books", systemImage: "books")
+            }.tag(0)
         }
+        
     }
 }
