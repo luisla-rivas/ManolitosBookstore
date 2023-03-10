@@ -389,6 +389,26 @@ final class BooksViewModel: ObservableObject {
         }
     }
     
+ 
+    func tryPlaceOrder() {
+        guard let email = currentUser?.email else { return
+        }
+        Task(priority: .userInitiated) {
+            await placeOrder(request: BooksOrderRequest(email: email, pedido: myCart) )
+        }
+    }
+        
+    @MainActor private func placeOrder(request: BooksOrderRequest) async { //
+            do {
+                let confirmed = try await AsyncPersistence.shared.postPlaceNew(po: request)
+                errorMsg = "Purchase Order placed correctly!\n\nState: \(confirmed.estado)"
+            } catch let error as APIErrors {
+                errorMsg = error.description
+            } catch {
+                errorMsg = error.localizedDescription
+            }
+        }
+    
     
     @MainActor func getOrdersForCurrentUser() async {
         if let email = currentUser?.email { //Only if a client is logged in

@@ -66,6 +66,14 @@ final class AsyncPersistence {
         try await query(request: .request(url: .postSetClientBooksReaded, method: .post, body:booksReaded))
     }
     
+    func postPlaceNew(po: BooksOrderRequest) async throws -> BooksOrder {
+        //let userIdentity =  RequestByEmail(email: email)
+        let request = URLRequest.request(url: .postNewPurchaseOrder, method: .post, body: po)
+        let decoderISO = JSONDecoder()
+        decoderISO.dateDecodingStrategy = .iso8601
+        return  try await queryJSON(request: request, type: BooksOrder.self, decoder: decoderISO)
+    }
+    
     func queryJSON<T:Codable>(request:URLRequest,
                               type:T.Type,
                               decoder:JSONDecoder = JSONDecoder(),

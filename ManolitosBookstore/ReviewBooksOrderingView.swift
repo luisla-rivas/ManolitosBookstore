@@ -10,6 +10,7 @@ import SwiftUI
 struct ReviewBooksOrderingView: View {
     @EnvironmentObject var appVM:BooksViewModel
     @Binding var showView:Bool
+    @State var activateFlor = false
     
     var body: some View {
         VStack {
@@ -52,8 +53,18 @@ struct ReviewBooksOrderingView: View {
                     //                Text(vm.booksIdAPI)
                     OrderingBookListView(books: appVM.booksWith(idsAPI: appVM.myCart)).padding()
                     Spacer()
+                    if activateFlor {
+                        HStack{
+                            Spacer()
+                            ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            Spacer()
+                        }
+                    }
+                    Spacer()
                     Button {
-                        //appVM.tryPlaceOrder()
+                        appVM.tryPlaceOrder()
+                        activateFlor.toggle()
                     } label: {
                         Spacer()
                         Text("Place Order".uppercased())
@@ -70,8 +81,20 @@ struct ReviewBooksOrderingView: View {
                     .clipShape(Capsule())
                 }
             }
-            
         }.padding()
+            .alert("Perfect!",
+                   isPresented: $appVM.showError) {
+                Button {
+                    activateFlor.toggle()
+                    appVM.errorMsg = ""
+                    appVM.myCart.removeAll()
+                    showView.toggle()
+                } label: {
+                    Text("OK")
+                }
+            } message: {
+                Text(appVM.errorMsg)
+            }
     }
 }
 
