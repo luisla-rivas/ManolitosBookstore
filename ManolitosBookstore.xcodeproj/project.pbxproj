@@ -56,6 +56,7 @@
 		A0DB755629953CC40093887C /* latestBooks.json in Resources */ = {isa = PBXBuildFile; fileRef = A0DB755529953CC40093887C /* latestBooks.json */; };
 		A0DB755829955C190093887C /* BookRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB755729955C190093887C /* BookRowView.swift */; };
 		B6184C2A29B9FDEF00D3E75A /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6184C2929B9FDEF00D3E75A /* BadgeView.swift */; };
+		B63811CE29BB5EC5000F0F55 /* OrderingBookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63811CD29BB5EC5000F0F55 /* OrderingBookListView.swift */; };
 		B6452C6629B8A2FA00D07D54 /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6452C6529B8A2FA00D07D54 /* NetworkStatus.swift */; };
 		B6452C6829B8A3ED00D07D54 /* AppOfflineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6452C6729B8A3ED00D07D54 /* AppOfflineView.swift */; };
 		B683A85429A7639B002E3A03 /* BookGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B683A85329A7639B002E3A03 /* BookGridView.swift */; };
@@ -142,6 +143,7 @@
 		A0DB755529953CC40093887C /* latestBooks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = latestBooks.json; sourceTree = "<group>"; };
 		A0DB755729955C190093887C /* BookRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRowView.swift; sourceTree = "<group>"; };
 		B6184C2929B9FDEF00D3E75A /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
+		B63811CD29BB5EC5000F0F55 /* OrderingBookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingBookListView.swift; sourceTree = "<group>"; };
 		B6452C6529B8A2FA00D07D54 /* NetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatus.swift; sourceTree = "<group>"; };
 		B6452C6729B8A3ED00D07D54 /* AppOfflineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOfflineView.swift; sourceTree = "<group>"; };
 		B683A85329A7639B002E3A03 /* BookGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookGridView.swift; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 				A0DB755729955C190093887C /* BookRowView.swift */,
 				A04A63032992C53C005E8931 /* BookDetailView.swift */,
 				A0796D4729BA95180093B555 /* ReviewBooksOrderingView.swift */,
+				B63811CD29BB5EC5000F0F55 /* OrderingBookListView.swift */,
 				A042C1F829B2501C00E9572B /* DetailViewSections */,
 			);
 			name = MyBooks;
@@ -522,6 +525,7 @@
 				A0283D94299D31EC00976E5A /* RowVM.swift in Sources */,
 				A061FB33299645B7008E3255 /* DiscoverView.swift in Sources */,
 				A0C22D3829B53B2500365187 /* ContentAdminView.swift in Sources */,
+				B63811CE29BB5EC5000F0F55 /* OrderingBookListView.swift in Sources */,
 				B6452C6829B8A3ED00D07D54 /* AppOfflineView.swift in Sources */,
 				A0D64DC829941F68009ECE11 /* Network.swift in Sources */,
 				A0DB755829955C190093887C /* BookRowView.swift in Sources */,

@@ -50,7 +50,7 @@ struct ReviewBooksOrderingView: View {
                     //                    .font(.title3)
                     //                Text(vm.email)
                     //                Text(vm.booksIdAPI)
-                    OrderedBookListView(books: appVM.booksWith(idsAPI: appVM.myCart)).padding()
+                    OrderingBookListView(books: appVM.booksWith(idsAPI: appVM.myCart)).padding()
                     Spacer()
                     Button {
                         //appVM.tryPlaceOrder()
