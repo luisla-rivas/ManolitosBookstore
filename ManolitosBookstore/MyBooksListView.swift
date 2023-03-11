@@ -26,8 +26,8 @@ struct MyBooksListView: View {
                 }
                 
             }
-            //.searchable(text: $appVM.search)
-            //.listStyle(.inset)
+            .searchable(text: $appVM.search)
+            .listStyle(.inset)
             //.scrollContentBackground(.hidden)
             .navigationDestination(for: Book.self) { book in
                 BookDetailView(vm: RowVM(book: book))
@@ -47,7 +47,7 @@ struct MyBooksListView: View {
                 await appVM.getOrderedAndReadedBooksForCurrentUser()
             }
             .task {
-                await appVM.getOrderedAndReadedBooksForCurrentUser()
+                await appVM.getOrdersForCurrentUser()
             }
         }
     }

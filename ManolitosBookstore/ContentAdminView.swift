@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum TabAdmin {
-  case books, customers, orders, setting, account
+  case books, customers, orders, setting //, account
 
 }
 

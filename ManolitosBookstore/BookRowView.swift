@@ -22,19 +22,19 @@ struct BookRowView: View {
                     ProgressView()
                         .frame(width: 70, height: 120, alignment: .center)
                 }
-//            if let coverURL = vm.book.cover {
-//                AsyncImage(url: coverURL) { image in //318x384
-//                    image.resizable()
-//                        .scaledToFit()
-//                        .frame(width: 70, height: 120, alignment: .leading)
-//                        .onAppear {
-//                            vm.cover = image
-//                        }
-//                    //.clipShape(Circle())
-//                } placeholder: {
-//                    ProgressView()
-//                        .frame(width: 70, height: 120, alignment: .center)
-//                }
+                //            if let coverURL = vm.book.cover {
+                //                AsyncImage(url: coverURL) { image in //318x384
+                //                    image.resizable()
+                //                        .scaledToFit()
+                //                        .frame(width: 70, height: 120, alignment: .leading)
+                //                        .onAppear {
+                //                            vm.cover = image
+                //                        }
+                //                    //.clipShape(Circle())
+                //                } placeholder: {
+                //                    ProgressView()
+                //                        .frame(width: 70, height: 120, alignment: .center)
+                //                }
             } else {
                 Image(systemName: "book")
                     .font(.largeTitle)
@@ -44,20 +44,20 @@ struct BookRowView: View {
             
             VStack (alignment: .leading, spacing: 5) {
                 HStack {
-                    Text("Title: **\(vm.title)**")
+                    //Text("Title: **\(vm.title)**").lineLimit(2)
+                    Text("**\(vm.title)**").lineLimit(1)
                     Spacer()
                     if appVM.iHaveReaded(idAPI: vm.book.idAPI) {
                         Image(systemName: "bookmark.fill").foregroundColor(.blue)
                     }
                 }
-                //.font(.headline)
-                Text("Author: **\(vm.authorName)**")
-                //.font(.footnote).foregroundColor(.gray)
+                //Text("Author: **\(vm.authorName)**").lineLimit(1)
+                Text("\(vm.authorName)").lineLimit(1)
                 HStack {
                     Text("Year: **\(vm.year)**")
                     Spacer()
                     Text("Price: **\(vm.book.price.inEuro)**")
-   
+                    
                 }
                 
                 //2.1 Rating
@@ -65,30 +65,14 @@ struct BookRowView: View {
                     Text("Rating:")
                     Spacer()
                     RatingView(rating: vm.book.rating ?? 0.0, maxRating: 5)
-                        .frame(maxWidth: 80).offset(y: -2)
-
-                    Text("(\(Double(vm.book.rating ?? 0.0).formatted(.number.precision(.fractionLength(2)))) /5.0)")
-
-
-
-//                    Text(vm.book.price.inEuro)
-//                        //.font(.caption)
-//                        .padding(.horizontal)
-//                        .padding(.vertical, 5)
-//                        .background {
-//                            RoundedRectangle(cornerRadius: 5, style: .continuous)
-//                                .fill(Color.myPriceColor)
-//
-//                        }
+                        .frame(maxWidth: 70).offset(y: -2)
+                    
+                    Text("(\(Double(vm.book.rating ?? 0.0).formatted(.number.precision(.fractionLength(2)))) /5.0)").font(.caption)
                 }
-                
             }
             Spacer()
         }
-//        .padding()
-//            .background{
-//            Color(uiColor: .quaternaryLabel)
-//        }
+
     }
 }
 

@@ -21,8 +21,8 @@ struct DiscoverView: View {
                 }
                 
                 Section {
-                    if appVM.myReadedBooks.count > 0 {
-                        BookListView(books:appVM.myOrderedBooks)
+                    if appVM.myLastOrderedBooks.count > 0 {
+                        BookListView(books:appVM.myLastOrderedBooks)
                     } else {
                         Text("No purchased books yet.").font(.caption)
                     }

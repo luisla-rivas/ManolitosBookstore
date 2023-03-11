@@ -21,7 +21,7 @@ struct BookstoreListView: View {
                 }
                 
             }
-//            .listStyle(.inset)
+            .listStyle(.inset)
 //            .scrollContentBackground(.hidden)
             .navigationDestination(for: Book.self) { book in
                 BookDetailView(vm: RowVM(book: book))

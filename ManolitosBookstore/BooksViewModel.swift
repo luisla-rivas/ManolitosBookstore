@@ -40,14 +40,16 @@ final class BooksViewModel: ObservableObject {
     @Published var latestBooks:Books = []
     @Published var readedAndOrderedBooks: [BooksOrderedAndReaded] = []
     @Published var myReadedBooks: Books = []
-    @Published var myOrderedBooks: Books = []
+    @Published var myLastOrderedBooks: Books = []
+    @Published var myPurchasedBooks: Books = []
     @Published var myPurchaseOrders: BooksOrders = []
     @Published var myCart: [Int] = []
     private var booksInServer: Books = []
     private var latestBooksInServer: Books = []
     private var myReadedIDBooks = [Int]()
-    private var myOrderedIDBooks = [Int]()
-    private var ordersInServer:BooksOrders = []
+    private var myLastOrderedIDBooks = [Int]()
+    private var myPurchasedIDBooks = [Int]()
+    var allOrdersInServer:BooksOrders = []
     
     var showingProduct = false
     
@@ -90,8 +92,9 @@ final class BooksViewModel: ObservableObject {
     @Published var showReadOrNotRead:ShowRead = .all
     //@Published var showOnlyPurchased:Bool = false
     
+    //Books Purchased
     var myFilteredBooks:Books {
-        return myOrderedBooks.filter { book in //filter for Favorites
+        return myPurchasedBooks.filter { book in //filter for Favorites
 //            if showOnlyFavorites {
 //                return self.isFavorite(id: book.id)
 //            } else {
@@ -115,6 +118,7 @@ final class BooksViewModel: ObservableObject {
         }
     }
     
+    //All Books
     var filteredBooks:Books {
         return books.filter { book in //filter for Favorites
 //            if showOnlyFavorites {
@@ -340,16 +344,13 @@ final class BooksViewModel: ObservableObject {
     @MainActor func getOrderedAndReadedBooksForCurrentUser() async {
         do {
             if let email = currentUser?.email { //Only if a client is logged in
-                let clientBooks = try await AsyncPersistence.shared.getPurchasedBooks(email: email)
-                let ordered = booksInServer.filter { clientBooks.ordered.contains($0.idAPI) }
-                self.myOrderedBooks = ordered //prepareForView(books: ordered)
+                let clientBooks = try await AsyncPersistence.shared.getPurchasedAndReadedBooks(email: email)
+                let lastOrdered = booksInServer.filter { clientBooks.ordered.contains($0.idAPI) }
+                self.myLastOrderedBooks = lastOrdered //Bug: Last ordered, not all orderd
+                self.myLastOrderedIDBooks = clientBooks.ordered //
                 let readed = booksInServer.filter { clientBooks.readed.contains($0.idAPI) }
                 self.myReadedBooks = readed //prepareForView(books: readed)
                 self.myReadedIDBooks = clientBooks.readed
-                self.myOrderedIDBooks = clientBooks.ordered
-                //print("\(email) ha solicitado los libros leidos y comprados")
-                //print("\(clientBooks)")
-                //print("Readed: \(readed)")
             }
                 
         } catch let error as APIErrors {
@@ -370,6 +371,27 @@ final class BooksViewModel: ObservableObject {
     
     var myOrdersGrouped:[[BooksOrder]] {
         Dictionary(grouping: myPurchaseOrders) { order in
+            order.estado
+        }
+        .values //.sorted(by: { $0.first?.date ?? Date.now < $1.first?.date ?? Date.now })
+        .map { orders in
+            orders.filter { order in
+                switch self.showByOrdersStatus {
+                case .received:
+                    return order.estado == .recibido
+                case .sent:
+                    return order.estado == .enviado
+                case .delivered:
+                    return order.estado == .entregado
+                case .all:
+                    return true
+                }
+            }
+        }
+    }
+    
+    var allOrdersGrouped:[[BooksOrder]] {
+        Dictionary(grouping: allOrdersInServer) { order in
             order.estado
         }
         .values //.sorted(by: { $0.first?.date ?? Date.now < $1.first?.date ?? Date.now })
@@ -413,8 +435,16 @@ final class BooksViewModel: ObservableObject {
     @MainActor func getOrdersForCurrentUser() async {
         if let email = currentUser?.email { //Only if a client is logged in
             do {
-                let loggedUserOrdersFromServer = try await AsyncPersistence.shared.getPurchaseOrders(for: email )
-                myPurchaseOrders = loggedUserOrdersFromServer
+                let myOrdersFromServer = try await AsyncPersistence.shared.getPurchaseOrders(for: email )
+                self.myPurchaseOrders = myOrdersFromServer
+                
+                //while not endPoint for purchasedBookList
+                let myOrdersIDBooks = myOrdersFromServer.flatMap { po in
+                    po.books
+                }
+                self.myPurchasedIDBooks = myOrdersIDBooks
+                let purchasedBookList =   booksInServer.filter { myOrdersIDBooks.contains($0.idAPI) }
+                self.myPurchasedBooks = purchasedBookList
             } catch let error as APIErrors {
                 errorMsg = error.description
             } catch {
@@ -427,7 +457,7 @@ final class BooksViewModel: ObservableObject {
         //https://trantorapi-acacademy.herokuapp.com/api/shop/allOrders
         do {
             let ordersFromServer = try await AsyncPersistence.shared.getAllOrders()
-            ordersInServer = ordersFromServer
+            allOrdersInServer = ordersFromServer
         } catch let error as APIErrors {
             errorMsg = error.description
         } catch {
