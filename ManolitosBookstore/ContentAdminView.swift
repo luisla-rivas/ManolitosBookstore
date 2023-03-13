@@ -14,7 +14,7 @@ enum TabAdmin {
 
 struct ContentAdminView: View {
     @EnvironmentObject var appVM:BooksViewModel
-    @State private var selection: TabAdmin = .orders
+    @State private var selection: TabAdmin = .books
 
     var body: some View {
 

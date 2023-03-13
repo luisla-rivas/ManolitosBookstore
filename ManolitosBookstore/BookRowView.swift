@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BookRowView: View {
     @EnvironmentObject var appVM:BooksViewModel
-    let vm:RowVM
+    @ObservedObject var vm:RowVM
     var body: some View {
         HStack(alignment: .center, spacing: 6) {
             if vm.book.cover != nil{

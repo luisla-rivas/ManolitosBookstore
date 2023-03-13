@@ -9,22 +9,28 @@ import SwiftUI
 
 struct OrderRowView: View {
     @EnvironmentObject var appVM:BooksViewModel
-    let vm:ORowVM
+    @ObservedObject var vm:ORowVM
     
     var body: some View {
         HStack {
             Color.myBackgroundColor.frame(width: 8)
-            Spacer()
             VStack(alignment: .leading) {
                 HStack {
                     Text(vm.order.date.formatted(date: .abbreviated, time: .omitted))
                         .bold()
                     Spacer()
-                    Text("State: **\(vm.state.capitalized)**")
+                    Text("State: ")
+                    Text(vm.state.rawValue.capitalized).font(.custom("Avenir Next Condensed", size: 20))
                     
                 }
+                if appVM.currentUser?.role == .admin {
+                    HStack {
+                        Text("Customer:")
+                        Spacer()
+                        Text(vm.order.email).font(.custom("Avenir Next Condensed", size: 20))
+                    }
+                }
                 Divider()
-                
 //                Text("**\(vm.numberPO)**")
 //                    .lineLimit(1)
 //                    .truncationMode(.middle)
@@ -32,7 +38,7 @@ struct OrderRowView: View {
 //                Text(vm.email)
 //                Text(vm.booksIdAPI)
                 OrderedBookListView(books: appVM.booksWith(idsAPI: vm.order.books))
-                    .environmentObject(BooksViewModel(.inPreview))
+                Spacer()
             }
         }
     }

@@ -16,23 +16,25 @@ struct OrderedBookListView: View {
     }
     
     var body: some View {
-        ForEach(books) { book in
-            HStack() {
-                Text(book.title)
-                Spacer()
-                Text(book.price.inEuro)
+        VStack {
+            ForEach(books) { book in
+                HStack() {
+                    Text(book.title)
+                    Spacer()
+                    Text(book.price.inEuro)
+                }
             }
+            HStack {
+                Text("     Total amount:")
+                Spacer()
+                Text("\(total.inEuro)")
+            }.padding(.top, 2)
         }
-        HStack {
-            Text("     Total amount:")
-            Spacer()
-            Text("\(total.inEuro)")
-        }.padding(.top, 2)
     }
 }
 
 struct OrderedBookListView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderedBookListView(books: BooksViewModel(.inPreview).books)
+        OrderedBookListView(books: Array(BooksViewModel(.inPreview).books.dropFirst(15)))
     }
 }

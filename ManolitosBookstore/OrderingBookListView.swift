@@ -17,26 +17,29 @@ struct OrderingBookListView: View {
     }
     
     var body: some View {
-        ForEach(books) { book  in
-            HStack(spacing: 4) {
-                Text(book.title)
-                Spacer()
-                Button {
-                    if let index = appVM.myCart.firstIndex(where: {$0 == book.idAPI} ) {
-                        appVM.myCart.remove(at: index) }
-                } label: {
-                    Image(systemName: "trash.circle").imageScale(.large)
-                }
-                
-                Text(book.price.inEuro)
+        VStack {
+            ForEach(books) { book  in
+                HStack(spacing: 4) {
+                    Button {
+                        if let index = appVM.myCart.firstIndex(where: {$0 == book.idAPI} ) {
+                            appVM.myCart.remove(at: index) }
+                    } label: {
+                        Image(systemName: "trash.circle").imageScale(.large)
+                    }
+                    Text(book.title)
+                    Spacer()
 
+                    
+                    Text(book.price.inEuro)
+                    
+                }
             }
+            HStack {
+                Text("     Total amount:")
+                Spacer()
+                Text("\(total.inEuro)")
+            }.padding(.top, 2)
         }
-        HStack {
-            Text("     Total amount:")
-            Spacer()
-            Text("\(total.inEuro)")
-        }.padding(.top, 2)
     }
     
 }

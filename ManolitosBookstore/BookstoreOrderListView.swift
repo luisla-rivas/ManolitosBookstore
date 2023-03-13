@@ -8,25 +8,26 @@
 import SwiftUI
 
 struct BookstoreOrderListView: View {
-    
     @EnvironmentObject var appVM:BooksViewModel
     //@State var path:[Int] = []
     
     var body: some View {
         NavigationStack { //(path: $path)
-            Picker ("Grouping by", selection:$appVM.groupOrdersByStatus) {
-                ForEach(OrdersGroupedBy.allCases,id:\.self) { groupBy in
-                    Text(groupBy.rawValue)
-                }
-            }.pickerStyle(.segmented)
-            .padding()
             VStack {
+                Picker ("Grouping by", selection:$appVM.groupOrdersByStatus) {
+                    ForEach(OrdersGroupedBy.allCases,id:\.self) { groupBy in
+                        Text(groupBy.rawValue)
+                    }
+                }.pickerStyle(.segmented)
+                    .padding()
+
                 switch appVM.groupOrdersByStatus {
                 case .state:
                     BookstoreOrdersByStateView()
                 case .client:
                     BookstoreOrdersByClientView()
                 }
+                Spacer()
             }
             //.searchable(text: $appVM.search)
             .navigationDestination(for: BooksOrder.self) { po in

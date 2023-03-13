@@ -76,6 +76,9 @@ final class AsyncPersistence {
         decoderISO.dateDecodingStrategy = .iso8601
         return  try await queryJSON(request: request, type: BooksOrder.self, decoder: decoderISO)
     }
+    func putUpdateOrderStatus(po: APIModifyOrderStateRequest) async throws -> Bool {
+        try await query(request: .request(url: .putPOStatus, method: .put, body:po))
+    }
     
     func queryJSON<T:Codable>(request:URLRequest,
                               type:T.Type,

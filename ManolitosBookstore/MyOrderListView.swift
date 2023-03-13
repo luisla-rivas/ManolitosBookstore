@@ -47,7 +47,7 @@ struct MyOrderListView: View {
             }
             .navigationTitle("Purchase Orders")
             .refreshable {
-                await appVM.getAllBooks()
+                await appVM.getOrdersForCurrentUser()
             }
             .alert("Network alert!",
                    isPresented: $appVM.showError) {

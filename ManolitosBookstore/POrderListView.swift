@@ -8,18 +8,19 @@
 import SwiftUI
 
 struct POrderListView: View {
-    //@EnvironmentObject var appVM:BooksViewModel
-    //@State var path:[Int] = []
-    let orders: BooksOrders
-    var body: some View {
 
-                ForEach(orders) { po in //, id:\.self
-                    NavigationLink(value: po) {
-                        OrderRowView(vm: ORowVM(order: po))
-                            .frame(alignment: .leading )
-                            .padding(.bottom, 10)
-                    }
-                }.listRowSeparator(.hidden)
+    var orders: BooksOrders
+    
+    var body: some View {
+//        VStack {
+            ForEach(orders) { po in //, id:\.self
+                NavigationLink(value: po) {
+                    OrderRowView(vm: ORowVM(order: po))
+                    //                    .frame(alignment: .leading )
+                        .padding(.bottom, 10)
+                }
+            }.listRowSeparator(.hidden)
+//        }
     }
 }
 

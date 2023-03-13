@@ -14,17 +14,18 @@ final class ORowVM:ObservableObject {
     @Published var numberPO = ""
     @Published var email = ""
     @Published var date = ""
-    @Published var state = ""
+    @Published var state:OrderState = .recibido
     @Published var booksIdAPI = ""
     
-
+    @Published var selectedState:OrderState = .recibido
     
     init(order: BooksOrder) {
         self.order = order
         self.numberPO = "\(order.id)"
         self.email = order.email
         self.date =  DateFormatter.short.string(for: order.date) ?? "-"
-        self.state = order.estado.rawValue
+        self.state = order.estado
+        self.selectedState = order.estado
         self.booksIdAPI = order.books.reduce("") { "\($0), \($1)" }
     }
     

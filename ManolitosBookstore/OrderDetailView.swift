@@ -10,28 +10,70 @@ import SwiftUI
 struct OrderDetailView: View {
     @EnvironmentObject var appVM:BooksViewModel
     @ObservedObject var vm:ORowVM
+    @Environment(\.dismiss) var dismiss
+    
+    @State var activateFlor = false
+    
     var body: some View {
-        
-        VStack(alignment: .leading) {
+        ZStack {
             HStack {
-                Text(Date.now.formatted(date: .abbreviated, time: .omitted))
-                    .bold()
+                Color.myBackgroundColor.frame(width: 8)
                 Spacer()
-                Text("State: **\(vm.state.capitalized)**")
-                
+                VStack(alignment: .leading) {
+
+                    Picker ("State: ", selection: $vm.selectedState) {
+                        ForEach(OrderState.allCases, id:\.self) { state in
+                            Text(state.rawValue)
+                        }
+                    }.pickerStyle(.automatic)
+ 
+                    HStack {
+                        Text("Order Date:")
+                        Spacer()
+                        Text(vm.order.date.formatted(date: .abbreviated, time: .omitted))
+                        
+                    }
+                    HStack {
+                        Text("Customer:")
+                        Spacer()
+                        Text(vm.order.email).font(.custom("Avenir Next Condensed", size: 20))
+                    }
+                    Divider()
+                    
+                    OrderedBookListView(books: appVM.booksWith(idsAPI: vm.order.books))
+                        .padding()
+                    Spacer()
+                }
             }
-            Divider()
-            
-            //Text("**\(vm.numberPO)**")
-            //Text(vm.email)
-            //Text(vm.booksIdAPI)
-            BookListView(books: appVM.booksWith(idsAPI: vm.order.books))
-            
-            Spacer()
+            if activateFlor {
+                HStack{
+                    Spacer()
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                    Spacer()
+                }
+            }
+        }
+        .onChange(of: vm.selectedState) { new in
+            activateFlor.toggle()
+            appVM.tryModifyStateTo(new, for: vm.order.id)
         }
         .padding()
-        .navigationTitle("Purchase order detail")
+        .navigationTitle("Purchase Order Detail")
         .navigationBarTitleDisplayMode(.inline)
+        .alert("Perfect!",
+               isPresented: $appVM.showError) {
+            Button {
+                activateFlor.toggle()
+                appVM.errorMsg = ""
+                dismiss()
+            } label: {
+                Text("OK")
+            }
+        } message: {
+            Text(appVM.errorMsg)
+        }
+
     }
 }
 
@@ -43,3 +85,16 @@ struct OrderDetailView_Previews: PreviewProvider {
         }
     }
 }
+
+//if appVM.currentUser?.role == .client {
+//    HStack {
+//        Text(vm.order.date.formatted(date: .abbreviated, time: .omitted))
+//            .bold()
+//        Spacer()
+//        Text("State: **\(vm.state.rawValue.capitalized)**")
+//
+//    }
+//} else {
+
+//
+//}

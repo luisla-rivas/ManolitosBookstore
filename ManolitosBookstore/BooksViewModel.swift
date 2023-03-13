@@ -81,7 +81,8 @@ final class BooksViewModel: ObservableObject {
             decoderISO.dateDecodingStrategy = .iso8601
             let ordersFromJSON = persistence.loadJSON(url: .ordersTestURL, arrayOf: BooksOrder.self, decoder: decoderISO)
             self.myPurchaseOrders = ordersFromJSON
-            self.currentUser = Client(name: "Luisla Tester", email: "luisla.tester@luisla.com", location: "Rue del Perceba 13", role: .client)
+            self.currentUser = Client(name: "Luisla Tester", email: "luisla.tester@luisla.com", location: "Rue del Perceba 13", role: .admin)
+            self.allOrdersInServer = ordersFromJSON
         }
     }
     
@@ -443,11 +444,37 @@ final class BooksViewModel: ObservableObject {
             await placeOrder(request: BooksOrderRequest(email: email, pedido: myCart) )
         }
     }
+    
+    
+    func tryModifyStateTo(_ state: OrderState, for orderID: UUID) {
+        guard let email = currentUser?.email, currentUser?.role == .admin else { return
+        }
+        let request = APIModifyOrderStateRequest(id: orderID, admin: email, estado: state)
+        Task(priority: .userInitiated) {
+            await modifyOrderStatus(request: request)
+        }
+    }
         
     @MainActor private func placeOrder(request: BooksOrderRequest) async { //
+        do {
+            let confirmed = try await AsyncPersistence.shared.postPlaceNew(po: request)
+            errorMsg = "Purchase Order placed correctly!\n\nState: \(confirmed.estado)"
+        } catch let error as APIErrors {
+            errorMsg = error.description
+        } catch {
+            errorMsg = error.localizedDescription
+        }
+    }
+    
+    
+    @MainActor private func modifyOrderStatus(request poRequest: APIModifyOrderStateRequest) async { //
             do {
-                let confirmed = try await AsyncPersistence.shared.postPlaceNew(po: request)
-                errorMsg = "Purchase Order placed correctly!\n\nState: \(confirmed.estado)"
+                let ok = try await AsyncPersistence.shared.putUpdateOrderStatus(po: poRequest)
+                if ok {
+                    errorMsg = "Status Order changed correctly!"
+                    //await getAllOrders()
+                }
+
             } catch let error as APIErrors {
                 errorMsg = error.description
             } catch {
@@ -483,7 +510,7 @@ final class BooksViewModel: ObservableObject {
             do {
                 let ordersFromServer = try await AsyncPersistence.shared.getAllOrders(email: email)
                 allOrdersInServer = ordersFromServer
-                print("All Orders in Server Num: \(ordersFromServer.count)")
+                //print("All Orders in Server Num: \(ordersFromServer.count)")
             } catch let error as APIErrors {
                 errorMsg = error.description
             } catch {
@@ -491,4 +518,6 @@ final class BooksViewModel: ObservableObject {
             }
         }
     }
+    
+    
 }

@@ -33,15 +33,17 @@ struct BooksOrderRequest: Codable {
     let pedido: [Int]
 }
 
-// MARK: - PurchaseOrderState
-struct PurchaseOrderState: Codable {
+// MARK: - APIPurchaseOrderState
+struct APIPurchaseOrderState: Codable {
     let estado: String
 }
 
 
-// MARK: - ModifyOrderStateRequest
-struct ModifyOrderStateRequest: Codable {
-    let id, estado, admin: String
+// MARK: - APIModifyOrderStateRequest
+struct APIModifyOrderStateRequest: Codable {
+    let id: UUID
+    let admin: String
+    let estado: OrderState
 }
 
 

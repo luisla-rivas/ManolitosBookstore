@@ -84,6 +84,9 @@ extension Client {
 
 //   let order = try? JSONDecoder().decode(BooksOrder.self, from: jsonData)
 // MARK: - BooksOrder / Confirmation
+enum OrderState: String, Codable, CaseIterable {
+    case recibido, enviado, entregado, anulado, procesando, devuelto
+}
 struct BooksOrder: Codable, Identifiable, Hashable {
     let id: UUID
     let date: Date
@@ -93,10 +96,6 @@ struct BooksOrder: Codable, Identifiable, Hashable {
     
     enum CodingKeys: String, CodingKey {
         case id = "npedido", date, estado, email, books
-    }
-    
-    enum OrderState: String, Codable, CaseIterable {
-        case recibido, enviado, entregado, anulado, procesando, devuelto
     }
 }
 typealias BooksOrders = [BooksOrder]
