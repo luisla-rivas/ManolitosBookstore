@@ -96,7 +96,7 @@ struct BooksOrder: Codable, Identifiable, Hashable {
     }
     
     enum OrderState: String, Codable, CaseIterable {
-        case recibido, enviado, entregado
+        case recibido, enviado, entregado, anulado, procesando, devuelto
     }
 }
 typealias BooksOrders = [BooksOrder]
@@ -124,3 +124,7 @@ extension BooksOrder {
 }
 
 
+enum OrdersGroupedBy: String, CaseIterable {
+        case state = "By State"
+        case client = "By Client"
+}

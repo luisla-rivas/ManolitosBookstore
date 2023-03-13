@@ -60,6 +60,9 @@
 		B6452C6629B8A2FA00D07D54 /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6452C6529B8A2FA00D07D54 /* NetworkStatus.swift */; };
 		B6452C6829B8A3ED00D07D54 /* AppOfflineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6452C6729B8A3ED00D07D54 /* AppOfflineView.swift */; };
 		B683A85429A7639B002E3A03 /* BookGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B683A85329A7639B002E3A03 /* BookGridView.swift */; };
+		B68E488629BF204F005C15C7 /* BookstoreOrdersByStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E488529BF204F005C15C7 /* BookstoreOrdersByStateView.swift */; };
+		B68E488829BF205D005C15C7 /* BookstoreOrdersByClientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E488729BF205D005C15C7 /* BookstoreOrdersByClientView.swift */; };
+		B6A0E73E29BCEB37006181F1 /* CollapsibleSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A0E73D29BCEB37006181F1 /* CollapsibleSection.swift */; };
 		B6CAEBE729B5DE80005D2991 /* CRowVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE8A29A7912B008DA1C5 /* CRowVM.swift */; };
 		B6CAEBE929B5DF56005D2991 /* BookstoreCustomerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE8329A78EBB008DA1C5 /* BookstoreCustomerListView.swift */; };
 		B6CAEBEB29B5DF5E005D2991 /* CustomerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046DE8529A78EE4008DA1C5 /* CustomerRowView.swift */; };
@@ -147,6 +150,9 @@
 		B6452C6529B8A2FA00D07D54 /* NetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatus.swift; sourceTree = "<group>"; };
 		B6452C6729B8A3ED00D07D54 /* AppOfflineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOfflineView.swift; sourceTree = "<group>"; };
 		B683A85329A7639B002E3A03 /* BookGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookGridView.swift; sourceTree = "<group>"; };
+		B68E488529BF204F005C15C7 /* BookstoreOrdersByStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookstoreOrdersByStateView.swift; sourceTree = "<group>"; };
+		B68E488729BF205D005C15C7 /* BookstoreOrdersByClientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookstoreOrdersByClientView.swift; sourceTree = "<group>"; };
+		B6A0E73D29BCEB37006181F1 /* CollapsibleSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleSection.swift; sourceTree = "<group>"; };
 		B6CC2FFC29B6317300D2C9B6 /* EditCustomerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCustomerView.swift; sourceTree = "<group>"; };
 		B6CC2FFE29B6328900D2C9B6 /* MyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTextField.swift; sourceTree = "<group>"; };
 		B6D3A1C229B737FD00F6B040 /* MyBooksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBooksListView.swift; sourceTree = "<group>"; };
@@ -213,7 +219,7 @@
 		A046DE9029A7C457008DA1C5 /* Orders */ = {
 			isa = PBXGroup;
 			children = (
-				A0C22D3929B53BB600365187 /* BookstoreOrderListView.swift */,
+				B68E488429BF201E005C15C7 /* AllOrders */,
 				A0B2049929B886D700D4EA81 /* MyOrderListView.swift */,
 				A046DE8E29A7C449008DA1C5 /* POrderListView.swift */,
 				A046DE9129A7C484008DA1C5 /* OrderRowView.swift */,
@@ -239,9 +245,9 @@
 				A07F88A929B33DAA008BF4CA /* Components */,
 				B683A85529A76C19002E3A03 /* Discover */,
 				B683A85629A76C42002E3A03 /* MyBooks */,
+				A046DE9029A7C457008DA1C5 /* Orders */,
 				B683A85729A76C73002E3A03 /* Settings */,
 				A046DE8929A78EFF008DA1C5 /* Customer */,
-				A046DE9029A7C457008DA1C5 /* Orders */,
 			);
 			name = IOSViews;
 			sourceTree = "<group>";
@@ -253,12 +259,10 @@
 				A0D5ABD729AF6F1C00D1645F /* AccountVM.swift */,
 				A0283D93299D31EC00976E5A /* RowVM.swift */,
 				A046DE9329A7D0A1008DA1C5 /* ORowVM.swift */,
-				A04A63052992C607005E8931 /* BookDetailViewModel.swift */,
-				A046DE8A29A7912B008DA1C5 /* CRowVM.swift */,
-				A046DE8C29A7B889008DA1C5 /* OrderDetailVM.swift */,
 				A04A62FC2992A077005E8931 /* UserViewModel.swift */,
 				B6452C6729B8A3ED00D07D54 /* AppOfflineView.swift */,
 				B6452C6529B8A2FA00D07D54 /* NetworkStatus.swift */,
+				B68E488929BF2775005C15C7 /* toDelete */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -267,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				B6CC2FFE29B6328900D2C9B6 /* MyTextField.swift */,
+				B6A0E73D29BCEB37006181F1 /* CollapsibleSection.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -381,6 +386,26 @@
 				B6CC2FFC29B6317300D2C9B6 /* EditCustomerView.swift */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		B68E488429BF201E005C15C7 /* AllOrders */ = {
+			isa = PBXGroup;
+			children = (
+				A0C22D3929B53BB600365187 /* BookstoreOrderListView.swift */,
+				B68E488529BF204F005C15C7 /* BookstoreOrdersByStateView.swift */,
+				B68E488729BF205D005C15C7 /* BookstoreOrdersByClientView.swift */,
+			);
+			name = AllOrders;
+			sourceTree = "<group>";
+		};
+		B68E488929BF2775005C15C7 /* toDelete */ = {
+			isa = PBXGroup;
+			children = (
+				A046DE8A29A7912B008DA1C5 /* CRowVM.swift */,
+				A04A63052992C607005E8931 /* BookDetailViewModel.swift */,
+				A046DE8C29A7B889008DA1C5 /* OrderDetailVM.swift */,
+			);
+			name = toDelete;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -526,6 +551,7 @@
 				A061FB33299645B7008E3255 /* DiscoverView.swift in Sources */,
 				A0C22D3829B53B2500365187 /* ContentAdminView.swift in Sources */,
 				B63811CE29BB5EC5000F0F55 /* OrderingBookListView.swift in Sources */,
+				B6A0E73E29BCEB37006181F1 /* CollapsibleSection.swift in Sources */,
 				B6452C6829B8A3ED00D07D54 /* AppOfflineView.swift in Sources */,
 				A0D64DC829941F68009ECE11 /* Network.swift in Sources */,
 				A0DB755829955C190093887C /* BookRowView.swift in Sources */,
@@ -541,6 +567,7 @@
 				A04A63042992C53C005E8931 /* BookDetailView.swift in Sources */,
 				B6CAEBE729B5DE80005D2991 /* CRowVM.swift in Sources */,
 				B6452C6629B8A2FA00D07D54 /* NetworkStatus.swift in Sources */,
+				B68E488829BF205D005C15C7 /* BookstoreOrdersByClientView.swift in Sources */,
 				A042C1FC29B26E1900E9572B /* CustomShape.swift in Sources */,
 				A09C7B60298C0619005EA4D2 /* ContentView.swift in Sources */,
 				A0D64DC5299414FE009ECE11 /* ModelsAPI.swift in Sources */,
@@ -556,6 +583,7 @@
 				A04A63062992C607005E8931 /* BookDetailViewModel.swift in Sources */,
 				A03EEED1299AB84100EF9759 /* BookstoreListView.swift in Sources */,
 				A07C36AD29A9452700DDB33B /* Extension+helper.swift in Sources */,
+				B68E488629BF204F005C15C7 /* BookstoreOrdersByStateView.swift in Sources */,
 				A04A62F62992989C005E8931 /* BookListView.swift in Sources */,
 				A0C22D4429B53C0600365187 /* OrderDetailVM.swift in Sources */,
 				B6D3A1C329B737FD00F6B040 /* MyBooksListView.swift in Sources */,

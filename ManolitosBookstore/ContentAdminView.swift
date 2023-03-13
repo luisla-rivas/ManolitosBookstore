@@ -8,16 +8,16 @@
 import SwiftUI
 
 enum TabAdmin {
-  case books, customers, orders, setting //, account
+  case books, orders, setting //, customers
 
 }
 
 struct ContentAdminView: View {
     @EnvironmentObject var appVM:BooksViewModel
-    @State private var selection: TabItem = .purchased
+    @State private var selection: TabAdmin = .orders
 
     var body: some View {
-        let _ = Self._printChanges()
+
         TabView(selection: $selection) {
            
             BookstoreListView()
@@ -26,17 +26,20 @@ struct ContentAdminView: View {
                 }
                 .tag(TabAdmin.books)
             
+            //BookstoreOrderListView()
             BookstoreOrderListView()
                 .tabItem {
                     Label("Orders", systemImage: "creditcard.fill")
                 }
                 .tag(TabAdmin.orders)
             
+            /*
             BookstoreCustomerListView()
                 .tabItem {
                     Label("Customer", systemImage: "person.crop.circle.fill")
                 }
                 .tag(TabAdmin.customers)
+            */
             
             SettingsListView()
                 .tabItem {
@@ -50,5 +53,6 @@ struct ContentAdminView: View {
 struct ContentAdminView_Previews: PreviewProvider {
     static var previews: some View {
         ContentAdminView()
+            .environmentObject(BooksViewModel(.inPreview))
     }
 }

@@ -32,6 +32,7 @@ struct OrderRowView: View {
 //                Text(vm.email)
 //                Text(vm.booksIdAPI)
                 OrderedBookListView(books: appVM.booksWith(idsAPI: vm.order.books))
+                    .environmentObject(BooksViewModel(.inPreview))
             }
         }
     }

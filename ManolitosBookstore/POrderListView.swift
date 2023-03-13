@@ -12,7 +12,7 @@ struct POrderListView: View {
     //@State var path:[Int] = []
     let orders: BooksOrders
     var body: some View {
-//            LazyVStack(alignment: .leading) {
+
                 ForEach(orders) { po in //, id:\.self
                     NavigationLink(value: po) {
                         OrderRowView(vm: ORowVM(order: po))
@@ -20,7 +20,6 @@ struct POrderListView: View {
                             .padding(.bottom, 10)
                     }
                 }.listRowSeparator(.hidden)
-//            }
     }
 }
 

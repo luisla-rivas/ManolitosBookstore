@@ -26,6 +26,7 @@ struct ContentView: View {
                     Label("Discover", systemImage: "star.fill")
                 }
                 .tag(TabItem.discover)
+            
             if appVM.currentUser != nil {
                 MyBooksListView()
                     .tabItem {

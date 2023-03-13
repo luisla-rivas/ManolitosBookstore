@@ -41,8 +41,12 @@ final class AsyncPersistence {
         return result
     }
     
-    func getAllOrders() async throws -> BooksOrders {
-        try await queryJSON(request: .request(url: .getAllOrders), type: BooksOrders.self)
+    func getAllOrders(email: String) async throws -> BooksOrders {
+        let userIdentity =  RequestByEmail(email: email)
+        let request = URLRequest.request(url: .getAllOrders, method: .post, body: userIdentity)
+        let decoderISO = JSONDecoder()
+        decoderISO.dateDecodingStrategy = .iso8601
+        return try await queryJSON(request: request, type: BooksOrders.self, decoder: decoderISO)
     }
     
     func getPurchaseOrders(for email: String) async throws -> BooksOrders {
@@ -50,8 +54,7 @@ final class AsyncPersistence {
         let request = URLRequest.request(url: .postClientPO, method: .post, body: userIdentity)
         let decoderISO = JSONDecoder()
         decoderISO.dateDecodingStrategy = .iso8601
-        let result = try await queryJSON(request: request, type: BooksOrders.self, decoder: decoderISO)
-        return result
+        return try await queryJSON(request: request, type: BooksOrders.self, decoder: decoderISO)
     }
     
     func postCreateUser(customer: Client) async throws -> Bool {

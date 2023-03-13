@@ -8,36 +8,36 @@
 import SwiftUI
 
 struct BookstoreOrderListView: View {
+    
     @EnvironmentObject var appVM:BooksViewModel
     //@State var path:[Int] = []
     
     var body: some View {
         NavigationStack { //(path: $path)
-            List(appVM.allOrdersGrouped, id:\.self) { orders in
-                
-                Section {
-                    if appVM.currentUser != nil {
-                        POrderListView(orders: orders)
-                    } else {
-                        Text("You must be logged to watch all purchase orders list!")
-                            .padding()
-                            .lineLimit(2, reservesSpace: true)
-                    }
-                } header: {
-                    Text(orders.first?.estado.rawValue.uppercased() ?? "")
+            Picker ("Grouping by", selection:$appVM.groupOrdersByStatus) {
+                ForEach(OrdersGroupedBy.allCases,id:\.self) { groupBy in
+                    Text(groupBy.rawValue)
+                }
+            }.pickerStyle(.segmented)
+            .padding()
+            VStack {
+                switch appVM.groupOrdersByStatus {
+                case .state:
+                    BookstoreOrdersByStateView()
+                case .client:
+                    BookstoreOrdersByClientView()
                 }
             }
-            .listStyle(.inset)
             //.searchable(text: $appVM.search)
             .navigationDestination(for: BooksOrder.self) { po in
                 OrderDetailView(vm: ORowVM(order: po))
             }
-            .navigationDestination(for: Book.self) { book in
-                BookDetailView(vm: RowVM(book: book))
-            }
+//            .navigationDestination(for: Book.self) { book in
+//                BookDetailView(vm: RowVM(book: book))
+//            }
             .navigationTitle("Purchase Orders")
             .refreshable {
-                await appVM.getAllBooks()
+                await appVM.getAllOrders()
             }
             .alert("Network alert!",
                    isPresented: $appVM.showError) {
@@ -50,7 +50,7 @@ struct BookstoreOrderListView: View {
                 Text(appVM.errorMsg)
             }
             .task {
-                let _ = await appVM.getOrdersForCurrentUser()
+                await appVM.getAllOrders()
             }
         }
 
@@ -64,3 +64,5 @@ struct BookstoreOrderListView_Previews: PreviewProvider {
             .environmentObject(BooksViewModel(.inPreview))
     }
 }
+
+

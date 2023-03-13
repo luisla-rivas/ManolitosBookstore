@@ -44,12 +44,13 @@ final class BooksViewModel: ObservableObject {
     @Published var myPurchasedBooks: Books = []
     @Published var myPurchaseOrders: BooksOrders = []
     @Published var myCart: [Int] = []
+    @Published var allOrdersInServer:BooksOrders = []
     private var booksInServer: Books = []
     private var latestBooksInServer: Books = []
     private var myReadedIDBooks = [Int]()
     private var myLastOrderedIDBooks = [Int]()
     private var myPurchasedIDBooks = [Int]()
-    var allOrdersInServer:BooksOrders = []
+
     
     var showingProduct = false
     
@@ -80,6 +81,7 @@ final class BooksViewModel: ObservableObject {
             decoderISO.dateDecodingStrategy = .iso8601
             let ordersFromJSON = persistence.loadJSON(url: .ordersTestURL, arrayOf: BooksOrder.self, decoder: decoderISO)
             self.myPurchaseOrders = ordersFromJSON
+            self.currentUser = Client(name: "Luisla Tester", email: "luisla.tester@luisla.com", location: "Rue del Perceba 13", role: .client)
         }
     }
     
@@ -361,6 +363,7 @@ final class BooksViewModel: ObservableObject {
     }
     
     //MARK: - ORDERS
+
     enum ShowOrders: String, CaseIterable {
         case received = "Received PO"
         case sent = "Sent PO"
@@ -368,6 +371,7 @@ final class BooksViewModel: ObservableObject {
         case all = "All Purchase Orders"
     }
     @Published var showByOrdersStatus:ShowOrders = .all
+    @Published var groupOrdersByStatus:OrdersGroupedBy = .state
     
     var myOrdersGrouped:[[BooksOrder]] {
         Dictionary(grouping: myPurchaseOrders) { order in
@@ -390,7 +394,7 @@ final class BooksViewModel: ObservableObject {
         }
     }
     
-    var allOrdersGrouped:[[BooksOrder]] {
+    var allOrdersGroupedByState:[[BooksOrder]] {
         Dictionary(grouping: allOrdersInServer) { order in
             order.estado
         }
@@ -411,6 +415,26 @@ final class BooksViewModel: ObservableObject {
         }
     }
     
+    var allOrdersGroupedByClient:[[BooksOrder]] {
+        Dictionary(grouping: allOrdersInServer) { order in
+            order.email
+        }
+        .values //.sorted(by: { $0.first?.date ?? Date.now < $1.first?.date ?? Date.now })
+        .map { orders in
+            orders.filter { order in
+                switch self.showByOrdersStatus {
+                case .received:
+                    return order.estado == .recibido
+                case .sent:
+                    return order.estado == .enviado
+                case .delivered:
+                    return order.estado == .entregado
+                case .all:
+                    return true
+                }
+            }
+        }
+    }
  
     func tryPlaceOrder() {
         guard let email = currentUser?.email else { return
@@ -455,13 +479,16 @@ final class BooksViewModel: ObservableObject {
     
     @MainActor func getAllOrders() async {
         //https://trantorapi-acacademy.herokuapp.com/api/shop/allOrders
-        do {
-            let ordersFromServer = try await AsyncPersistence.shared.getAllOrders()
-            allOrdersInServer = ordersFromServer
-        } catch let error as APIErrors {
-            errorMsg = error.description
-        } catch {
-            errorMsg = error.localizedDescription
+        if let email = currentUser?.email, currentUser?.role == .admin { //Only if a client is logged in
+            do {
+                let ordersFromServer = try await AsyncPersistence.shared.getAllOrders(email: email)
+                allOrdersInServer = ordersFromServer
+                print("All Orders in Server Num: \(ordersFromServer.count)")
+            } catch let error as APIErrors {
+                errorMsg = error.description
+            } catch {
+                errorMsg = error.localizedDescription
+            }
         }
     }
 }

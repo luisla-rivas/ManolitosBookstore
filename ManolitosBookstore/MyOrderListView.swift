@@ -14,7 +14,17 @@ struct MyOrderListView: View {
     var body: some View {
         NavigationStack { //(path: $path)
             List(appVM.myOrdersGrouped, id:\.self) { orders in
-                
+//                if appVM.currentUser != nil {
+//                    CollapsibleSection(title: orders.first?.estado.rawValue.uppercased() ?? "") {
+//
+//                        POrderListView(orders: orders)
+//
+//                    }
+//                } else {
+//                    Text("You must be logged to watch your purchase orders list!")
+//                        .padding()
+//                        .lineLimit(2, reservesSpace: true)
+//                }
                 Section {
                     if appVM.currentUser != nil {
                         POrderListView(orders: orders)
@@ -27,7 +37,7 @@ struct MyOrderListView: View {
                     Text(orders.first?.estado.rawValue.uppercased() ?? "")
                 }
             }
-            //.listStyle(.inset)
+            .listStyle(.inset)
             //.searchable(text: $appVM.search)
             .navigationDestination(for: BooksOrder.self) { po in
                 OrderDetailView(vm: ORowVM(order: po))
