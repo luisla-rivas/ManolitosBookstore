@@ -57,6 +57,7 @@ struct OrderDetailView: View {
         .onChange(of: vm.selectedState) { new in
             activateFlor.toggle()
             appVM.tryModifyStateTo(new, for: vm.order.id)
+            appVM.updateStateIn(order: vm.save())
         }
         .padding()
         .navigationTitle("Purchase Order Detail")

@@ -41,7 +41,7 @@ final class AsyncPersistence {
         return result
     }
     
-    func getAllOrders(email: String) async throws -> BooksOrders {
+    func getAllOrdersInServer(email: String) async throws -> BooksOrders {
         let userIdentity =  RequestByEmail(email: email)
         let request = URLRequest.request(url: .getAllOrders, method: .post, body: userIdentity)
         let decoderISO = JSONDecoder()

@@ -30,5 +30,7 @@ final class ORowVM:ObservableObject {
     }
     
     
-    
+    func save() -> BooksOrder {
+        BooksOrder(id: order.id, date: order.date, estado: selectedState, email: order.email, books: order.books)
+    }
 }

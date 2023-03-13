@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum TabAdmin {
-  case books, orders, setting //, customers
+  case books, orders, setting, myOrders //, customers
 
 }
 
@@ -26,20 +26,12 @@ struct ContentAdminView: View {
                 }
                 .tag(TabAdmin.books)
             
-            //BookstoreOrderListView()
             BookstoreOrderListView()
                 .tabItem {
                     Label("Orders", systemImage: "creditcard.fill")
                 }
                 .tag(TabAdmin.orders)
-            
-            /*
-            BookstoreCustomerListView()
-                .tabItem {
-                    Label("Customer", systemImage: "person.crop.circle.fill")
-                }
-                .tag(TabAdmin.customers)
-            */
+        
             
             SettingsListView()
                 .tabItem {

@@ -188,6 +188,14 @@ final class BooksViewModel: ObservableObject {
         
     }
     
+    func updateStateIn(order: BooksOrder) {
+        guard let index = allOrdersInServer.firstIndex(where: {$0.id == order.id}) else {
+            return
+        }
+        allOrdersInServer.remove(at: index)
+        allOrdersInServer.append(order)
+    }
+    
     //MARK: - READED
     
 //    func isFavorite(id:Int) -> Bool {
@@ -378,7 +386,7 @@ final class BooksViewModel: ObservableObject {
         Dictionary(grouping: myPurchaseOrders) { order in
             order.estado
         }
-        .values //.sorted(by: { $0.first?.date ?? Date.now < $1.first?.date ?? Date.now })
+        .values.sorted(by: { $0.first?.date ?? Date.now < $1.first?.date ?? Date.now })
         .map { orders in
             orders.filter { order in
                 switch self.showByOrdersStatus {
@@ -508,7 +516,7 @@ final class BooksViewModel: ObservableObject {
         //https://trantorapi-acacademy.herokuapp.com/api/shop/allOrders
         if let email = currentUser?.email, currentUser?.role == .admin { //Only if a client is logged in
             do {
-                let ordersFromServer = try await AsyncPersistence.shared.getAllOrders(email: email)
+                let ordersFromServer = try await AsyncPersistence.shared.getAllOrdersInServer(email: email)
                 allOrdersInServer = ordersFromServer
                 //print("All Orders in Server Num: \(ordersFromServer.count)")
             } catch let error as APIErrors {

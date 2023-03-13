@@ -12,11 +12,24 @@ struct BookstoreOrdersByStateView: View {
     
     var body: some View {
             List(appVM.allOrdersGroupedByState, id:\.self) { orders in
-                CollapsibleSection(title: orders.first?.estado.rawValue.uppercased() ?? "") {
+                
+                Section {
+                    if appVM.currentUser != nil {
                         POrderListView(orders: orders)
+                    } else {
+                        Text("You must be logged to watch your purchase orders list!")
+                            .padding()
+                            .lineLimit(2, reservesSpace: true)
+                    }
+                } header: {
+                    Text(orders.first?.estado.rawValue.uppercased() ?? "")
                 }
             }
-            .listStyle(.inset)
+//                CollapsibleSection(title: orders.first?.estado.rawValue.uppercased() ?? "") {
+//                        POrderListView(orders: orders)
+//                }
+//            }
+//            .listStyle(.inset)
     }
 }
 
